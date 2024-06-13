@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+}
+@model IEnumerable<QLViecLam.ViewModels.Admin.Systems.VM_TuyenDung_ViTriTuyenDung>
+<br />
+<br />
+
+<table id='data_header' align="left" border="1" cellpadding="0" cellspacing="0" style="width:100.0%">
+    <tr>
+        <td style="width:2.66%">
+            <p style="text-align:justify"><span><strong>STT</strong></span></p>
+        </td>
+        <td>
+            <p style="text-align:justify"><span><strong>Công ty</strong></span></p>
+        </td>
+        <td>
+            <p style="text-align:justify"><span><strong>Vị trí</strong></span></p>
+        </td>
+        <td>
+            <p style="text-align:justify"><span><strong>Số Lượng</strong></span></p>
+        </td>
+        <td>
+            <p style="text-align:justify"><span><strong>Thời hạn</strong></span></p>
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@(record_id++)</td>
+            <td>@item.CongTy</td>
+            <td>@item.Name</td>
+            <td>@item.SoLuong</td>
+            <td>@item.ThoiHan</td>
+        </tr>
+    }
+
+</table>

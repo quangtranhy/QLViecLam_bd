@@ -1,0 +1,400 @@
+﻿@{
+    var TrinhDoHV = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.TrinhDoHV>)ViewData["TrinhDoHV"]!;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var DanToc = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.DanToc>)ViewData["DanToc"]!;
+    // var NganhNghe = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.DmNganhNghe>)ViewData["DmNganhNghe"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+    var QuocGia = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.QuocGia>)ViewData["QuocGia"]!;
+    var NganhHoc = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.NganhHoc>)ViewData["NganhHoc"]!;
+    // var NganhHoc = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.DmThoiGianLamViec>)ViewData["NganhHoc"]!;
+}
+@* @model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.NhanKhau> *@
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+
+
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Thêm mới<small> Cung lao động</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <form method="POST" enctype='multipart/form-data' asp-controller="CungLaoDong" asp-action="Store">
+            <div class="panel-body" id='dynamicTable'>
+                <div class="row" id="1stld">
+                    <div class="col-md-12">
+                        <div class="card card-custom">
+                            <div class="card-header card-header-tabs-line">
+                                <div class="card-toolbar">
+                                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#thongtincoban">
+                                                <span class="nav-icon">
+                                                    <i class="fas fa-users"></i>
+                                                </span>
+                                                <span class="nav-text">Thông tin cơ bản</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="card-toolbar">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="thongtincoban" role="tabpanel" aria-labelledby="thongtincoban">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Số định danh hộ gia đình<span class="text-danger">*</span></label>
+                                                    <input type="number" name="sodinhdanhhogd" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Quan hệ</label>
+                                                    <select name="quanhe" class="form-control">
+                                                        @foreach (var qh in DanhMucChung.QuanHe())
+                                                        {
+                                                            <!option value="@qh.MaQuanHe">@qh.TenQuanHe</!option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Họ và Tên <span class="text-danger">*</span></label>
+                                                    <input type="text" name="hovaten" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Số CCCD <span class="text-danger">*</span></label>
+                                                    <input type="number" name="socccd" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Giới tính </label>
+                                                    <select class="form-control" name="gioitinh">
+                                                        @foreach (var gt in DanhMucChung.GioiTinh())
+                                                        {
+                                                            <option value="@gt.MaGioiTinh">@gt.TenGioiTinh</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Ngày tháng năm sinh <span class="text-danger">*</span></label>
+                                                    <input type="date" name="ngaythangnamsinh" class="form-control" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="number" name="sdt" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Khu vực</label>
+                                                    <select class="form-control" name="khuvuc">
+                                                        <option value="1">Thành thị</option>
+                                                        <option value="2">Nông thôn</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nơi ở hiện nay</label>
+                                                    <input type="text" name="noiohientai" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Thường trú</label>
+                                                    <input type="text" value="@ViewData["thuongtru"]" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Đối tượng ưu tiên</label>
+                                                    <select class="form-control" name="uutien">
+                                                        <option value="">---Chọn đối tượng ưu tiên---</option>
+                                                        @foreach (var ut in DanhMucChung.DoiTuongUT())
+                                                        {
+                                                            <option value="@ut.MaDoiTuongUT">@ut.TenDoiTuongUT</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Dân tộc</label>
+                                                    <select class="form-control" name="dantoc">
+                                                        <option value="">---Chọn dân tộc---</option>
+                                                        @foreach (var dt in DanToc)
+                                                        {
+                                                            <option value="@dt.MaDanToc">@dt.TenDanToc</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Trình độ học vấn <span class="text-danger">*</span></label>
+                                                    <select name="TrinhDoHV" class="form-control selec2basic" required>
+                                                        <option value="">---Chọn trình độ học vấn---</option>
+                                                        @foreach (var hv in TrinhDoHV)
+                                                        {
+                                                            <option value="@hv.MaTrinhDoHV">@hv.TenTrinhDoHV</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label> Trình độ CMKT <span class="text-danger">*</span> </label>
+                                                    <select name="TrinhDoCMKT" class="form-control selec2basic" required>
+                                                        <option value=""> ---Chọn trình độ CMKT---</option>
+                                                        @foreach (var cmkt in TrinhDoCMKT)
+                                                        {
+                                                            <option value="@cmkt.MaTrinhDoCMKT">@cmkt.TenTrinhDoCMKT</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Việc làm mong muốn
+                                                    </label>
+                                                    <select name="vieclammongmuon" class="form-control">
+                                                        <option value="">---Chọn việc làm mong muốn---</option>
+                                                        <option value="1">Trong tỉnh, trong nước</option>
+                                                        <option value="2"> Đi làm việc ở nước ngoài</option>
+                                                        <option value="3">Tất cả</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Thị trường </label>
+                                                    <select name="thitruonglamviec" class="form-control selec2basic">
+                                                        <option value="">---Chọn thị trường muốn làm việc--</option>
+                                                        @foreach (var qg in QuocGia)
+                                                        {
+                                                            <option value="@qg.MaQuocGia">@qg.TenQuocGia</option>
+                                                        }
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Ngành nghề muốn học
+                                                    </label>
+                                                    <select name="nganhnghemuonhoc" class="form-control selec2basic">
+                                                        <option value="">---Chọn ngành nghề muốn học---</option>
+                                                        @foreach (var nh in NganhHoc)
+                                                        {
+                                                            <option value="@nh.MaNganhHoc"> @nh.TenNganhHoc </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Trình độ chuyên môn muốn học
+                                                    </label>
+                                                    <select name="trinhdochuyenmonmuonhoc" class="form-control selec2basic">
+                                                        <option value="">---Chọn trình độ chuyên môn muốn học---</option>
+                                                        <option value="1">Sơ cấp</option>
+                                                        <option value="2">Trung cấp</option>
+                                                        <option value="3">Cao đẳng</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Đối tượng tìm kiếm việc làm <span class="text-danger">*</span>
+                                                    </label>
+                                                    <select name="doituongtimvieclam" class="form-control selec2basic" required>
+                                                        <option value="">---Chọn đối tượng tìm kiếm việc làm---</option>
+                                                        <option value="1">Chưa từng làm việc</option>
+                                                        <option value="2">Đã từng làm việc</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Tình trạng việc làm<span class="text-danger">*</span></label>
+                                                    <select name="tinhtrangvl" id="tinhtrangvl" onclick="check()" class="form-control selec2basic" required>
+                                                        <option value="">---Chọn tình trạng việc làm---</option>
+                                                        @foreach (var ttvl in TinhTrangVL)
+                                                        {
+                                                            <option value="@ttvl.MaTinhTrangVL"> @ttvl.TenTinhTrangVL</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3" id="tinhtrang_thatnghiep" style="display:none">
+                                                <div class="form-group">
+                                                    <label>Thời gian thất nghiệp</label>
+                                                    <select name="thoigianthatnghiep" class="form-control selec2basic">
+                                                        <option value="">---Chọn thời gian thất nghiệp---</option>
+                                                        @foreach (var khongthamgia in DanhMucChung.ThoiGianThatNghiep())
+                                                        {
+                                                            <option value="@khongthamgia.MaThoiGianThatNghiep"> @khongthamgia.TenThoiGianThatNghiep</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3" id="tinhtrang_Khongthamgia" style="display:none">
+                                                <div class="form-group">
+                                                    <label>Lý do không tham gia</label>
+                                                    <select name="lydokhongthamgia" class="form-control selec2basic">
+                                                        <option value="">---Chọn lý do không tham gia---</option>
+                                                        @foreach (var thoigian in DanhMucChung.LyDoKhongThamGiaHDKT())
+                                                        {
+                                                            <option value="@thoigian.MaLyDoKhongThamGiaHDKT"> @thoigian.TenLyDoKhongThamGiaHDKT</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="tinhtrang_covieclam" style="display:none">
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Công việc cụ thể</label>
+                                                        <input type="text" name="congvieccuthe" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Tên nơi làm việc</label>
+                                                        <input type="text" name="noilamviec" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ nơi làm việc</label>
+                                                        <input type="text" name="diachinoilamviec" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <input type="hidden" name="madonvi" value="@ViewData["madonvi"]">
+            <input type="hidden" name="kydieutra" value="@ViewData["kydieutra"]">
+            <input type="hidden" name="huyen" id="huyen" value="@ViewData["huyen"]">
+            <input type="hidden" name="xa" id="xa" value="@ViewData["xa"]">
+            <input type="hidden" name="ThuongTru" value="@ViewData["thuongtru"]">
+            @* <input type="hidden" name="tinh" id="tinh" value="44"> *@
+            <input type="hidden" name="ho" id="ho" value="">
+            <div class="card-footer">
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <a onclick="history.back()" class="btn btn-danger mr-5">
+                            <i class="fa fa-reply"></i>&nbsp;Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check"></i>Hoàn thành
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function check(){
+               var tinhtrangvl = $('#tinhtrangvl').val();
+           if(tinhtrangvl == 1)
+           {
+                $('#tinhtrang_covieclam').css("display", "block");
+                $('#tinhtrang_thatnghiep').css("display", "none");
+                $('#tinhtrang_Khongthamgia').css("display", "none");
+           }
+            if(tinhtrangvl == 2)
+           {
+                $('#tinhtrang_covieclam').css("display", "none");
+                $('#tinhtrang_thatnghiep').css("display", "block");
+                $('#tinhtrang_Khongthamgia').css("display", "none");
+           }
+             if(tinhtrangvl == 3)
+           {
+                $('#tinhtrang_covieclam').css("display", "none");
+                $('#tinhtrang_thatnghiep').css("display", "none");
+                $('#tinhtrang_Khongthamgia').css("display", "block");
+           }
+            if(tinhtrangvl == '')
+           {
+                $('#tinhtrang_covieclam').css("display", "none");
+                $('#tinhtrang_thatnghiep').css("display", "none");
+                $('#tinhtrang_Khongthamgia').css("display", "none");
+           }
+    }
+</script>
+
+
+
+
+

@@ -1,0 +1,131 @@
+﻿@{
+    int record_id = 1;
+    var hanhchinh = (IEnumerable<QLViecLam.ViewModels.Admin.Systems.VM_HanhChinh_DonVi>)ViewData["hanhchinh"]!;
+    int nam_start = 2022;
+    var nam_stop = DateTime.Now.Year;
+}
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+
+
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Trích xuất thông tin cung - cầu, thị trường lao động
+            </h3>
+        </div>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="form-group fv-plugins-icon-container">
+                    <a class="btn font-weight-bolder" data-toggle="modal" data-target="#PrintCung_modal">
+                        <i class="far fa-list-alt text-primary"></i> Trích xuất thông tin cung lao động
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-12">
+                <div class="form-group fv-plugins-icon-container">
+                    <a class="btn font-weight-bolder" data-toggle="modal" data-target="#PrintCau_modal">
+                        <i class="far fa-list-alt text-primary"></i> Trích xuất thông tin cầu lao động
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="PrintCung_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <form id="PrintCung_form" method="get" accept-charset="UTF-8"
+          enctype="multipart/form-data" asp-controller="TrichXuatTTCungCau" asp-action="PrintCung">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <h4 id="modal-header-primary-label" class="modal-title">
+                        Trích xuất thông tin cung lao động
+                    </h4>
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 mb-2">
+                        <label class="control-label">Chọn xã</label>
+                        <select name="madv" id="" class="form-control select2basic" style="width:100%">
+                            @foreach (var item in hanhchinh)
+                            {
+                                <option value="@item.MaDv">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <label class="control-label">Chọn Kỳ điều tra</label>
+                        <select name="kydieutra" id="kydieutra" class="form-control select2basic" style="width:100%">
+                            @for (var i = nam_start; i <= nam_stop; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary">
+                        Đồng ý
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="PrintCau_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <form id="PrintCau_form" method="get" accept-charset="UTF-8"
+          enctype="multipart/form-data" asp-controller="TrichXuatTTCungCau" asp-action="PrintCau">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <h4 id="modal-header-primary-label" class="modal-title">
+                        Trích xuất thông tin cầu lao động
+                    </h4>
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 mb-2">
+                        <label class="control-label">Từ ngày</label>
+                        <input type="date" name="tungay" id="tungay" value=""/>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <label class="control-label">Đến ngày</label>
+                        <input type="date" name="denngay" id="denngay" value="" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary">
+                        Đồng ý
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
