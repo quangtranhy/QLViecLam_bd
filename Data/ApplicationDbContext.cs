@@ -23,7 +23,7 @@ namespace QLViecLam.Data
         public DbSet<DsNhomTaiKhoan> DsNhomTaiKhoan { get; set; }
         public DbSet<DsNhomTaiKhoan_PhanQuyen> DsNhomTaiKhoan_PhanQuyen { get; set; }
         public DbSet<DsTaiKhoan_PhanQuyen> DsTaiKhoan_PhanQuyen { get; set; }
-
+        public DbSet<DvDieuTra> DvDieuTra { get; set; }
         //End Systems
 
 

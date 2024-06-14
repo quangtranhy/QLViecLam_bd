@@ -36,7 +36,6 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     var model = _db.NhanKhau.AsQueryable();
                     var k = (kydieutra == null) ? nam : kydieutra;
 
-
                     model = model.Where(x => x.KyDieuTra == k);
 
                     if (huyen != null)
@@ -93,7 +92,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                         }
                     }
 
-                    ViewData["tinhtrangvl"] = ttvl;
+                    ViewData["ttvl"] = ttvl;
                     ViewData["huyen"] = huyen;
                     ViewData["xa"] = xa;
                     ViewData["kydieutra"] = k;
@@ -365,6 +364,34 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
 
+        }
+        [Route("CungLaoDong/Delete")]
+        [HttpPost]
+        public IActionResult Delete(int id_delete, string ttvl, string huyen, string xa, string kydieutra)
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
+            {
+                bool check_per = true;
+                if (check_per)
+                {
+                    var model = _db.NhanKhau.FirstOrDefault(t => t.Id == id_delete);
+                    if (model != null)
+                    {
+                        _db.NhanKhau.Remove(model);
+                        _db.SaveChanges();
+                    }
+                    return RedirectToAction("Index", "CungLaoDong", new { ttvl, huyen, xa, kydieutra });
+                }
+                else
+                {
+                    ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
+                    return View("Views/Admin/Error/Page.cshtml");
+                }
+            }
+            else
+            {
+                return View("Views/Admin/Error/SessionOut.cshtml");
+            }
         }
 
         [Route("CungLaoDong/BcChiTiet")]

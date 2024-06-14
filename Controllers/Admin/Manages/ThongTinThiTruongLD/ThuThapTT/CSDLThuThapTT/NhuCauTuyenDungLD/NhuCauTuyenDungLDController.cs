@@ -78,6 +78,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
 
                     var TuyenDung = _db.TuyenDung.Where(x=>x.Id == Id).FirstOrDefault();
                     var ViTriTuyenDung = _db.ViTriTuyenDung.Where(x=>x.IdTuyenDung == Id);
+
                     ViewData["TuyenDung"] = TuyenDung;
                     ViewData["ViTriTuyenDung"] = ViTriTuyenDung;
                     ViewData["Title"] = "Kế hoạch thu thập thông tin lao động";
@@ -99,9 +100,9 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
 
         }
 
-        [Route("NhuCauTuyenDungLD/Print")]
+        [Route("NhuCauTuyenDungLD/BcMau01")]
         [HttpGet]
-        public IActionResult Print()
+        public IActionResult BcMau01()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
             {
@@ -109,7 +110,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                 if (check_per)
                 {
                     ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
-                    return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NhuCauTuyenDungLD/NhuCauTuyenDungLD_Print.cshtml");
+                    return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NhuCauTuyenDungLD/BcMau01.cshtml");
                 }
                 else
                 {
@@ -124,5 +125,85 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
             
         }
 
+
+        [Route("NhuCauTuyenDungLD/BcMau02")]
+        [HttpGet]
+        public IActionResult BcMau02()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
+            {
+                bool check_per = true;
+                if (check_per)
+                {
+                  
+
+                    return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NhuCauTuyenDungLD/BcMau02.cshtml");
+                }
+                else
+                {
+                    ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
+                    return View("Views/Admin/Error/Page.cshtml");
+                }
+            }
+            else
+            {
+                return View("Views/Admin/Error/SessionOut.cshtml");
+            }
+
+        }
+
+
+        [Route("NhuCauTuyenDungLD/BcMau03")]
+        [HttpGet]
+        public IActionResult BcMau03()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
+            {
+                bool check_per = true;
+                if (check_per)
+                {
+
+
+                    return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NhuCauTuyenDungLD/BcMau03.cshtml");
+                }
+                else
+                {
+                    ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
+                    return View("Views/Admin/Error/Page.cshtml");
+                }
+            }
+            else
+            {
+                return View("Views/Admin/Error/SessionOut.cshtml");
+            }
+
+        }
+
+
+        [Route("NhuCauTuyenDungLD/BcMau03a")]
+        [HttpGet]
+        public IActionResult BcMau03a()
+        {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
+            {
+                bool check_per = true;
+                if (check_per)
+                {
+
+
+                    return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NhuCauTuyenDungLD/BcMau03a.cshtml");
+                }
+                else
+                {
+                    ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
+                    return View("Views/Admin/Error/Page.cshtml");
+                }
+            }
+            else
+            {
+                return View("Views/Admin/Error/SessionOut.cshtml");
+            }
+
+        }
     }
 }

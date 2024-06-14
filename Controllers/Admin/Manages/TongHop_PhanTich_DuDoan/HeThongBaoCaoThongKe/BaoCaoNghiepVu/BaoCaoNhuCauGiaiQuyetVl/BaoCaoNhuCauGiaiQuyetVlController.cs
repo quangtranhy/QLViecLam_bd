@@ -31,9 +31,9 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
 
                     ViewData["Total"] = model.Count();
                     ViewData["Title"] = "Kế hoạch thu thập thông tin lao động";
-                    ViewData["MenuLv1"] = "";
-                    ViewData["MenuLv2"] = "";
-                    ViewData["MenuLv3"] = "";
+                    ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
+                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_baocaonhucaugiaiquyetvl";
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoNhuCauGiaiQuyetVl/Index.cshtml", model);
                 }
                 else

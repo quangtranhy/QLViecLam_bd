@@ -2,7 +2,7 @@
 using QLViecLam.Data;
 using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
 
-namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPhanTichDuDoan
+namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCung_Cau.TTRuiRo_DieuKien_PhuongTien
 {
     public class RuiRoLamViecController : Controller
     {
@@ -26,7 +26,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
 
                     ViewData["MenuLv1"] = "menu_capnhatcungcau";
                     ViewData["MenuLv2"] = "menu_capnhatcungcau_ruiro_phuongtien_dieukien";
-                    return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/ThongTinCung_Cau/RuiRoLamViec/Index.cshtml", model);
+                    ViewData["MenuLv3"] = "menu_capnhatcungcau_ruiro";
+                    return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/ThongTinCung_Cau/TTRuiRoPhuongTienDieuKien/RuiRoLamViec/Index.cshtml", model);
                 }
                 else
                 {
@@ -38,7 +39,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
             {
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
-            
+
         }
         [Route("RuiRoLamViec/Store")]
         [HttpPost]
@@ -74,7 +75,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
             {
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
-            
+
         }
         [Route("RuiRoLamViec/Edit")]
         [HttpPost]
@@ -153,7 +154,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
             {
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
-            
+
         }
         [Route("RuiRoLamViec/Delete")]
         [HttpPost]
@@ -184,7 +185,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
             {
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
-            
+
         }
     }
 }

@@ -72,12 +72,12 @@
         </ul>
     </div>
 </li>
-<!-- IIThu thập thông tin thị trường lao động -->
+<!-- II Thu thập thông tin thị trường lao động -->
 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="menu_thuthapthongtinthitruong" title="menu_thuthapthongtinthitruong">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="menu-text">Thu thập thông tin thị trường lao động</span>
     </a>
-    <div class="menu-submenu">
+    <div class="menu-submenu"
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
             <!--II 1-->
@@ -651,6 +651,24 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_quanlyhogiadinh" title="capnhatcungcau_quanlyhogiadinh">
+                <a class="menu-link menu-toggle" asp-controller="QuanLyHoGiaDinh" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">Đơn vị quản lý người lao động theo hộ gia đình</span>
+                    <i class="menu-arrow"></i>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_biendongcunglaodong" title="capnhatcungcau_biendongcunglaodong">
+                <a class="menu-link menu-toggle" asp-controller="BienDongCungLD" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">Biến động cung </span>
+                    <i class="menu-arrow"></i>
+                </a>
+            </li>
             @*<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_tonghopnguoncung" title="capnhatcungcau_tonghopnguoncung">
                 <a class="menu-link menu-toggle" asp-controller="NguoiTimViec" asp-action="Index">
                     <i class="menu-bullet menu-bullet-line">
@@ -678,21 +696,21 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_quanlyhogiadinh" title="capnhatcungcau_quanlyhogiadinh">
-                <a class="menu-link menu-toggle" asp-controller="QuanLyHoGiaDinh" asp-action="Index">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_nguoilaodong" title="capnhatcungcau_nguoilaodong">
+                <a class="menu-link menu-toggle" asp-controller="NguoiLaoDong" asp-action="Index">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Đơn vị quản lý người lao động theo hộ gia đình</span>
+                    <span class="menu-text">Người lao động</span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_biendongcunglaodong" title="capnhatcungcau_biendongcunglaodong">
-                <a class="menu-link menu-toggle" asp-controller="BienDongCungLD" asp-action="Index" >
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_thongtinlaodongnuocngoai" title="thongtinlaodongnuocngoai">
+                <a class="menu-link menu-toggle" asp-controller="ThongTinNguoiNuocNgoai" asp-action="Index">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Biến động cung </span>
+                    <span class="menu-text">Người lao động nước ngoài trên địa bàn </span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
@@ -705,15 +723,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_nguoilaodong" title="capnhatcungcau_nguoilaodong">
-                <a class="menu-link menu-toggle" asp-controller="NguoiLaoDong" asp-action="Index" >
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Người lao động</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
+
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_chedochinhsach" title="chedochinhsach">
                 <a class="menu-link menu-toggle" asp-controller="CheDoChinhSach" asp-action="Index">
                     <i class="menu-bullet menu-bullet-line">
@@ -761,33 +771,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_thongtinlaodongnuocngoai" title="thongtinlaodongnuocngoai">
-                <a class="menu-link menu-toggle" asp-controller="ThongTinNguoiNuocNgoai" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Thông tin người lao động nước ngoài trên địa bàn tỉnh </span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_PhieuDKCungUngLD" title="PhieuDKCungUngLD">
-                <a class="menu-link menu-toggle" asp-controller="PhieuDKCungUngLD" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Phiếu đăng ký giới thiệu/cung ứng lao động </span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="">
-                <a class="menu-link menu-toggle">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text" style="color:red">Đối soát thông tin Mẫu 02 và 03a/PL01 NĐ 23/2021/NĐ-CP và NĐ 152/2020/NĐ-CP</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
+
         </ul>
     </div>
 </li>
@@ -1002,7 +986,7 @@
                                 <span class="menu-text">Báo cáo thống kê theo tùy chọn người dùng</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true" id="menu_dgr_dm">
+                        <li class="menu-item" aria-haspopup="true" id="menu_hethongbaocaothongke_nghiepvu_baocaotheomucthunhap">
                             <a class="menu-link" asp-controller="BaoCaoTheoMucThuThap" asp-action="Index">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -1019,7 +1003,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true" id="menu_hethongbaocaothongke_nghiepvu_BaoCaoTaiNanLD" title="hethongbaocaothongke_nghiepvu_BaoCaoTaiNanLD">
-                            <a class="menu-link" asp-controller="BaoCaoTaiNanLD" asp-action="Print">
+                            <a class="menu-link" asp-controller="BaoCaoTaiNanLD" asp-action="Print" target="_blank">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -1034,15 +1018,15 @@
                                 <span class="menu-text">Báo cáo lao động nước ngoài</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true" id="menu_dgr_dm">
-                            <a class="menu-link" asp-controller="BaoCaoNhuCauGiaiQuyetVl" asp-action="Index">
+                        <li class="menu-item" aria-haspopup="true" id="menu_hethongbaocaothongke_nghiepvu_baocaonhucaugiaiquyetvl">
+                            <a class="menu-link" asp-controller="BaoCaoNhuCauGiaiQuyetVl" asp-action="Index" target="_blank">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
                                 <span class="menu-text" style="color:blue">Báo cáo nhu cầu giải quyết việc làm</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true" id="menu_dgr_dm">
+                        <li class="menu-item" aria-haspopup="true" id="">
                             <a class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>

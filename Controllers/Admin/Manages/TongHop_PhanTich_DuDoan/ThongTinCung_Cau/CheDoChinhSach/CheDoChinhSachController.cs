@@ -3,7 +3,7 @@ using QLViecLam.Data;
 using QLViecLam.Models.Admin.Manages.DanhMuc;
 using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
 
-namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPhanTichDuDoan
+namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCung_Cau.CheDoChinhSach
 {
     public class CheDoChinhSachController : Controller
     {
@@ -13,6 +13,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
         {
             _db = db;
         }
+
         [Route("CheDoChinhSach")]
         [HttpGet]
         public IActionResult Index()
@@ -24,11 +25,12 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
             ViewData["MenuLv2"] = "menu_capnhatcungcau_chedochinhsach";
             return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/ThongTinCung_Cau/CheDoChinhSach/Index.cshtml", model);
         }
+
         [Route("CheDoChinhSach/Store")]
         [HttpPost]
         public IActionResult Store()
         {
-            var model = new CheDoChinhSach
+            var model = new Models.Admin.Manages.TongHop_PhanTich_DuDoan.CheDoChinhSach
             {
                 Created_at = DateTime.Now,
                 Updated_at = DateTime.Now,
@@ -104,6 +106,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
                 return Json(data);
             }
         }*/
+
         [Route("CheDoChinhSach/Update")]
         [HttpPost]
         public IActionResult Update()
@@ -118,6 +121,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
 
             return RedirectToAction("Index", "CheDoChinhSach");
         }
+
         [Route("CheDoChinhSach/Delete")]
         [HttpPost]
         public IActionResult Delete(int id_delete)

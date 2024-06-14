@@ -4,7 +4,7 @@
     var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Xa"]!;
     var DmLoaiHinhHdkt = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.DmLoaiHinhHdkt>)ViewData["DmLoaiHinhHdkt"]!;
 }
-@section custom_script{
+@section custom_script {
 
 }
 
@@ -22,7 +22,16 @@
             </div>
             <div class="modal-body">
                 <div class="row text-left">
-                    <a class="btn btn-light-default font-weight-bold" asp-controller="NhuCauTuyenDungLD" asp-action="Print" target="_blank">Mẫu số 01 - TT 11/2022/TT-BLĐTBXH</a>
+                    <a  class="btn btn-light-default font-weight-bold" asp-controller="NhuCauTuyenDungLD" asp-action="BcMau01" target="_blank1">Mẫu số 01 - TT 11/2022/TT-BLĐTBXH</a>
+                </div>
+                <div class="row text-left">
+                    <a class="btn btn-light-default font-weight-bold" asp-controller="NhuCauTuyenDungLD" asp-action="BcMau02" target="_blank2">Mẫu số 02 - Phiếu thông tin người sử dụng lao động</a>
+                </div>
+                <div class="row text-left">
+                    <a class="btn btn-light-default font-weight-bold" asp-controller="NhuCauTuyenDungLD" asp-action="BcMau03" target="_blank3">Mẫu số 03/PLI - Phiếu đăng ký</a>
+                </div>
+                <div class="row text-left">
+                    <a class="btn btn-light-default font-weight-bold" asp-controller="NhuCauTuyenDungLD" asp-action="BcMau03a" target="_blank4">Mẫu số 03a/PLI - Phiếu đăng ký giới thiệu/cung ứng lao động</a>
                 </div>
             </div>
             <div class="modal-footer">

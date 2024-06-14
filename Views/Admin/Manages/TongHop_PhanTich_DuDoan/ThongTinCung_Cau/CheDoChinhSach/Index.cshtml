@@ -39,11 +39,11 @@
             <thead>
                 <tr style="text-align:center">
                     <th>Stt</th>
-                    <th>Tên chế độ chính sách</th>
-                    <th>Năm</th>
+                    <th>Mã BHXH</th>
+                    <th>Số tiền đã đóng</th>
+                    <th>Số tiền đã hưởng</th>
                     <th>Bảo hiểm xã hội</th>
                     <th>Bảo hiểm y tế</th>
-                    <th>Cấp độ</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -54,6 +54,9 @@
                     {
                         <tr>
                             <td>@(record_id++)</td>
+                            <td>@item.MaBhxh</td>
+                            <td>@item.SoTienDaDong</td>
+                            <td>@item.SoTienDaHuong</td>
                             <td>@item.Bhxh</td>
                             <td>@item.Bhyt</td>
                             <td>

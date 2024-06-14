@@ -104,6 +104,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     {
                         var thanhvien = "" ;
                         var gd_model = model.Where(x => x.SoDinhDanhHoGD == item.SoDinhDanhHoGD);
+                     
                         foreach (var tv in gd_model)
                         {
                             thanhvien += tv.HoVaTen + ", ";

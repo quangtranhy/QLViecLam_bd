@@ -15,7 +15,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                 {
                     ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
                     ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
-                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
 
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/XuatBaoCaoTTCungCau/Index.cshtml");
                 }
@@ -42,7 +42,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                 {
                     ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
                     ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
-                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/XuatBaoCaoTTCungCau/CauLD_Print.cshtml");
                 }
                 else
@@ -68,7 +68,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                 {
                     ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
                     ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
-                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_xuatbaocao";
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/XuatBaoCaoTTCungCau/CungLD_Print.cshtml");
                 }
                 else

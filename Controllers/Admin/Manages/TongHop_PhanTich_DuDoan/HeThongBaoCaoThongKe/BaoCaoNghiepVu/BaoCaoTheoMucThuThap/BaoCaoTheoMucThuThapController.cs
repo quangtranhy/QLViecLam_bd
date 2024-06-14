@@ -23,9 +23,9 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                 bool check_per = true;
                 if (check_per)
                 {
-                    ViewData["MenuLv1"] = "";
-                    ViewData["MenuLv2"] = "";
-                    ViewData["MenuLv2"] = "";
+                    ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
+                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_baocaotheomucthunhap";
 
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoTheoMucThuThap/Index.cshtml");
                 }
@@ -83,6 +83,9 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                             }
                         }
                     }
+                    ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
+                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_baocaotheomucthunhap";
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoTheoMucThuThap/BaoHiemXaHoi.cshtml", dataCheDoChinhSach);
                 }
                 else
@@ -119,6 +122,9 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
 
                     ViewData["CoBhtn"] = result;
                     ViewData["KoCoBhtn"] = _db.NguoiLaoDong.Count() - result;
+                    ViewData["MenuLv1"] = "menu_hethongbaocaothongke";
+                    ViewData["MenuLv2"] = "menu_hethongbaocaothongke_nghiepvu";
+                    ViewData["MenuLv3"] = "menu_hethongbaocaothongke_nghiepvu_baocaotheomucthunhap";
                     return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoTheoMucThuThap/BaoHiemYTe.cshtml");
                 }
                 else
