@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Admin\Systems\HeThongChung\TaiKhoan\Detail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.15" />
@@ -18,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Admin\Manages\DanhMuc\VeSinhAnToanLD\" />
     <Folder Include="Controllers\Admin\Manages\ThongTinThiTruongLD\ThuThapTT\HeThongTruyVanTT\" />
     <Folder Include="Controllers\Admin\Manages\TongHop_PhanTich_DuDoan\LuuTru_ChiaSe\" />
     <Folder Include="Controllers\Admin\Manages\TongHop_PhanTich_DuDoan\KetNoiChiaSe\" />
@@ -26,13 +29,23 @@
     <Folder Include="Models\Admin\Settings\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\Admin\Settings\" />
-    <Folder Include="Views\Admin\Manages\DanhMuc\VeSinhAnToanLD\CacYtCoHai\" />
-    <Folder Include="Views\Admin\Manages\DanhMuc\VeSinhAnToanLD\ChanThuong\" />
     <Folder Include="Views\Admin\Manages\ThongTinThiTruongLD\ThuThapTT\HeThongTruyVanTT\" />
     <Folder Include="Views\Admin\Manages\TongHop_PhanTich_DuDoan\KetNoiChiaSe\" />
     <Folder Include="Views\Admin\Manages\TongHop_PhanTich_DuDoan\LuuTru_ChiaSe\" />
     <Folder Include="Views\Admin\Manages\TongHop_PhanTich_DuDoan\ThongTinCung_Cau\BienDongViecLam\" />
     <Folder Include="Views\Admin\Settings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\Systems\HeThongChung\TaiKhoan\Detail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\Systems\HeThongChung\TaiKhoan\Detail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\Systems\HeThongChung\TaiKhoan\HanhChinh\Detail.cshtml" />
   </ItemGroup>
 
 </Project>

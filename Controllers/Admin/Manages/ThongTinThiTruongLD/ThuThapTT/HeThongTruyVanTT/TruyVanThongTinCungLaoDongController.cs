@@ -20,7 +20,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
             {
                 var DmHuyen= _db.DmHanhChinh.Where(t => t.CapDo == "H");
                 var DmXa = _db.DmHanhChinh.Where(x=>x.CapDo=="X");
-                huyen = string.IsNullOrEmpty(huyen)? DmHuyen.FirstOrDefault()!.MaQuocGia! : huyen;
+                huyen = string.IsNullOrEmpty(huyen)? DmHuyen.FirstOrDefault()!.MaDb! : huyen;
                 xa = string.IsNullOrEmpty(xa)? DmXa.FirstOrDefault()!.Id.ToString()! : xa;                
                 var donvi = _db.DmDonvi.FirstOrDefault(x=>x.MaDiaBan==xa);
                 var Madv = "";

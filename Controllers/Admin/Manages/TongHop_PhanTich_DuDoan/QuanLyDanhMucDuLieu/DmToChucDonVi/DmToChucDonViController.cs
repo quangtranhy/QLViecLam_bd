@@ -22,8 +22,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 if (check_per)
                 {
                     var models = from dv in _db.DmDonvi
-                                 join dmhc in _db.DmHanhChinh on dv.MaDiaBan equals dmhc.MaQuocGia
-                                 select new Models.Admin.Systems.DmDonvi
+                                 join dmhc in _db.DmHanhChinh on dv.MaDiaBan equals dmhc.MaDb
+                                 select new Models.Admin.Systems.HeThongChung.DmDonvi
                                  {
                                      Id = dv.Id,
                                      TenDv = dv.TenDv,
@@ -61,13 +61,13 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 bool check_per = true;
                 if (check_per)
                 {
-                    var model = new Models.Admin.Systems.DmDonvi
+                    var model = new Models.Admin.Systems.HeThongChung.DmDonvi
                     {
                         MaDonVi = madv_create,
                         TenDv = tendv_create,
                         TenDvHienThi = tendvhienthi_create,
                         Email = email_create,
-                        MaDvcq = madvcq_create,
+                        //MaDvcq = madvcq_create,
                         MaDiaBan = madiaban_create,
                         Created_at = DateTime.Now,
                         Updated_at = DateTime.Now,
@@ -126,22 +126,22 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 result += "<input type='number' id='email_edit' name='email_edit' value='" + model.Email + "' class='form-control'/>";
                 result += "</div>";
                 result += "</div>";
-                result += "<div class='col-xl-6'>";
-                result += "<div class='form-group fv-plugins-icon-container'>";
-                result += "<label><b>Tên đơn vị cấp trên:</b></label>";
-                result += "<select type='text; id='madvcq_edit' name='madvcq_edit' class='form-control'>";
+                //result += "<div class='col-xl-6'>";
+                //result += "<div class='form-group fv-plugins-icon-container'>";
+                //result += "<label><b>Tên đơn vị cấp trên:</b></label>";
+                //result += "<select type='text; id='madvcq_edit' name='madvcq_edit' class='form-control'>";
 
-                foreach (var item in _db.DmDonvi)
-                {
-                    result += "<option value='" + item.MaDonVi + "'";
-                    if (item.MaDonVi == model.MaDvcq)
-                    {
-                        result += " selected='selected'";
-                    }
-                    result += ">" + item.TenDvHienThi + "</option>";
-                }
-                result += "</div>";
-                result += "</div>";
+                //foreach (var item in _db.DmDonvi)
+                //{
+                //    result += "<option value='" + item.MaDonVi + "'";
+                //    if (item.MaDonVi == model.MaDvcq)
+                //    {
+                //        result += " selected='selected'";
+                //    }
+                //    result += ">" + item.TenDvHienThi + "</option>";
+                //}
+                //result += "</div>";
+                //result += "</div>";
                 result += "<div class='col-xl-6'>";
                 result += "<div class='form-group fv-plugins-icon-container'>";
                 result += "<label><b>Khu vực hành chính:</b></label>";
@@ -149,8 +149,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
 
                 foreach (var item in _db.DmHanhChinh)
                 {
-                    result += "<option value='" + item.MaQuocGia + "'";
-                    if (item.MaQuocGia == model.MaDiaBan)
+                    result += "<option value='" + item.MaDb + "'";
+                    if (item.MaDb == model.MaDiaBan)
                     {
                         result += " selected='selected'";
                     }
@@ -189,7 +189,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                         model.TenDv = tendv_edit;
                         model.TenDvHienThi = tendvhienthi_edit;
                         model.Email = email_edit;
-                        model.MaDvcq = madvcq_edit;
+                        //model.MaDvcq = madvcq_edit;
                         model.MaDiaBan = madiaban_edit;
                         model.Updated_at = DateTime.Now;
                         _db.DmDonvi.Update(model);

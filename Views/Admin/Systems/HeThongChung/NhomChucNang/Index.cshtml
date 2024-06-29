@@ -1,0 +1,81 @@
+﻿﻿@{
+    ViewData["Title"] = "Nhóm chức năng";
+    int record_id = 1;
+
+}
+@model IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DsNhomTaiKhoan>
+
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Danh sách <small>Nhóm chức năng</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <td>
+                <a class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" title="Thêm mới" />
+                <i class="icon-lg fa fa-plus text-success icon-2x"></i>
+                </a>
+            </td>
+        </div>
+    </div>
+    <hr />
+
+    <div class="card-body">
+        <table class="table table-striped table-bordered table-hover ">
+            <thead>
+                <tr class="text-center">
+                    <th>STT</th>
+                    <th>Tên nhóm chức năng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(record_id++)</td>
+                            <td>@item.TenNhomChucNang</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@item.Id')">
+                                    <i class="icon-lg la la-edit text-primary icon-2x"></i>
+                                </button>
+                                <a type="button" title="Phân quyền" class="btn btn-sm btn-clean btn-icon" asp-controller="NhomChucNang" asp-action="Setting" asp-route-manhom="@item.MaNhomChucNang">
+                                    <i class="icon-lg flaticon2-user-1 text-primary icon-2x"></i>
+                                </a>
+                                <a class="btn btn-sm btn-clean btn-icon" title="Xem danh sách tài khoản trong nhóm" asp-controller="NhomChucNang" asp-action="Detail" asp-route-manhom="@item.MaNhomChucNang">
+                                    <i class="icon-lg la la-clipboard-list text-success icon-2x"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@item.Id')">
+                                    <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @await Html.PartialAsync("~/Views/Admin/Systems/HeThongChung/NhomChucNang/Modal.cshtml")
+</div>

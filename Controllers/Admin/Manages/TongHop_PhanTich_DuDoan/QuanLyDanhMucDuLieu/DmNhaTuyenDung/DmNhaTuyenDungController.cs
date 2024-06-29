@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.DanhMuc;
+using QLViecLam.Models.Admin.Systems.DanhMuc;
 using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
 using System.Net;
 using System.Runtime.CompilerServices;

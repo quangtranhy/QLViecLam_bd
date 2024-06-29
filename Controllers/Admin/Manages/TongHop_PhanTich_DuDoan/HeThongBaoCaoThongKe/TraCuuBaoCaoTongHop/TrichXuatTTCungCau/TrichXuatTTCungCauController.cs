@@ -29,7 +29,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                                      on hc.Id equals Convert.ToInt16(dv.MaDiaBan)
                                      select new VM_HanhChinh_DonVi
                                      {
-                                         Name = hc.Name,
+                                         TenDb = hc.Name,
                                          MaDv = dv.MaDonVi,
                                      });
                     

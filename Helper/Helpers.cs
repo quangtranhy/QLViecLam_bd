@@ -11,18 +11,98 @@ using QLViecLam.Data;
 using QLViecLam.ViewModels.Helpers;
 using System.Xml.Linq;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.QuanLyDanhMucDuLieu;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 //using QLViecLam.ViewModels.Systems;
 
 namespace QLViecLam.Helper
 {
     public class Helpers
     {
+        public static bool CheckChucNang(ISession session, string machucnang, string key)
+        {
+            string ssadmin = session.GetString("SsAdmin")!;
+            dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
+            if (sessionInfo["PhanLoai"] == "SSA")
+            {
+                return true;
+            }
+            else
+            {
+                string phanquyen = session.GetString("PhanQuyen")!;
+                if (!string.IsNullOrEmpty(phanquyen))
+                {
+                    dynamic info = JsonConvert.DeserializeObject(phanquyen)!;
+
+                    foreach (var item in info)
+                    {
+                        if (item["MaChucNang"] == machucnang && item[key] == true)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            //return false;
+            return true;
+        }
+
+        //public static bool Check(ISession session, string machucnang, string key)
+        //{
+        //    if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        GoToSessionOut();
+        //    }
+        //    string ssadmin = session.GetString("SsAdmin")!;
+        //    dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
+        //    if (sessionInfo["PhanLoai"] == "SSA")
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        string phanquyen = session.GetString("PhanQuyen")!;
+        //        if (!string.IsNullOrEmpty(phanquyen))
+        //        {
+        //            dynamic info = JsonConvert.DeserializeObject(phanquyen)!;
+
+        //            foreach (var item in info)
+        //            {
+        //                if (item["MaChucNang"] == machucnang && item[key] == true)
+        //                {
+        //                    return true;
+        //                }
+        //                else
+        //                {
+        //                    GoToPage();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    //return false;
+        //    return true;
+        //}
+
+        //public static IActionResult GoToSessionOut()
+        //{
+          
+        //    return new RedirectToActionResult("SessionOut", "Index", null);
+        //}
+        //public static IActionResult GoToPage()
+        //{
+        //    return new RedirectToActionResult("Page", "Index", null);
+        //}
+
 
         public static string GetMenuMinimize(ISession session)
         {
             if (!string.IsNullOrEmpty(session.GetString("MenuMinimize")))
             {
-                return session.GetString("MenuMinimize");
+                return session.GetString("MenuMinimize")!;
             }
             else
             {
@@ -34,8 +114,8 @@ namespace QLViecLam.Helper
         {
             if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
             {
-                string ssadmin = session.GetString("SsAdmin");
-                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin);
+                string ssadmin = session.GetString("SsAdmin")!;
+                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
                 string value = sessionInfo[key];
                 return value;
             }
@@ -218,7 +298,7 @@ namespace QLViecLam.Helper
                 return str;
             }
         }
-        
+
         public static string ConvertDateToStrAjax(DateTime date)
         {
 
@@ -681,7 +761,7 @@ namespace QLViecLam.Helper
                 "Phường",
                 "Xã",
                 "Thị trấn",
-                "Thôn/Xóm"
+                //"Thôn/Xóm"
            };
             return db;
         }
@@ -699,47 +779,47 @@ namespace QLViecLam.Helper
         public static List<VM_NganhNgheKinhDoanh> NganhNgheKinhDoanh()
         {
             List<VM_NganhNgheKinhDoanh> list = new List<VM_NganhNgheKinhDoanh> { };
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="A",TenNghanhNghe= "NÔNG NGHIỆP, LÂM NGHIỆP VÀ THỦY SẢN" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="B",TenNghanhNghe= "KHAI KHOÁNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="C",TenNghanhNghe= "CÔNG NGHIỆP CHẾ BIẾN, CHẾ TẠO" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="D",TenNghanhNghe= "SẢN XUẤT VÀ PHÂN PHỐI ĐIỆN, KHÍ ĐỐT, NƯỚC NÓNG, HƠI NƯỚC VÀ ĐIỀU HOÀ KHÔNG KHÍ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="E",TenNghanhNghe= "CUNG CẤP NƯỚC; HOẠT ĐỘNG QUẢN LÝ VÀ XỬ LÝ RÁC THẢI, NƯỚC THẢI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="F",TenNghanhNghe= "XÂY DỰNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="G",TenNghanhNghe= "BÁN BUÔN VÀ BÁN LẺ; SỬA CHỮA Ô TÔ, MÔ TÔ, XE MÁY VÀ XE CÓ ĐỘNG CƠ KHÁC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="H",TenNghanhNghe= "VẬN TẢI KHO BÃI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="I",TenNghanhNghe= "DỊCH VỤ LƯU TRÚ VÀ ĂN UỐNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="J",TenNghanhNghe= "THÔNG TIN VÀ TRUYỀN THÔNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="K",TenNghanhNghe= "HOẠT ĐỘNG TÀI CHÍNH, NGÂN HÀNG VÀ BẢO HIỂM" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="L",TenNghanhNghe= "HOẠT ĐỘNG KINH DOANH BẤT ĐỘNG SẢN" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="M",TenNghanhNghe= "HOẠT ĐỘNG CHUYÊN MÔN, KHOA HỌC VÀ CÔNG NGHỆ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="N",TenNghanhNghe= "HOẠT ĐỘNG HÀNH CHÍNH VÀ DỊCH VỤ HỖ TRỢ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="O",TenNghanhNghe= "HOẠT ĐỘNG CỦA ĐẢNG CỘNG SẢN, TỔ CHỨC CHÍNH TRỊ - XÃ HỘI, QUẢN LÝ NHÀ NƯỚC, AN NINH QUỐC PHÒNG; BẢO ĐẢM XÃ HỘI BẮT BUỘC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="P",TenNghanhNghe= "GIÁO DỤC VÀ ĐÀO TẠO" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="Q",TenNghanhNghe= "Y TẾ VÀ HOẠT ĐỘNG TRỢ GIÚP XÃ HỘI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="R",TenNghanhNghe= "NGHỆ THUẬT, VUI CHƠI VÀ GIẢI TRÍ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="S",TenNghanhNghe= "HOẠT ĐỘNG DỊCH VỤ KHÁC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="T",TenNghanhNghe= "HOẠT ĐỘNG LÀM THUÊ CÁC CÔNG VIỆC TRONG CÁC HỘ GIA ĐÌNH, SẢN XUẤT SẢN PHẨM VẬT CHẤT VÀ DỊCH VỤ TỰ TIÊU DÙNG CỦA HỘ GIA ĐÌNHC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe="U",TenNghanhNghe= "HOẠT ĐỘNG CỦA CÁC TỔ CHỨC VÀ CƠ QUAN QUỐC TẾ" });
-            return list;
-        }
-        
-        public static List<VM_KhuCN> KhuCN()
-        {
-            List<VM_KhuCN> list = new List<VM_KhuCN> { };
-            list.Add(new VM_KhuCN { MaKhuCN="1",TenKhuCN= "KHU CÔNG NGHIỆP TÂY BẮC ĐỒNG HỚI" });
-            list.Add(new VM_KhuCN { MaKhuCN="2",TenKhuCN= "KHU CÔNG NGHIỆP  CẢNG BIỂN HÒN LA" });
-            list.Add(new VM_KhuCN { MaKhuCN="3",TenKhuCN= "KHU CÔNG NGHIỆP BẮC ĐỒNG HỚI" });
-            list.Add(new VM_KhuCN { MaKhuCN="4",TenKhuCN= "KHU CÔNG NGHIỆP  HÒN LA 2" });
-            list.Add(new VM_KhuCN { MaKhuCN="5",TenKhuCN= "KHU CÔNG NGHIỆP  CAM LIÊN" });
-            list.Add(new VM_KhuCN { MaKhuCN="6",TenKhuCN= "KHU CÔNG NGHIỆP TÂY BẮC QUÁN HÀU" });
-            list.Add(new VM_KhuCN { MaKhuCN="7",TenKhuCN= "KHU  CÔNG NGHIỆP  LÝ TRẠCH" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "A", TenNghanhNghe = "NÔNG NGHIỆP, LÂM NGHIỆP VÀ THỦY SẢN" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "B", TenNghanhNghe = "KHAI KHOÁNG" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "C", TenNghanhNghe = "CÔNG NGHIỆP CHẾ BIẾN, CHẾ TẠO" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "D", TenNghanhNghe = "SẢN XUẤT VÀ PHÂN PHỐI ĐIỆN, KHÍ ĐỐT, NƯỚC NÓNG, HƠI NƯỚC VÀ ĐIỀU HOÀ KHÔNG KHÍ" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "E", TenNghanhNghe = "CUNG CẤP NƯỚC; HOẠT ĐỘNG QUẢN LÝ VÀ XỬ LÝ RÁC THẢI, NƯỚC THẢI" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "F", TenNghanhNghe = "XÂY DỰNG" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "G", TenNghanhNghe = "BÁN BUÔN VÀ BÁN LẺ; SỬA CHỮA Ô TÔ, MÔ TÔ, XE MÁY VÀ XE CÓ ĐỘNG CƠ KHÁC" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "H", TenNghanhNghe = "VẬN TẢI KHO BÃI" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "I", TenNghanhNghe = "DỊCH VỤ LƯU TRÚ VÀ ĂN UỐNG" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "J", TenNghanhNghe = "THÔNG TIN VÀ TRUYỀN THÔNG" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "K", TenNghanhNghe = "HOẠT ĐỘNG TÀI CHÍNH, NGÂN HÀNG VÀ BẢO HIỂM" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "L", TenNghanhNghe = "HOẠT ĐỘNG KINH DOANH BẤT ĐỘNG SẢN" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "M", TenNghanhNghe = "HOẠT ĐỘNG CHUYÊN MÔN, KHOA HỌC VÀ CÔNG NGHỆ" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "N", TenNghanhNghe = "HOẠT ĐỘNG HÀNH CHÍNH VÀ DỊCH VỤ HỖ TRỢ" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "O", TenNghanhNghe = "HOẠT ĐỘNG CỦA ĐẢNG CỘNG SẢN, TỔ CHỨC CHÍNH TRỊ - XÃ HỘI, QUẢN LÝ NHÀ NƯỚC, AN NINH QUỐC PHÒNG; BẢO ĐẢM XÃ HỘI BẮT BUỘC" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "P", TenNghanhNghe = "GIÁO DỤC VÀ ĐÀO TẠO" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "Q", TenNghanhNghe = "Y TẾ VÀ HOẠT ĐỘNG TRỢ GIÚP XÃ HỘI" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "R", TenNghanhNghe = "NGHỆ THUẬT, VUI CHƠI VÀ GIẢI TRÍ" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "S", TenNghanhNghe = "HOẠT ĐỘNG DỊCH VỤ KHÁC" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "T", TenNghanhNghe = "HOẠT ĐỘNG LÀM THUÊ CÁC CÔNG VIỆC TRONG CÁC HỘ GIA ĐÌNH, SẢN XUẤT SẢN PHẨM VẬT CHẤT VÀ DỊCH VỤ TỰ TIÊU DÙNG CỦA HỘ GIA ĐÌNHC" });
+            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "U", TenNghanhNghe = "HOẠT ĐỘNG CỦA CÁC TỔ CHỨC VÀ CƠ QUAN QUỐC TẾ" });
             return list;
         }
 
-		public static double Percent(int number,int total)
-		{
-			
-            return (double)number/total*100;
-		}
-	}
+        public static List<VM_KhuCN> KhuCN()
+        {
+            List<VM_KhuCN> list = new List<VM_KhuCN> { };
+            list.Add(new VM_KhuCN { MaKhuCN = "1", TenKhuCN = "KHU CÔNG NGHIỆP TÂY BẮC ĐỒNG HỚI" });
+            list.Add(new VM_KhuCN { MaKhuCN = "2", TenKhuCN = "KHU CÔNG NGHIỆP  CẢNG BIỂN HÒN LA" });
+            list.Add(new VM_KhuCN { MaKhuCN = "3", TenKhuCN = "KHU CÔNG NGHIỆP BẮC ĐỒNG HỚI" });
+            list.Add(new VM_KhuCN { MaKhuCN = "4", TenKhuCN = "KHU CÔNG NGHIỆP  HÒN LA 2" });
+            list.Add(new VM_KhuCN { MaKhuCN = "5", TenKhuCN = "KHU CÔNG NGHIỆP  CAM LIÊN" });
+            list.Add(new VM_KhuCN { MaKhuCN = "6", TenKhuCN = "KHU CÔNG NGHIỆP TÂY BẮC QUÁN HÀU" });
+            list.Add(new VM_KhuCN { MaKhuCN = "7", TenKhuCN = "KHU  CÔNG NGHIỆP  LÝ TRẠCH" });
+            return list;
+        }
+
+        public static double Percent(int number, int total)
+        {
+
+            return (double)number / total * 100;
+        }
+    }
 }

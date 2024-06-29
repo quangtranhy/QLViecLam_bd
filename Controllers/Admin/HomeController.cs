@@ -2,7 +2,7 @@
 using QLViecLam.Data;
 using QLViecLam.Helper;
 using QLViecLam.Models;
-using QLViecLam.Models.Admin.Systems;
+using QLViecLam.Models.Admin.Systems.HeThongChung;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;

@@ -58,7 +58,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                         var xd_xa = "";
                         foreach (var item in ds_xa)
                         {
-                            if (item.MaQuocGia == xa)
+                            if (item.MaDb == xa)
                             {
                                 xd_xa = "tontai";
                             }
@@ -66,14 +66,13 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
 
                         if (xd_xa == "tontai")
                         {
-                            xa = dmhanhchinh.Where(x => x.MaQuocGia == xa).FirstOrDefault()!.MaQuocGia!;
-                            var id_xa = dmhanhchinh.Where(x => x.MaQuocGia == xa).FirstOrDefault()!.Id.ToString();
-                            madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
+                            xa = dmhanhchinh.Where(x => x.MaDb == xa).FirstOrDefault()!.MaDb!;
+                            madv = dmdonvi.Where(x => x.MaDiaBan == xa).FirstOrDefault()!.MaDonVi;
                             model = model.Where(x => x.MaDonVi == madv);
                         }
                         else
                         {
-                            xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaQuocGia!;
+                            xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaDb!;
                             var id_xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.Id.ToString();
                             madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
                             model = model.Where(x => x.MaDonVi == madv);
@@ -82,8 +81,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     }
                     else
                     {
-                        huyen = dmhanhchinh.Where(x => x.CapDo == "H").FirstOrDefault()!.MaQuocGia!;
-                        xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaQuocGia!;
+                        huyen = dmhanhchinh.Where(x => x.CapDo == "H").FirstOrDefault()!.MaDb!;
+                        xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaDb!;
                         var id_xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.Id.ToString();
                         madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
                         model = model.Where(x => x.MaDonVi == madv);

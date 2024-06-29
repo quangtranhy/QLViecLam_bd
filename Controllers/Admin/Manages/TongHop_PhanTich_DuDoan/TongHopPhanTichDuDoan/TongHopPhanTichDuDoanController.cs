@@ -92,8 +92,8 @@
 //                    var hanhchinh = (from hc in danhmuchanhchinh
 //                                     join dv in dmdonvi
 //                                     on hc.Id equals Convert.ToInt16(dv.MaDiaBan)
-//                                     //join nk in nhankhau
-//                                     //on dv.MaDonVi equals nk.MaDonVi
+//                                     join nk in nhankhau
+//                                     on dv.MaDonVi equals nk.MaDonVi
 //                                     select new DmHanhChinh
 //                                     {
 //                                         Parent = hc.Parent,
@@ -213,8 +213,8 @@
 //                    var hanhchinh = (from hc in danhmuchanhchinh
 //                                     join dv in dmdonvi
 //                                     on hc.Id equals Convert.ToInt16(dv.MaDiaBan)
-//                                     //join nk in nhankhau
-//                                     //on dv.MaDonVi equals nk.MaDonVi
+//                                     join nk in nhankhau
+//                                     on dv.MaDonVi equals nk.MaDonVi
 //                                     select new DmHanhChinh
 //                                     {
 //                                         Parent = hc.Parent,
@@ -348,21 +348,21 @@
 //                                     Huyen = dn.Huyen!,
 //                                     Soluong = vt.Soluong!,
 //                                 });
-//                    //count theo Huyen
+//                    count theo Huyen
 //                    var countH = model.GroupBy(x => x.Huyen)
 //                        .Select(group => new VM_Count_Chucnang
 //                        {
 //                            Mota = group.Key,
 //                            Count = group.Sum(x => x.Soluong!),
 //                        });
-//                    //count theo Xa
+//                    count theo Xa
 //                    var countX = model.GroupBy(x => x.Xa)
 //                        .Select(group => new VM_Count_Chucnang
 //                        {
 //                            Mota = group.Key,
 //                            Count = group.Sum(x => x.Soluong!),
 //                        });
-//                    //count ca Tinh
+//                    count ca Tinh
 //                    int countT = (int)model.Sum(x => x.Soluong)!;
 
 //                    var danhmuchanhchinh = _db.DmHanhChinh;
@@ -401,7 +401,7 @@
 //                                        Count = (int)countH.FirstOrDefault(x => x.Mota == dbhuyen.Name)!.Count!,
 //                                    });
 //                                }
-//                                //neu ko co thi count 0
+//                                neu ko co thi count 0
 //                                else
 //                                {
 //                                    newList.Add(new DmHanhChinh
@@ -433,7 +433,7 @@
 //                                            Count = (int)countX.FirstOrDefault(x => x.Mota == dbxa.Name)!.Count!,
 //                                        });
 //                                    }
-//                                    //neu ko co thi count 0
+//                                    neu ko co thi count 0
 //                                    else
 //                                    {
 //                                        newList.Add(new DmHanhChinh
@@ -514,7 +514,7 @@
 //                            }
 //                        }
 //                    }
-//                    //return Ok(dataCheDoChinhSach);
+//                    return Ok(dataCheDoChinhSach);
 //                    return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/TongHopPhanTichDuDoan/BaoHiemXaHoi.cshtml", dataCheDoChinhSach);
 //                }
 //                else
@@ -540,7 +540,7 @@
 //                bool check_per = true;
 //                if (check_per)
 //                {
-//                    //co bao hiem tn
+//                    co bao hiem tn
 //                    var result = (from nguoi in _db.NguoiLaoDong
 //                                  join chinhSach in _db.CheDoChinhSach.Where(x => x.Bhtn > 0)
 //                                  on nguoi.SoBaoHiem equals chinhSach.MaBhxh
@@ -654,7 +654,7 @@
 //                                     SoLuong = vt.Soluong!,
 //                                 });
 
-//                    //count theo ma nganh nghe
+//                    count theo ma nganh nghe
 //                    var countNganhNghe = model.GroupBy(x => x.Nganhnghe)
 //                        .Select(group => new VM_Count_Chucnang
 //                        {
@@ -676,7 +676,7 @@
 //                            });
 //                        }
 
-//                        // khong ton tai count = 0
+//                         khong ton tai count = 0
 //                        else
 //                        {
 //                            newList.Add(new DmNganhNghe
@@ -842,7 +842,7 @@
 //                        }
 //                    }
 
-//                    //ViewData["dataDmNganhNghe"] = dataDmNganhNghe;
+//                    ViewData["dataDmNganhNghe"] = dataDmNganhNghe;
 //                    return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/TongHopPhanTichDuDoan/TrienVongThiTruongLaoDong.cshtml", dataDmNganhNghe);
 //                }
 //                else

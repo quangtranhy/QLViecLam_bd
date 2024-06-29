@@ -145,9 +145,9 @@
                                     <span class="menu-text">Trang chủ</span>
                                 </a>
                             </li>
-                            @await Html.PartialAsync("~/Views/Menu/Manages/Manages.cshtml")
-                            @* @await Html.PartialAsync("~/Views/Menu/Manages/Index.cshtml") *@
-                            
+                    @*         @await Html.PartialAsync("~/Views/Menu/Manages/Manages.cshtml") *@
+                          @*   @await Html.PartialAsync("~/Views/Menu/Manages/Index.cshtml") *@
+                              @await Html.PartialAsync("~/Views/Menu/Index.cshtml")
                         </ul>
                         <!--end::Menu Nav-->
                     </div>
@@ -186,7 +186,8 @@
                                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Xin chào,</span>
                                     <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">
-                                        @Funtions_Global.GetSsAdmin(session, "Name")
+                                        @Funtions_Global.GetSsAdmin(session!, "Name")
+
                                     </span>
                                     <span class="symbol symbol-lg-30 symbol-25 symbol-light-success">
                                         <img src="@Url.Content("~/Admin/FileUpload/Avatar/default-user.png")" width="35" height="35" />
@@ -221,7 +222,7 @@
                                         <li class="breadcrumb-item text-muted">
                                             <a asp-controller="Home" asp-action="Index" class="text-muted">Trang chủ</a>
                                         </li>
-                                        @if (ViewData.ContainsKey("Title") && ViewData["Title"].ToString() != "Trang chủ")
+                                        @if (ViewData.ContainsKey("Title") && ViewData["Title"]!.ToString() != "Trang chủ")
                                         {
                                             <li class="breadcrumb-item text-muted">
                                                 <a href="" class="text-muted">@ViewData["Title"]</a>

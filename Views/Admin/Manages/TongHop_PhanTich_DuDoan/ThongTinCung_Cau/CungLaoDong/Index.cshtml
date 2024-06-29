@@ -1,8 +1,8 @@
 ﻿@{
     int record_id = 1;
-    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["DsXa"]!;
-    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["DsHuyen"]!;
-    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
 
 
 }
@@ -67,7 +67,7 @@
                     <select class="form-control" id="huyen" name="huyen">
                         @foreach (var h in DsHuyen)
                         {
-                            <!option value="@h.MaQuocGia" @((string)ViewData["huyen"]! == h.MaQuocGia ? "selected" : "")>@h.Name</!option>
+                            <!option value="@h.MaDb" @((string)ViewData["huyen"]! == h.MaDb ? "selected" : "")>@h.Name</!option>
                         }
                     </select>
                 </div>
@@ -78,7 +78,7 @@
                     <select class="form-control" id="xa" name="xa">
                         @foreach (var x in DsXa)
                         {
-                            <!option value="@x.MaQuocGia" @((string)ViewData["xa"]! == x.MaQuocGia ? "selected" : "")>@x.Name</!option>
+                            <!option value="@x.MaDb" @((string)ViewData["xa"]! == x.MaDb ? "selected" : "")>@x.Name</!option>
                         }
                     </select>
                 </div>

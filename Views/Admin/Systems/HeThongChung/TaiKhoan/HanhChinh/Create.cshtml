@@ -1,0 +1,151 @@
+﻿﻿@{
+    ViewData["Title"] = "Tài khoản hành chính";
+    int record_id = 1;
+    var DsNhomTaiKhoan = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DsNhomTaiKhoan>)ViewData["DsNhomTaiKhoan"]!;
+    var donvi = (QLViecLam.Models.Admin.Systems.HeThongChung.DmDonvi)ViewData["donvi"]!;
+    var donvibaocao = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.Users>)ViewData["Users"]!;
+}
+
+
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+
+    </script>
+}
+
+<div class="card card-custom wave wave-animate-slow wave-primary">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Thêm mới <small>Tài khoản hành chính</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr />
+
+    <div class="card-body">
+        <form method="POST" asp-controller="TaiKhoan" asp-action="Store" accept-charset="UTF-8" class="horizontal-form" id="update_dmdonvi" enctype="multipart/form-data">
+            <div>
+                <div class="flex-wrap border-0 pt-6 pb-0">
+                    <div class="card-title">
+                        <h3 class="card-label text-uppercase">Thêm mới tài khoản</h3>
+                    </div>
+                    <div class="card-toolbar">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>Đơn vị quản lý</label>
+                        <select class="form-control select2basic" name="madonvi">
+                            <option value="@donvi.MaDonVi">@donvi.TenDv</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Đơn vị báo cáo</label>
+                        <select class="form-control select2basic" name="madvbc">
+                            <option value="">-- Chọn đơn vị báo cáo --</option>
+                   @*          @foreach (var dv in donvibaocao)
+                            {
+                                <!option value="@dv.MaDonVi">@dv.Name</!option>
+                            } *@
+
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Tên tài khoản<span class="require">*</span></label>
+                        <input class="form-control" name="name" type="text">
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Tên đăng nhập<span class="require">*</span></label>
+                        <input class="form-control" name="username" type="text" pattern="[a-zA-Z0-9]+" 
+                        title="Tên đăng nhập chỉ bao gồm chữ cái và số, không có khoảng trắng hay ký tự đặc biệt." placeholder="chứa chữ và số, viết liền không dấu">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>Phân loại </label>
+                        <select class="form-control select2basic" name="phanloai">
+                            <option value="tonghop">Tổng hợp</option>
+                            <option value="nhaplieu">Nhập liệu</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Cấp độ</label>
+                        <select class="form-control select2basic" name="capdo">
+                            <option value="X">Tài khản cấp Xã</option>
+                            <option value="H">Tài khản cấp Huyện</option>
+                            <option value="T">Tài khoản cấp Tỉnh</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>Trạng thái</label>
+                        <select class="form-control select2basic" name="status">
+                            <option value="open">Kích hoạt</option>
+                            <option value="lock">Vô hiệu</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Mật khẩu <span class="require">*</span></label>
+                        <input class="form-control" id="password" name="password" type="password">
+                        <i class="fa fa-eye position-absolute" id="togglePassword" style="right: 25px; top: calc(60% - 0.1em); cursor: pointer;"></i>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-3">
+                        <label>Nhóm chức năng</label>
+                        <select class="form-control select2basic" name="manhomchucnang">
+                            @foreach (var nhomtk in DsNhomTaiKhoan)
+                            {
+                                <option value="@nhomtk.MaNhomChucNang">@nhomtk.TenNhomChucNang</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <a asp-controller="TaiKhoan" asp-action="Detail" asp-route-madv="@donvi.MaDonVi" class="btn btn-danger">
+                            <i class="fa fa-reply"></i>&nbsp;Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-check"></i>Hoàn thành</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+    var passwordInput = document.getElementById('password');
+    var togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function () {
+        var type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>

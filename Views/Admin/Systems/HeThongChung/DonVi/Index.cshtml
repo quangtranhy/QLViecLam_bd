@@ -1,0 +1,110 @@
+﻿﻿@{
+    ViewData["Title"] = "Đơn vị";
+    int record_id = 1;
+    var dshuyen = (IEnumerable<QLViecLam.ViewModels.Admin.Systems.VM_HanhChinh_DonVi>)ViewData["dshuyen"]!;
+    var dsxa = (IEnumerable<QLViecLam.ViewModels.Admin.Systems.VM_HanhChinh_DonVi>)ViewData["dsxa"]!;
+}
+@* @model IEnumerable<QLViecLam.ViewModels.Admin.Systems.VM_HanhChinh_DonVi> *@
+
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+        // $(function () {
+        //     $('#huyen,#xa').change(function () {
+        //         var current_path_url = '/DonVi?';
+        //         var huyen = '&huyen=' + $('#huyen').val();
+        //         var xa = '&xa=' + $('#xa').val();
+        //         var url = current_path_url + huyen + xa
+        //         window.location.href = url;
+        //     })
+        // });
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Danh sách <small>Đơn vị</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+
+        </div>
+    </div>
+    <hr />
+
+    <div class="card-body">
+        <table class="table table-striped table-bordered table-hover ">
+            <thead>
+                <tr class="text-center">
+                    <th>STT</th>
+                    <th>Cấp độ</th>
+                    <th>Địa bàn</th>
+                    <th>Đơn vị quản lý địa bàn</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (dshuyen != null)
+                {
+                    @foreach (var h in dshuyen)
+                    {
+                        <tr>
+                            @if (h.CapDo == "T")
+                            {
+                                <td style="color:blue">A</td>
+                                <td>Tỉnh</td>
+                            }
+                            @if (h.CapDo == "H")
+                            {
+                                <td style="color:blue">@(record_id++)</td>
+                                <td>Huyện</td>
+                            }
+                            <td>@h.TenDb</td>
+                            <td>@h.TenDv</td>
+                            <td>
+                                <a class="btn btn-sm btn-clean btn-icon" title="Xem danh sách" asp-controller="DonVi" asp-action="Detail" asp-route-madb="@h.MaDb">
+                                    <i class="icon-lg la la-clipboard-list text-success  icon-2x"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        var xa_list = dsxa.Where(x => x.Parent == h.MaDb);
+                        int int_id = 1;
+                        @foreach (var x in xa_list)
+                        {
+                            <tr>
+                                <td>@(record_id - 1).@(int_id++)</td>
+                                @if (x.CapDo == "X")
+                                {
+                                    <td>Xã</td>
+                                }
+                                <td>@x.TenDb</td>
+                                <td>@x.TenDv</td>
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon" title="Xem danh sách" asp-controller="DonVi" asp-action="Detail" asp-route-madb="@x.MaDb">
+                                        <i class="icon-lg la la-clipboard-list text-success  icon-2x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

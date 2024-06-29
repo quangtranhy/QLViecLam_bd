@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLViecLam.Models.Admin.Manages;
-using QLViecLam.Models.Admin.Manages.DanhMuc;
 using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
 using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
-using QLViecLam.Models.Admin.Systems;
+using QLViecLam.Models.Admin.Systems.DanhMuc;
+using QLViecLam.Models.Admin.Systems.HeThongChung;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,7 @@ namespace QLViecLam.Data
         public DbSet<DmHanhChinh> DmHanhChinh { get; set; }
         public DbSet<DsNhomTaiKhoan> DsNhomTaiKhoan { get; set; }
         public DbSet<DsNhomTaiKhoan_PhanQuyen> DsNhomTaiKhoan_PhanQuyen { get; set; }
+        public DbSet<ChucNang> ChucNang{ get; set; }
         public DbSet<DsTaiKhoan_PhanQuyen> DsTaiKhoan_PhanQuyen { get; set; }
         public DbSet<DvDieuTra> DvDieuTra { get; set; }
         //End Systems

@@ -1,7 +1,7 @@
 ﻿@{
     int record_id = 1;
-    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Xa"]!;
-    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Huyen"]!;
+    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
+    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
 
 }
 @model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.NhanKhau>
@@ -61,7 +61,7 @@
                     <select class="form-control" id="huyen" name="huyen">
                         @foreach (var huyen in Huyen)
                         {
-                            <!option value="@huyen.MaQuocGia" @((string)ViewData["mahuyen"]! == huyen.MaQuocGia ? "selected" : "")>@huyen.Name</!option>
+                            <!option value="@huyen.MaDb" @((string)ViewData["mahuyen"]! == huyen.MaDb ? "selected" : "")>@huyen.Name</!option>
                         }
                     </select>
                 </div>
@@ -93,9 +93,9 @@
                     <label style="font-weight:bold; color:blue">Tình trạng tham gia HĐKT</label>
                     <select class="form-control" id="tinhtrang" name="tinhtrang">
                         <!option value="">Tất cả</!option>
-                        <!option value="1" @((string)ViewData["tinhtrang"] == "1" ? "selected" : "")>Có việc làm</!option>
-                        <!option value="2"  @((string)ViewData["tinhtrang"] == "2" ? "selected" : "")>Thất nghiệp</!option>
-                        <!option value="3"  @((string)ViewData["tinhtrang"] == "3" ? "selected" : "")>Không tham gia HĐKT</!option>
+                        <!option value="1" @((string)ViewData["tinhtrang"]! == "1" ? "selected" : "")>Có việc làm</!option>
+                        <!option value="2"  @((string)ViewData["tinhtrang"]! == "2" ? "selected" : "")>Thất nghiệp</!option>
+                        <!option value="3"  @((string)ViewData["tinhtrang"]! == "3" ? "selected" : "")>Không tham gia HĐKT</!option>
                     </select>
                 </div>
             </div>

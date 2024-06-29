@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
 using QLViecLam.Helper;
-using QLViecLam.Models.Admin.Manages.DanhMuc;
+using QLViecLam.Models.Admin.Systems.DanhMuc;
 using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
 using QLViecLam.Models.Admin.Systems;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD;
@@ -45,7 +45,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                         var xd_xa = "";
                         foreach (var item in ds_xa)
                         {
-                            if (item.MaQuocGia == xa)
+                            if (item.MaDb == xa)
                             {
                                 xd_xa = "tontai";
                             }
@@ -53,26 +53,23 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
 
                         if (xd_xa == "tontai")
                         {
-                            xa = dmhanhchinh.Where(x => x.MaQuocGia == xa).FirstOrDefault()!.MaQuocGia!;
-                            var id_xa = dmhanhchinh.Where(x => x.MaQuocGia == xa).FirstOrDefault()!.Id.ToString();
-                            madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
+                            xa = dmhanhchinh.Where(x => x.MaDb == xa).FirstOrDefault()!.MaDb!;
+                            madv = dmdonvi.Where(x => x.MaDiaBan == xa).FirstOrDefault()!.MaDonVi;
                             model = model.Where(x => x.MaDonVi == madv);
                         }
                         else
                         {
-                            xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaQuocGia!;
-                            var id_xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.Id.ToString();
-                            madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
+                            xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaDb!;
+                            madv = dmdonvi.Where(x => x.MaDiaBan == xa).FirstOrDefault()!.MaDonVi;
                             model = model.Where(x => x.MaDonVi == madv);
                         }
 
                     }
                     else
                     {
-                        huyen = dmhanhchinh.Where(x => x.CapDo == "H").FirstOrDefault()!.MaQuocGia!;
-                        xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaQuocGia!;
-                        var id_xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.Id.ToString();
-                        madv = dmdonvi.Where(x => x.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
+                        huyen = dmhanhchinh.Where(x => x.CapDo == "H").FirstOrDefault()!.MaDb!;
+                        xa = dmhanhchinh.Where(x => x.Parent == huyen).FirstOrDefault()!.MaDb!;
+                         madv = dmdonvi.Where(x => x.MaDiaBan == xa).FirstOrDefault()!.MaDonVi;
                         model = model.Where(x => x.MaDonVi == madv);
                     }
 
@@ -134,14 +131,13 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                 if (check_per)
                 {
                     var tinh = "44";
-                    var id_xa = _db.DmHanhChinh.Where(t => t.MaQuocGia == xa).FirstOrDefault()!.Id.ToString();
-                    var madv = _db.DmDonvi.Where(t => t.MaDiaBan == id_xa).FirstOrDefault()!.MaDonVi;
+                    var madv = _db.DmDonvi.Where(t => t.MaDiaBan == xa).FirstOrDefault()!.MaDonVi;
 
                     var dmhanhchinh = _db.DmHanhChinh;
-                    var tenxa = dmhanhchinh.Where(x => x.MaQuocGia == xa).FirstOrDefault()!.Name;
-                    var tenhuyen = dmhanhchinh.Where(x => x.MaQuocGia == huyen).FirstOrDefault()!.Name;
-                    var tentinh = dmhanhchinh?.Where(x => x.MaQuocGia == tinh).FirstOrDefault()!.Name;
-                    var thuongtru = tenxa + ", " + tenhuyen + ", tỉnh " + tentinh;
+                    var tenxa = dmhanhchinh.Where(x => x.MaDb == xa).FirstOrDefault()!.Name;
+                    var tenhuyen = dmhanhchinh.Where(x => x.MaDb == huyen).FirstOrDefault()!.Name;
+                    var tentinh = dmhanhchinh?.Where(x => x.MaDb == tinh).FirstOrDefault()!.Name;
+                    var thuongtru = tenxa + ", " + tenhuyen + ", " + tentinh;
 
                     ViewData["thuongtru"] = thuongtru;
                     ViewData["madonvi"] = madv;
@@ -406,8 +402,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     var dmhanhchinh = _db.DmHanhChinh;
                     var dmdonvi = _db.DmDonvi;
 
-                    var id_xa = dmhanhchinh.FirstOrDefault(x => x.MaQuocGia == xa)!.Id.ToString();
-                    var madv = dmdonvi.FirstOrDefault(x => x.MaDiaBan == id_xa)!.MaDonVi;
+
+                    var madv = dmdonvi.FirstOrDefault(x => x.MaDiaBan == xa)!.MaDonVi;
                     var model = _db.NhanKhau.Where(x => x.MaDonVi == madv && x.KyDieuTra == kydieutra).ToList();
                     var DoiTuongUT = DanhMucChung.DoiTuongUT();
                     var DanToc = _db.DanToc.ToList();
@@ -459,8 +455,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                                     });
 
 
-                    ViewData["tenxa"] = dmhanhchinh.FirstOrDefault(x => x.MaQuocGia == xa)!.Name;
-                    ViewData["tenhuyen"] = dmhanhchinh.FirstOrDefault(x => x.MaQuocGia == huyen)!.Name;
+                    ViewData["tenxa"] = dmhanhchinh.FirstOrDefault(x => x.MaDb == xa)!.Name;
+                    ViewData["tenhuyen"] = dmhanhchinh.FirstOrDefault(x => x.MaDb == huyen)!.Name;
                     ViewData["tentinh"] = dmhanhchinh.FirstOrDefault(x => x.CapDo == "T")!.Name;
                     ViewData["kydieutra"] = kydieutra;
 

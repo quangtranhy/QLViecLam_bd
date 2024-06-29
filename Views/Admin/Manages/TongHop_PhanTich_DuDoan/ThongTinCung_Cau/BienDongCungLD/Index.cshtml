@@ -1,12 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Tổng hợp, phân tích, thống kê";
-    var list_xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["list_xa"]!;
-    var list_huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["list_huyen"]!;
+    var list_xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["list_xa"]!;
+    var list_huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["list_huyen"]!;
     int record_id = 1;
 }
 
 
-   @model IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>
+   @model IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>
 
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -53,7 +53,7 @@
                 <select class="form-control" id="huyen" name="huyen">
                     @foreach (var huyen in list_huyen)
                     {
-                        <!option value="@huyen.MaQuocGia" @((string)ViewData["mahuyen"]! == huyen.MaQuocGia ? "selected" : "")>@huyen.Name</!option>
+                        <!option value="@huyen.MaDb" @((string)ViewData["mahuyen"]! == huyen.MaDb ? "selected" : "")>@huyen.Name</!option>
                     }
                 </select>
             </div>
@@ -65,7 +65,7 @@
                     <option value="">Chọn xã</option>
                     @foreach (var xa in list_xa)
                     {
-                        <!option value="@xa.MaQuocGia" @((string)ViewData["maxa"]! == xa.MaQuocGia!.ToString() ? "selected" : "")>@xa.Name</!option>
+                        <!option value="@xa.MaDb" @((string)ViewData["maxa"]! == xa.MaDb!.ToString() ? "selected" : "")>@xa.Name</!option>
                     }
                 </select>
             </div>

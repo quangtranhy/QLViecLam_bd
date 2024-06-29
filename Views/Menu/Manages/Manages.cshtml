@@ -1,12 +1,13 @@
 ﻿@{
     Layout = null;
 }
-@section custom_style{
+@section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
     <link rel="stylesheet" type="text/css" href="~/NewFolder/test.css" />
 
 }
+
 
 
 <!--HỆ THỐNG THÔNG TIN QUẢN LÝ LAO ĐỘNG-->
@@ -37,7 +38,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text" style="color:yellow">Nội dung thu thập và kinh phí thực hiện</span>
+                    <span class="menu-text" style="color:red">Nội dung thu thập và kinh phí thực hiện</span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
@@ -46,7 +47,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text" style="color:yellow">Phân công nhiệm vụ thu thập thông tin</span>
+                    <span class="menu-text" style="color:red">Phân công nhiệm vụ thu thập thông tin</span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
@@ -77,7 +78,7 @@
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="menu-text">Thu thập thông tin thị trường lao động</span>
     </a>
-    <div class="menu-submenu"
+    <div class="menu-submenu">
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
             <!--II 1-->
@@ -351,280 +352,8 @@
         </ul>
     </div>
 </li>
-<!-- IV Quản lý danh mục dữ liệu -->
-<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmucdulieu" title="quanlydanhmucdulieu">
-    <a href="javascript:;" class="menu-link menu-toggle">
-        <span class="menu-text">Quản lý danh mục dữ liệu</span>
-    </a>
-    <div class="menu-submenu">
-        <i class="menu-arrow"></i>
-        <ul class="menu-subnav">
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_tochucdonvi" title="quanlydanhmuc_tochucdonvi">
-                <a class="menu-link menu-toggle" asp-controller="DmDonvi" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục tổ chức đơn vị</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_chucvi" title="quanlydanhmuc_chucvi">
-                <a class="menu-link menu-toggle" asp-controller="ChucVu" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục chức danh</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_trinhdochuyenmon" title="quanlydanhmuc_trinhdochuyenmon">
-                <a class="menu-link menu-toggle" asp-controller="TrinhDoCMKT" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục chuyên môn</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_nganhsxkd" title="quanlydanhmuc_nganhsxkd">
-                <a class="menu-link menu-toggle" asp-controller="NghanhSXKD" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Ngành nghề tuyển dụng</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_quocgia" title="quanlydanhmuc_quocgia">
-                <a class="menu-link menu-toggle" asp-controller="QuocGia" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục quốc gia</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_doituongcs" title="quanlydanhmuc_doituongcs">
-                <a class="menu-link menu-toggle" asp-controller="DmDoiTuongChinhSach" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Đối tượng chính sách</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_hinhthucdt" title="quanlydanhmuc_hinhthucdt">
-                <a class="menu-link menu-toggle" asp-controller="DmHinhThucDaoTao" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Hình thức đào tạo</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_hinhthucdn" title="quanlydanhmuc_hinhthucdn">
-                <a class="menu-link menu-toggle" asp-controller="DmHinhThucDoanhNghiep" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Hình thức doanh nghiệp</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_hinhthuctg" title="quanlydanhmuc_hinhthuctg">
-                <a class="menu-link menu-toggle" asp-controller="DmHinhThucThamGia" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Hình thức tham gia</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_khucn" title="quanlydanhmuc_khucn">
-                <a class="menu-link menu-toggle" asp-controller="DmKhuCongNghiep" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Khu công nghiệp</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_loaihinhdt" title="quanlydanhmuc_loaihinhdt">
-                <a class="menu-link menu-toggle" asp-controller="DmLoaiHinhDaoTao" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục loại hình đào tạo</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_loaivieclam" title="quanlydanhmuc_loaivieclam">
-                <a class="menu-link menu-toggle" asp-controller="DmLoaiViecLam" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục loại việc làm</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_nganhhoc" title="quanlydanhmuc_nganhhoc">
-                <a class="menu-link menu-toggle" asp-controller="NganhHoc" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục ngành học</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_nganhhoc" title="quanlydanhmuc_nganhhoc">
-                <a class="menu-link menu-toggle" asp-controller="DmNgheDaoTao" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục nghề đào tạo</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_nganhhoc" title="quanlydanhmuc_nganhhoc">
-                <a class="menu-link menu-toggle" asp-controller="DmNguonViecLam" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục nguồn việc làm</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_diaphuong" title="quanlydanhmuc_diaphuong">
-                <a class="menu-link menu-toggle" asp-controller="DiaBan" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text" style="color:yellow">Danh mục địa phương</span>
-                    <i class="menu-arrow"></i>
-                </a>
 
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_tantat" title="quanlydanhmuc_tantat">
-                <a class="menu-link menu-toggle" asp-controller="DmTinhTrangTanTat" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục tình trạng tàn tật</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_tinhtrangvl" title="quanlydanhmuc_tinhtrangvl">
-                <a class="menu-link menu-toggle" asp-controller="TinhTrangVL" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục tình trạng việc làm</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_thoigianlamviec" title="quanlydanhmuc_thoigianlamviec">
-                <a class="menu-link menu-toggle" asp-controller="DmThoiGianLamViec" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục thời gian làm việc</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_trinhdohocvan" title="quanlydanhmuc_trinhdohocvan">
-                <a class="menu-link menu-toggle" asp-controller="TrinhDoHV" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục trình độ học vấn</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_TrinhDoNgoaiNgu" title="quanlydanhmuc_TrinhDoNgoaiNgu">
-                <a class="menu-link menu-toggle" asp-controller="DmTrinhDoNgoaiNgu" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục trình độ ngoại ngữ, tin học</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_TrinhDoTinHoc" title="quanlydanhmuc_TrinhDoTinHoc">
-                <a class="menu-link menu-toggle" asp-controller="DmTrinhDoTinHoc" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục trình độ ngoại ngữ, tin học</span>
-                    <i class="menu-arrow"></i>
-                </a>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_DmNguoiTimViec" title="quanlydanhmuc_DmNguoiTimViec">
-                <a class="menu-link menu-toggle" asp-controller="DmNguoiTimViec" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Người tìm Việc</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_DmNhaTuyenDung" title="quanlydanhmuc_DmNhaTuyenDung">
-                <a class="menu-link menu-toggle" asp-controller="DmNhaTuyenDung" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text" style="color:blue">Danh mục nhà tuyển dụng</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_xuatkhauld" title="quanlydanhmuc_xuatkhauld">
-                <a class="menu-link menu-toggle" asp-controller="DmXuatKhauLaoDong" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục xuất khẩu lao động</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_dantoc" title="quanlydanhmuc_dantoc">
-                <a class="menu-link menu-toggle" asp-controller="DanToc" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục dân tộc</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_tongiao" title="quanlydanhmuc_tongiao">
-                <a class="menu-link menu-toggle" asp-controller="DmTonGiao" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục tôn giáo</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_quanlydanhmuc_trangthaivieclam" title="quanlydanhmuc_trangthaivieclam">
-                <a class="menu-link menu-toggle" asp-controller="DmTrangThaiViecLam" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Danh mục trạng thái việc làm</span>
-                    <i class="menu-arrow"></i>
-                </a>
-
-            </li>
-        </ul>
-    </div>
-</li>
 <!-- V Cập nhật thông tin cung - cầu lao động -->
 <li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau" title="capnhatcungcau">
     <a href="javascript:;" class="menu-link menu-toggle">
@@ -670,22 +399,22 @@
                 </a>
             </li>
             @*<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_tonghopnguoncung" title="capnhatcungcau_tonghopnguoncung">
-                <a class="menu-link menu-toggle" asp-controller="NguoiTimViec" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text" style="color:green">Tổng hợp nguồn cung lao động</span>
-                    <i class="menu-arrow"></i>
-                </a>
+            <a class="menu-link menu-toggle" asp-controller="NguoiTimViec" asp-action="Index">
+            <i class="menu-bullet menu-bullet-line">
+            <span></span>
+            </i>
+            <span class="menu-text" style="color:green">Tổng hợp nguồn cung lao động</span>
+            <i class="menu-arrow"></i>
+            </a>
             </li>
-             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_dangkycungung">
-                <a class="menu-link menu-toggle" asp-controller="DangKyGTCungUng" asp-action="Index">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
-                    <span class="menu-text">Nhu cầu tuyển dụng lao động</span>
-                    <i class="menu-arrow"></i>
-                </a>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_dangkycungung">
+            <a class="menu-link menu-toggle" asp-controller="DangKyGTCungUng" asp-action="Index">
+            <i class="menu-bullet menu-bullet-line">
+            <span></span>
+            </i>
+            <span class="menu-text">Nhu cầu tuyển dụng lao động</span>
+            <i class="menu-arrow"></i>
+            </a>
             </li> *@
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_capnhatcungcau_nhucautuyendungld" name="capnhatcungcau_nhucautuyendungld">
                 <a class="menu-link menu-toggle" asp-controller="NhuCauTuyenDungLD" asp-action="Index">
@@ -812,16 +541,16 @@
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_dg">
-                <a class="menu-link menu-toggle"  asp-controller="TongHopPhanTichDuDoan" asp-action="DuBaoNhuCauLaoDong">
+                <a class="menu-link menu-toggle" asp-controller="TongHopPhanTichDuDoan" asp-action="DuBaoNhuCauLaoDong">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text" >Thực hiện phân tích, dự báo nhu cầu lao động</span>
+                    <span class="menu-text">Thực hiện phân tích, dự báo nhu cầu lao động</span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_dg">
-                <a class="menu-link menu-toggle"  asp-controller="TongHopPhanTichDuDoan" asp-action="TrienVongThiTruongLaoDong">
+                <a class="menu-link menu-toggle" asp-controller="TongHopPhanTichDuDoan" asp-action="TrienVongThiTruongLaoDong">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -850,7 +579,7 @@
         <i class="menu-arrow"></i>
         <ul class="menu-subnav">
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_dg">
-                <a class="menu-link menu-toggle" >
+                <a class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -868,7 +597,7 @@
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="menu_dg">
-                <a class="menu-link menu-toggle" >
+                <a class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

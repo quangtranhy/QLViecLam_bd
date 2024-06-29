@@ -38,7 +38,7 @@
         <div class="login login-3 login-signin-on d-flex flex-row-fluid" id="kt_login">
             <div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url(Admin/assets/media/bg/bg-9.jpg); ">
                 <div class="login-form text-center text-white p-7 position-absolute overflow-hidden"
-                     style="position: absolute; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); overflow: hidden; color: #000; background: #3964F2; ">
+                     style="position: absolute; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); overflow: hidden; color: #000; background: #4069f1f0; ">
                     <!--begin::Login Header-->
                     <div class="d-flex flex-center mb-10">
                         <img src="~/Admin/FileUpload/Logo/logoLDTBXH.png" class="max-h-150px"
@@ -73,14 +73,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <span class="text-dark" style="font-weight:bold">@Html.ValidationMessage("error")</span>
+                                <span style="font-weight:bold;color: #a30606e3;">@Html.ValidationMessage("error")</span>
                             </div>
                             <div class="form-group text-center mt-10">
                                 <button type="submit" class="btn btn-light-primary font-weight-bold mr-2 btn-lg">Đăng nhập</button>
+                                <a asp-controller="Auth" asp-action="DanhSachtaiKhoan" class="btn btn-light-primary font-weight-bold mr-2 btn-lg">Danh sách tài khoản</a>
                             </div>
                         </form>
-                        <div class="mt-10">                                         
-                            <span class="mr-4" style="font-weight:bold; color:black">
+                        <div class="mt-10">
+                            <a asp-controller="Auth" asp-action="DangKy"
+                                style="font-weight:bold; color:white;font-size: 16px;">
+                                Đăng ký tài khoản cho doanh nghiệp: <span class=" text-hover-primary font-weight-bold">Đăng ký!</span>
+                            </a><br />
+                            <span class="mr-4" style="font-weight:bold; color:black;">
                                 Bản quyền được cấp cho @ViewData["BanQuyen"]
                             </span><br />
                             <span class="opacity-70 mr-4" style="font-weight:bold">

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Systems;
+using QLViecLam.Models.Admin.Systems.HeThongChung;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCung_Cau.BienDongCungLD
@@ -36,14 +36,14 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     var list_xa = dmhanhchinh.Where(x => x.CapDo == "X");
                     if (huyen == null)
                     {
-                        huyen = list_huyen.First().MaQuocGia!;
+                        huyen = list_huyen.First().MaDb!;
                     }
 
                     list_xa = list_xa.Where(x => x.Parent == huyen);
 
                     if (xa != null)
                     {
-                        list_xa = list_xa.Where(x => x.MaQuocGia == xa);
+                        list_xa = list_xa.Where(x => x.MaDb == xa);
                     }
 
                     var sl_biendong = biendong.GroupBy(x => x.User)
@@ -58,8 +58,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     {
                         foreach (var item in list_xa)
                         {
-                            var bd = sl_biendong.Where(x => x.Mota == item.MaQuocGia).First();
-                            var h = list_huyen.Where(x => x.MaQuocGia == item.Parent).First();
+                            var bd = sl_biendong.Where(x => x.Mota == item.MaDb).First();
+                            var h = list_huyen.Where(x => x.MaDb == item.Parent).First();
                             if (bd != null)
                             {
                                 model.Add(new DmHanhChinh
@@ -87,7 +87,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     {
                         foreach (var item in list_xa)
                         {
-                            var h = list_huyen.Where(x => x.MaQuocGia == item.Parent).First();
+                            var h = list_huyen.Where(x => x.MaDb == item.Parent).First();
                             model.Add(new DmHanhChinh
                             {
                                 Id = item.Id,

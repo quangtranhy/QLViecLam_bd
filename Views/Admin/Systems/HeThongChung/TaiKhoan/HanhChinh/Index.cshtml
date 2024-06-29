@@ -1,0 +1,170 @@
+﻿﻿@{
+    ViewData["Title"] = "Tài khoản hành chính";
+    int record_id = 1;
+    var dshuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["dshuyen"]!;
+    var HcHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["HcHuyen"]!;
+    var HcXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["HcXa"]!;
+    var DmDonvi = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmDonvi>)ViewData["DmDonvi"]!;
+}
+@* @model IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.Users> *@
+
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+        $(function () {
+            $('#madb,#phanloai').change(function () {
+                var current_path_url = '/TaiKhoan?';
+                var madb = '&madb=' + $('#madb').val();
+                var phanloai = '&phanloai=' + $('#phanloai').val();
+                var url = current_path_url + madb + phanloai
+                window.location.href = url;
+            })
+        });
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Danh sách <small>Tài khoản hành chính</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr />
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="form-group fv-plugins-icon-container">
+                    <label style="font-weight:bold; color:blue">Loại tài khoản</label>
+                    <select class="form-control" id="phanloai" name="phanloai">
+                        <!option value="hanhchinh" @((string)ViewData["phanloai"]! == "hanhchinh" ? "selected" : "")>Hành chính nhà nước</!option>
+                        <!option value="doanhnghiep" @((string)ViewData["phanloai"]! == "doanhnghiep" ? "selected" : "")>Doanh nghiệp</!option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="form-group fv-plugins-icon-container">
+                    <label style="font-weight:bold; color:blue">Địa bàn</label>
+                    <select class="form-control" id="madb" name="madb">
+                        <option value="">---Chọn huyện---</option>
+                        @foreach (var h in dshuyen)
+                        {
+                            <!option value="@h.MaDb" @((string)ViewData["madb"]! == h.MaDb ? "selected" : "")>@h.Name</!option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover ">
+            <thead>
+                <tr class="text-center">
+                    <th>STT</th>
+                    <th>Cấp độ</th>
+                    <th>Đơn vị</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (HcHuyen != null)
+                {
+                    @foreach (var h in HcHuyen)
+                    {
+
+                        @if (h.CapDo == "T")
+                        {
+                            <tr>
+                                <td style="color:blue">A</td>
+                                <td style="text-align:center">Tỉnh</td>
+                                <td>@h.Name</td>
+                                <td></td>
+                            </tr>
+                        }
+                        @if (h.CapDo == "H")
+                        {
+                            <tr>
+                                <td style="color:blue">@(record_id++)</td>
+                                <td style="text-align:center">Huyện</td>
+                                <td>@h.Name</td>
+                                <td></td>
+                            </tr>
+                        }
+
+                        var donvi_t_list = DmDonvi.Where(x => x.MaDiaBan == h.MaDb);
+                        int donvi_t_id = 1;
+                        @foreach (var dv_h in donvi_t_list)
+                        {
+
+                            <tr>
+                                <td style="text-align:right">@(donvi_t_id++)</td>
+                                <td></td>
+                                <td>@dv_h.TenDv</td>
+                                <td>
+                                    <a class="btn btn-sm btn-clean btn-icon" title="Xem danh sách" asp-controller="TaiKhoan" asp-action="Detail" asp-route-madv="@dv_h.MaDonVi">
+                                        <i class="icon-lg la la-clipboard-list text-success  icon-2x"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+
+
+                        var xa_list = HcXa.Where(x => x.Parent == h.MaDb);
+                        int int_id = 1;
+                        @foreach (var xa in xa_list)
+                        {
+                            <tr>
+                                @if (xa.CapDo == "X")
+                                {
+                                    <td>@(record_id - 1).@(int_id++)</td>
+                                    <td style="text-align:center">Xã</td>
+                                    <td>@xa.Name</td>
+                                    <td></td>
+                                }
+                            </tr>
+
+
+                            var donvi_xa_list = DmDonvi.Where(x => x.MaDiaBan == xa.MaDb);
+                            int donvi_xa_id = 1;
+                            @foreach (var dv_x in donvi_xa_list)
+                            {
+                                <tr>
+                                    <td style="text-align:right">@(donvi_xa_id++)</td>
+                                    <td></td>
+                                    <td>@dv_x.TenDv</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-clean btn-icon" title="Xem danh sách" asp-controller="TaiKhoan" asp-action="Detail" asp-route-madv="@dv_x.MaDonVi">
+                                            <i class="icon-lg la la-clipboard-list text-success  icon-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        }
+
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

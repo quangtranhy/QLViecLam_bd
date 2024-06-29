@@ -1,10 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 using System.Dynamic;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace QLViecLam.Helper
 {
+
     public class Funtions_Global
     {
         public static string GetSsAdmin(ISession session, string key)
@@ -35,18 +39,18 @@ namespace QLViecLam.Helper
         {
             if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
             {
-                string ssadmin = session.GetString("SsAdmin");
-                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin);
+                string ssadmin = session.GetString("SsAdmin")!;
+                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
                 if (sessionInfo["PhanLoai"] == "SSA")
                 {
                     return true;
                 }
                 else
                 {
-                    string per = session.GetString("Permission");
+                    string per = session.GetString("Permission")!;
                     if (!string.IsNullOrEmpty(per))
                     {
-                        dynamic info = JsonConvert.DeserializeObject(per);
+                        dynamic info = JsonConvert.DeserializeObject(per)!;
 
                         foreach (var item in info)
                         {
@@ -58,6 +62,35 @@ namespace QLViecLam.Helper
                     }
                 }
             }
+            return false;
+        }
+
+        public static bool CheckChucNang(ISession session, string machucnang, string key)
+        {
+
+            string ssadmin = session.GetString("SsAdmin")!;
+            dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
+            if (sessionInfo["PhanLoai"] == "SSA")
+            {
+                return true;
+            }
+            else
+            {
+                string phanquyen = session.GetString("PhanQuyen")!;
+                if (!string.IsNullOrEmpty(phanquyen))
+                {
+                    dynamic info = JsonConvert.DeserializeObject(phanquyen)!;
+
+                    foreach (var item in info)
+                    {
+                        if (item["MaChucNang"] == machucnang && item[key] == true)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
             return false;
         }
 
@@ -115,10 +148,10 @@ namespace QLViecLam.Helper
 
         public static string ConvertDateToFormView(DateTime date)
         {
-          
+
             string str = date.Date.ToString("yyyy-MM-dd");
             return str;
-            
+
         }
     }
 }

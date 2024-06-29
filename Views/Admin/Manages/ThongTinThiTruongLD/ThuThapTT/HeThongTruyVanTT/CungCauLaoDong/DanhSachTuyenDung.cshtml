@@ -1,8 +1,8 @@
 ﻿@{
     // ViewData["Title"] = "Cơ sở dữ liệu thông tin nhu cầu tuyển dụng lao động của người sử dụng lao động";
     int record_id = 1;
-    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Xa"]!;
-    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Huyen"]!;
+    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
+    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
     var TrangThai = Convert.ToBoolean(ViewData["TrangThai"]);
     var dsdoanhnghiep = (IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company>)ViewData["DsDoanhNghiep"]!;
     var doanhnghiep = ViewData["DoanhNghiep"]!.ToString();

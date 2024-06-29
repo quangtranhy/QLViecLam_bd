@@ -1,10 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Cơ sở dữ liệu thông tin nhu cầu tuyển dụng lao động của người sử dụng lao động";
     int record_id = 1;
-    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Xa"]!;
-    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Huyen"]!;
+    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
+    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
     var tinhtrang = Convert.ToBoolean(ViewData["TinhTrangXacThuc"]);
-    var nganhnghe = (IEnumerable<QLViecLam.Models.Admin.Manages.DanhMuc.DmNganhNghe>)ViewData["DmNganhNghe"]!;
+    var nganhnghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DmNganhNghe>)ViewData["DmNganhNghe"]!;
 }
 @model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company>
 

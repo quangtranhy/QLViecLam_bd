@@ -1,8 +1,8 @@
 ﻿@{   
     // // ViewData["model"] = "DANH SÁCH DOANH NGHIỆP";
-    var Tinh = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Tinh"]!;
-    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Huyen"]!;
-    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["Xa"]!;
+    var Tinh = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Tinh"]!;
+    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
+    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
     var nghenghiep = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Count_Chucnang>)ViewData["nghenghiep"]!;
     var thongtinkhac = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Thongtin_DoanhNghiep>)ViewData["thongtinkhac"]!;
     var trinhdocmkt = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Count_Chucnang>)ViewData["trinhdocmkt"]!;
@@ -95,7 +95,7 @@
                         {
                             foreach (var item in Tinh)
                             {
-                                <option value="@item.MaQuocGia">@item.Name</option>
+                                <option value="@item.MaDb">@item.Name</option>
                             }
                         }
                     </select>
@@ -109,7 +109,7 @@
                         {
                             foreach (var item in Huyen)
                             {
-                                <option value="@item.MaQuocGia">@item.Name</option>
+                                <option value="@item.MaDb">@item.Name</option>
                             }
                         }
                     </select>
@@ -123,7 +123,7 @@
                         {
                             foreach (var item in Xa)
                             {
-                                <option value="@item.MaQuocGia">@item.Name</option>
+                                <option value="@item.MaDb">@item.Name</option>
                             }
                         }
                     </select>

@@ -1,7 +1,7 @@
 ﻿@{
     var stt = ViewData["stt"];
-    var DmHanhChinh = (IEnumerable<QLViecLam.Models.Admin.Systems.DmHanhChinh>)ViewData["DmHanhChinh"]!;
-    var DonViChuQuan = (IEnumerable<QLViecLam.Models.Admin.Systems.DmDonvi>)ViewData["DonViChuQuan"]!;
+    var DmHanhChinh = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DmHanhChinh"]!;
+    var DonViChuQuan = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmDonvi>)ViewData["DonViChuQuan"]!;
 }
 
 <!--Create Modal-->
@@ -60,7 +60,7 @@
                                 <select type="text" id="madiaban_create" name="madiaban_create" class="form-control">
                                     @foreach (var item in DmHanhChinh)
                                     {
-                                        <option value="@item.MaQuocGia">@item.Name</option>
+                                        <option value="@item.MaDb">@item.Name</option>
                                     }
                                 </select>
                             </div>
