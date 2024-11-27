@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using System.Collections.Generic;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.TraCuuBaoCaoTongHop.TraCuuTTCungCauLD

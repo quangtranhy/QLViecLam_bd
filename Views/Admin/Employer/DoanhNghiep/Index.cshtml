@@ -1,0 +1,278 @@
+﻿@{
+    ViewData["Title"] = "Thông tin doanh nghiệp";
+    var NganhHoc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhHoc>)ViewData["NganhHoc"]!;
+    var HinhThucDoanhNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.HinhThucDoanhNghiep>)ViewData["HinhThucDoanhNghiep"]!;
+    var KhuCongNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.KhuCongNghiep>)ViewData["KhuCongNghiep"]!;
+    var tinh = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["tinh"]!;
+    var huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["huyen"]!;
+    var xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["xa"]!;
+    var NguoiLaoDong = (IEnumerable<QLViecLam.Models.Admin.Manages.NguoiLaoDong>)ViewData["NguoiLaoDong"]!;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var tongsold = NguoiLaoDong.Count();
+    var sold_ngoaitinh = NguoiLaoDong.Where(x => x.Tinh != "Bình Định" || x.Tinh != "bình định" || x.Tinh != "BÌNH ĐỊNH").Count();
+    var sold_nu = NguoiLaoDong.Where(x => x.Gioitinh == "2").Count();
+    var sold_hdld = NguoiLaoDong.Where(x => x.BdHopDong != null).Count();
+    var sold_hdld_nu = NguoiLaoDong.Where(x => x.BdHopDong != null && x.Gioitinh == "2").Count();
+    var sold_nuocngoai = NguoiLaoDong.Where(x => x.Nation != "VN").Count();
+    var sold_nuocngoai_nu = NguoiLaoDong.Where(x => x.Nation != "VN" && x.Gioitinh == "2").Count();
+    var sold_thpt = NguoiLaoDong.Where(x => x.TrinhDoHV == "5").Count();
+    var luong_max = NguoiLaoDong.Select(xa => xa.Luong).DefaultIfEmpty().Max();
+    var luong_min = NguoiLaoDong.Select(xa => xa.Luong).DefaultIfEmpty().Min();
+}
+
+@model QLViecLam.Models.Admin.Manages.Company
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+    </script>
+}
+
+
+<div class="row">
+    <div class="col-xl-8 float-left">
+        <div class="card card-custom">
+            <div class="card-header card-header-tabs-line">
+                <div class="card-title">
+                    <h3 class="card-label text-uppercase">Thông tin cơ bản</h3>
+                </div>
+                <div class="card-toolbar">
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <form role="form" method="POST" action="DoanhNghiep/Update" enctype='multipart/form-data'>
+                            <input hidden name="Id" value="@Model.Id"/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="20%">Tên doanh nghiệp</td>
+                                    <td width="80%">
+                                        <input type="text" class="form-control" name="name" value="@Model.Name" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mã số DKKD</td>
+                                    <td>
+                                        <input type="text" class="form-control" id="masodn" name="masodn"
+                                               value="@Model.MaSoDn" readonly required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tình trạng </td>
+                                    <td>
+                                        Hoạt động <input type='radio' value='1' name='public' @(Model.Public == 1 ? "checked" : "") />
+                                        Dừng <input type='radio' value='0' name='public' @(Model.Public == 0 ? "checked" : "") />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số điện thoại </td>
+                                    <td>
+                                        <input type="text" name="phone" class="form-control" value="@Model.Phone" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fax</td>
+                                    <td>
+                                        <input type="text" name="fax" value="@Model.Fax" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Website</td>
+                                    <td>
+                                        <input type="text" name="website" value="@Model.Website" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>
+                                        <input type="email" name="email" value="@Model.Email" class="form-control" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tỉnh</td>
+                                    <td>
+                                        <select class="form-control" name="tinh" id='tinh'>
+                                            @foreach (var t in tinh)
+                                            {
+                                                <option value="@t.MaDb">@t.Name</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Huyện/Thị xã/Thành phố</td>
+                                    <td>
+                                        <select class="form-control" name="huyen" id='huyen'>
+                                            <option value="">---Chọn huyện---</option>
+                                            @foreach (var h in huyen)
+                                            {
+                                                <!option value="@h.MaDb" @(Model.Huyen == h.MaDb ? "selected" : "")>@h.Name</!option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Xã/Phường/Thị trấn</td>
+                                    <td>
+                                        <select class="form-control" name="xa" id="xa">
+                                            <option value="">---Chọn xã---</option>
+                                            @foreach (var x in xa)
+                                            {
+                                                <!option value="@x.MaDb" @(Model.Xa == x.MaDb ? "selected" : "")>@x.Name</!option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Địa chỉ </td>
+                                    <td>
+                                        <textarea type="text" class="form-control" name="adress" required>
+                                            @Model.Address
+                                        </textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Khu công nghiệp</td>
+                                    <td>
+                                        <select class="form-control" name="khucn">
+                                            <option value="">---Chọn khu công nghiệp---</option>
+                                            @foreach (var kcn in KhuCongNghiep)
+                                            {
+                                                <!option value="@kcn.MaKhuCongNghiep" @(Model.KhuCn == kcn.MaKhuCongNghiep ? "selected" : "")>@kcn.TenKhuCongNghiep</!option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Loại hình doanh nghiệp</td>
+                                    <td>
+                                        <select class="form-control" name="loaihinh">
+                                            <option value="">---Chọn loại hình---</option>
+                                            @foreach (var lh in HinhThucDoanhNghiep)
+                                            {
+                                                <!option value="@lh.MaHinhThucDoanhNghiep" @(Model.LoaiHinh == lh.MaHinhThucDoanhNghiep ? "selected" : "")>@lh.TenHinhThucDoanhNghiep</!option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ngành nghề</td>
+                                    <td>
+                                        <select class="form-control" name="nganhhoc">
+                                            <option value="">---Chọn ngành nghề---</option>
+                                            @foreach (var nh in NganhHoc)
+                                            {
+                                                <!option value="@nh.MaNganhHoc" @(Model.NganhNghe == nh.MaNganhHoc ? "selected" : "")>@nh.TenNganhHoc</!option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div>
+                                <hr>
+                            </div>
+                            <div>
+                                <input class="btn btn-success btn-sm" type='submit' value="Cập nhật thông tin">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card card-custom mb-2">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                <div class="card-header card-header-tabs-line">
+                    <h4 class="card-label text-uppercase" style="margin:auto">
+                        Thông tin khác
+                    </h4>
+                </div>
+            </a>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-info">
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body" style="margin-left:16px;">
+                            <div>Tổng số lao động: @tongsold</div>
+                            <div>
+                                Số lao động ngoại tỉnh: @sold_ngoaitinh
+                            </div>
+                            <div>Số lao động nữ : @sold_nu </div>
+                            <div>
+                                Số lao động đã ký HĐLĐ (tổng/nữ): @sold_hdld / @sold_hdld_nu
+                            </div>
+                            <div>
+                                Số lao động nước ngoài (tổng/nữ): @sold_nuocngoai / @sold_nuocngoai_nu
+                            </div>
+                            <div>Số lao động đã tốt nghiệp phổ thông : @sold_thpt</div>
+
+                            <h3>Tiền lương</h3>
+                            <div>Lương thấp nhất : @luong_min</div>
+                            <div>Lương cao nhất : @luong_max</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-custom mb-2">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                <div class="card-header card-header-tabs-line">
+                    <h4 class="card-label text-uppercase">
+                        Phân bố LD theo trình độ CMKT
+                    </h4>
+                </div>
+            </a>
+            <div class="panel panel-info">
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body" style="margin-left:16px;">
+                        @foreach (var cmkt in TrinhDoCMKT)
+                        {
+                            var soluong = NguoiLaoDong.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count();
+                            <span>@cmkt.TenTrinhDoCMKT : @soluong </span>
+                            <br />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-custom mb-2">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                <div class="card-header card-header-tabs-line">
+                    <h4 class="card-label text-uppercase">
+                        Phân bố LD theo nhóm ngành nghề chính
+                    </h4>
+                    <div class="card-toolbar">
+                    </div>
+                </div>
+            </a>
+            <div class="panel panel-info" style="margin-left:16px;">
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        @foreach (var nh in NganhHoc)
+                        {
+                            var sl_nganhnghe = NguoiLaoDong.Where(x => x.NgheNghiep == nh.MaNganhHoc).Count();
+                            <span>@nh.TenNganhHoc : @sl_nganhnghe </span><br />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

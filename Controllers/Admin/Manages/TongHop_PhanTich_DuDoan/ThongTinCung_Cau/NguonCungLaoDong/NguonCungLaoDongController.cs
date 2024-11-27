@@ -26,15 +26,15 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     {
                         if (tinhtrang == "1")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 1);
+                            model = model.Where(x => x.TinhTrangVL == "1");
                         }
                         if (tinhtrang == "2")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 2);
+                            model = model.Where(x => x.TinhTrangVL == "2");
                         }
                         if (tinhtrang == "3")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 3);
+                            model = model.Where(x => x.TinhTrangVL == "3");
                         }
                     }
                     /*if (loai == null)

@@ -33,7 +33,7 @@
                             <div class="form-group fv-plugins-icon-container">
                                 <label><b>Phân loại</b></label>
                                 <select id="level" name="level" class="form-control">
-                                    @foreach (var item in Helpers.phanLoaiDb())
+                                    @foreach (var item in DanhMucChung.phanLoaiDb())
                                     {
                                         <option value="@item">@item</option>
                                     }

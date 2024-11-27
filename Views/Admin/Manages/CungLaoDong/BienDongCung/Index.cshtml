@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Biến động cung lao động";
+    var list_xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["list_xa"]!;
+    var list_huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["list_huyen"]!;
+    int record_id = 1;
+}
+
+
+@model IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+             $(function () {
+                $('#huyen,#xa,#kydieutra').change(function () {
+                alert($('#xa').val());
+                var current_path_url = '/BienDongCung?';
+                var kydieutra = '&kydieutra=' + $('#kydieutra').val();
+                var huyen = '&huyen=' + $('#huyen').val();
+                var xa = '&xa=' + $('#xa').val();
+                var url = current_path_url  + huyen + xa + kydieutra;
+                window.location.href = url;
+            })
+        });
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Danh sách<small> Biến động cung lao động</small><br />
+            </h3>
+        </div>
+
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xl-3">
+            <div class="form-group fv-plugins-icon-container">
+                <label style="font-weight:bold; color:blue">Huyện</label>
+                @* <select class="form-control" id="Madiaban" name="Madiaban" onchange="updateInput()"> *@
+                <select class="form-control" id="huyen" name="huyen">
+                    @foreach (var huyen in list_huyen)
+                    {
+                        <!option value="@huyen.MaDb" @((string)ViewData["mahuyen"]! == huyen.MaDb ? "selected" : "")>@huyen.Name</!option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="form-group fv-plugins-icon-container">
+                <label style="font-weight:bold; color:blue">Xã</label>
+                <select class="form-control" id="xa" name="xa">
+                    <option value="">Chọn xã</option>
+                    @foreach (var xa in list_xa)
+                    {
+                        <!option value="@xa.MaDb" @((string)ViewData["maxa"]! == xa.MaDb!.ToString() ? "selected" : "")>@xa.Name</!option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="form-group fv-plugins-icon-container">
+                <label style="font-weight:bold; color:blue">Kỳ điều tra</label>
+                <select class="form-control" id="kydieutra" name="kydieutra">
+                    <option value="">Chọn kỳ điều tra</option>
+                    @for (var i = 2020; i < 2026; i++)
+                    {
+                        <!option value="@i" @((string)ViewData["kydieutra"]! == i!.ToString() ? "selected" : "")>Năm @i</!option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover" >
+            <tr>
+                <th>Stt</th>
+                <th>Xã</th>
+                <th>Huyện</th>
+                <th>Số lượng</th>
+                <th>Thao Tác</th>
+            </tr>
+            @if (Model != null)
+            {
+                @foreach (var hc in Model)
+                {
+                    <tr>
+                        <td>@(record_id++)</td>
+                        <td>@hc.Name</td>
+                        <td>@hc.NameHuyen</td>
+                        <td>@hc.Count</td>
+                        <td>
+                            <a class="btn btn-sm btn-clean btn-icon" asp-controller="BienDongCung" asp-action="detail" title="Chi tiết" asp-route-madb="@hc.MaDb">
+                                <i class="icon-lg la la-clipboard-list text-success  icon-2x"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+
+</div>
+

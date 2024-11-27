@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
 using QLViecLam.Models.Admin.Systems.DanhMuc;
-using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
+using QLViecLam.Models.Admin.Manages;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCung_Cau.CheDoChinhSach
 {
@@ -30,7 +30,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
         [HttpPost]
         public IActionResult Store()
         {
-            var model = new Models.Admin.Manages.TongHop_PhanTich_DuDoan.CheDoChinhSach
+            var model = new Models.Admin.Manages.CheDoChinhSach
             {
                 Created_at = DateTime.Now,
                 Updated_at = DateTime.Now,

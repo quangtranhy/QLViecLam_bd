@@ -1,0 +1,50 @@
+﻿@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+@section custom_script {
+    <script src="~/Admin/assets/js/pages/crud/forms/widgets/jquery-mask.js"></script>
+    <script src="~/Admin/assets/js/pages/crud/forms/widgets/select2.js"></script>
+
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged4.init();
+        });
+        if ($('tinhtrangvl').val() == 2) {
+            $('tinhtrang_thatnghiep').css('display', 'block')
+        }
+
+    </script>
+}
+<div class="card card-custom">
+    <div class="card-header ribbon ribbon-top ribbon-ver">
+        <div class="card-title">
+            <h3 class="card-label">
+                Thêm mới <small>Nhân khẩu</small>
+            </h3>
+        </div>
+    </div>
+    <!--begin::Form-->
+    <div class="card-body">
+        <form asp-controller="NhanKhau" asp-action="Store" method="post" enctype="multipart/form-data" id="frm_NhanKhau">
+            <div class="row">
+
+                @await Html.PartialAsync("~/Views/Admin/Manages/CungLaoDong/NhanKhau/FormThongTin.cshtml")
+
+                <div class="card-footer">
+                    <div class="row text-center">
+                        <a onclick="history.back()" class="btn btn-danger mr-5">
+                            <i class="fa fa-reply"></i>&nbsp;Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-xl btn-info btn-lg pull-right" style="text-align:center">
+                            Thêm mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

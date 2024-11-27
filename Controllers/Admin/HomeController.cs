@@ -58,10 +58,10 @@ namespace QLViecLam.Controllers.Admin
                     string md5_password = "";
                     using (MD5 md5Hash = MD5.Create())
                     {
-                        string change = Funtions_Global.GetMd5Hash(md5Hash, current_password);
+                        string change = Helpers.GetMd5Hash(md5Hash, current_password);
                         md5_password = change;
                     }
-                    if (md5_password == Funtions_Global.GetSsAdmin(HttpContext.Session, "Password"))
+                    if (md5_password == Helpers.GetSsAdminKey(HttpContext.Session, "Password"))
                     {
                         if (new_password == verify_password)
                         {
@@ -72,10 +72,10 @@ namespace QLViecLam.Controllers.Admin
                                 string new_md5_password = "";
                                 using (MD5 md5Hash = MD5.Create())
                                 {
-                                    string new_change = Funtions_Global.GetMd5Hash(md5Hash, verify_password);
+                                    string new_change = Helpers.GetMd5Hash(md5Hash, verify_password);
                                     new_md5_password = new_change;
                                 }
-                                var model = _db.Users.FirstOrDefault(u => u.Username == Funtions_Global.GetSsAdmin(HttpContext.Session, "Username"));
+                                var model = _db.Users.FirstOrDefault(u => u.Username == Helpers.GetSsAdminKey(HttpContext.Session, "Username"));
                                 if (model != null)
                                 {
                                     model.Password = new_md5_password;
@@ -136,24 +136,18 @@ namespace QLViecLam.Controllers.Admin
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
             {
-                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
-                {
-                    var model = _db.Users.FirstOrDefault(t => t.Username == Funtions_Global.GetSsAdmin(HttpContext.Session, "Username"));
-                    ViewData["Title"] = "Quản lý giao diện hiển thị";
+                var model = _db.Users.FirstOrDefault(t => t.Username == Helpers.GetSsAdminKey(HttpContext.Session, "Username"));
+                ViewData["Title"] = "Quản lý giao diện hiển thị";
 
-                    ViewData["MenuLv1"] = "menu_quantrihethong";
-                    ViewData["MenuLv2"] = "menu_quantrihethong_themesetting";
-                    return View("Views/Admin/Home/ThemeSettings.cshtml", model);
-                }
-                else
-                {
-                    return View("Views/Admin/Error/SessionOut.cshtml");
-                }
+                ViewData["MenuLv1"] = "hethong";
+                ViewData["MenuLv2"] = "hethong_giaodien";
+                return View("Views/Admin/Home/ThemeSettings.cshtml", model);
             }
             else
             {
                 return View("Views/Admin/Error/SessionOut.cshtml");
             }
+
         }
 
         [HttpPost]

@@ -1,6 +1,11 @@
 ﻿﻿@{
     ViewData["Title"] = "Chức năng";
-    int record_id = 1;
+
+    var model_c1 = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>)ViewData["model_c1"]!;
+    var model_c2 = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>)ViewData["model_c2"]!;
+    var model_c3 = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>)ViewData["model_c3"]!;
+    var model_c4 = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>)ViewData["model_c4"]!;
+    var model_c5 = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>)ViewData["model_c5"]!;
 
 }
 @model IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang>
@@ -32,8 +37,8 @@
         </div>
         <div class="card-toolbar">
             <td>
-                <a class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" title="Thêm mới" />
-                <i class="icon-lg fa fa-plus text-success icon-2x"></i>
+                <a class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" title="Thêm mới" onclick="resetFormChucNang()"  />
+                    <i class="icon-lg fa fa-plus text-success icon-2x"></i>
                 </a>
             </td>
         </div>
@@ -44,10 +49,10 @@
         <table class="table table-striped table-bordered table-hover ">
             <thead>
                 <tr class="text-center">
-                    <th width="5%">STT</th>
+                    <th width="10%">STT</th>
                     <th>Mã chức năng</th>
                     <th>Tên chức năng</th>
-                    <th width="8%">Cấp độ</th>
+                    <th width="10%">Cấp độ</th>
                     <th width="10%">Trạng thái</th>
                     <th width="15%">Thao tác</th>
                 </tr>
@@ -55,26 +60,123 @@
             <tbody>
                 @if (Model != null)
                 {
-                    @foreach (var item in Model)
+                    int stt_1 = 1;
+                    @foreach (var m1 in model_c1)
                     {
                         <tr>
-                            <td style="text-align: center">@(record_id++)</td>
-                            <td>@item.MaChucNang</td>
-                            <td>@item.TenChucNang</td>
-                            <td style="text-align: center">@item.CapDo</td>
-                            <td style="text-align: center">@(item.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
-                            <td style="text-align: center">
-                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@item.Id')">
+                            <td >@(stt_1++)</td>
+                            <td class="text-primary">@m1.MaChucNang</td>
+                            <td class="text-primary">@m1.TenChucNang</td>
+                            <td class="text-primary" style="text-align: center">@m1.CapDo</td>
+                            <td class="text-primary" style="text-align: center">@(m1.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
+                            <td >
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@m1.Id')">
                                     <i class="icon-lg la la-edit text-primary icon-2x"></i>
                                 </button>
-                                <a type="button" title="Thêm chức năng con thuộc chức năng @item.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal">
-                                    <i class="icon-lg la fa-plus text-warning icon-2x"></i>
+                                <a title="Thêm chức năng con thuộc chức năng @m1.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" onclick="SetCreate('@m1.MaChucNang','@m1.Id','@m1.CapDo')">
+                                    <i class="icon-lg la fa-plus text-primary icon-2x"></i>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@item.Id')">
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@m1.Id')">
                                     <i class="icon-lg la la-trash text-danger icon-2x"></i>
                                 </button>
                             </td>
                         </tr>
+
+                        int stt_2 = 1;
+                        var model2 = Model.Where(x => x.Parent == m1.MaChucNang);
+                        @foreach (var m2 in model2)
+                        {
+                            <tr>
+                                <td>@(stt_1 - 1)-@(stt_2++)</td>
+                                <td class="text-success">@m2.MaChucNang</td>
+                                <td class="text-success">@m2.TenChucNang</td>
+                                <td class="text-success" style="text-align: center">@m2.CapDo</td>
+                                <td class="text-success" style="text-align: center">@(m2.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
+                                <td >
+                                    <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@m2.Id')">
+                                        <i class="icon-lg la la-edit text-success icon-2x"></i>
+                                    </button>
+                                    <a title="Thêm chức năng con thuộc chức năng @m2.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" onclick="SetCreate('@m2.MaChucNang','@m2.Id','@m2.CapDo')">
+                                        <i class="icon-lg la fa-plus text-success icon-2x"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@m2.Id')">
+                                        <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            int stt_3 = 1;
+                            var model3 = Model.Where(x => x.Parent == m2.MaChucNang);
+                            @foreach (var m3 in model3)
+                            {
+                                <tr>
+                                    <td >@(stt_1 - 1)-@(stt_2 - 1)-@(stt_3++)</td>
+                                    <td style="color:#109ab1">@m3.MaChucNang</td>
+                                    <td style="color:#109ab1">@m3.TenChucNang</td>
+                                    <td style="text-align: center;color:#109ab1">@m3.CapDo</td>
+                                    <td style="text-align: center;color:#109ab1">@(m3.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
+                                    <td >
+                                        <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@m3.Id')">
+                                            <i class="icon-lg la la-edit  icon-2x" style="color:#109ab1"></i>
+                                        </button>
+                                        <a title="Thêm chức năng con thuộc chức năng @m3.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" onclick="SetCreate('@m3.MaChucNang','@m3.Id','@m3.CapDo')">
+                                            <i class="icon-lg la fa-plus icon-2x" style="color:#109ab1"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@m3.Id')">
+                                            <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                int stt_4 = 1;
+                                var model4 = Model.Where(x => x.Parent == m3.MaChucNang);
+                                @foreach (var m4 in model4)
+                                {
+                                    <tr>
+                                        <td >@(stt_1 - 1)-@(stt_2 - 1)-@(stt_3 - 1)-@(stt_4) </td>
+                                        <td class="text-warning">@m4.MaChucNang</td>
+                                        <td class="text-warning">@m4.TenChucNang</td>
+                                        <td class="text-warning" style="text-align: center">@m4.CapDo</td>
+                                        <td class="text-warning" style="text-align: center">@(m4.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
+                                        <td >
+                                            <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@m4.Id')">
+                                                <i class="icon-lg la la-edit text-warning icon-2x"></i>
+                                            </button>
+                                            <a title="Thêm chức năng con thuộc chức năng @m4.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" onclick="SetCreate('@m4.MaChucNang','@m4.Id','@m4.CapDo')">
+                                                <i class="icon-lg la fa-plus text-warning icon-2x"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@m4.Id')">
+                                                <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    int stt_5 = 1;
+                                    var model5 = Model.Where(x => x.Parent == m4.MaChucNang);
+                                    @foreach (var m5 in model5)
+                                    {
+                                        <tr>
+                                            <td >@(stt_1 - 1)-@(stt_2 - 1)-@(stt_3 - 1)-@(stt_4 -1)-@(stt_5) </td>
+                                            <td>@m5.MaChucNang</td>
+                                            <td>@m5.TenChucNang</td>
+                                            <td style="text-align: center">@m5.CapDo</td>
+                                            <td style="text-align: center">@(m5.TrangThai == "1" ? "Khích hoạt" : "Vô hiệu")</td>
+                                            <td >
+                                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@m5.Id')">
+                                                    <i class="icon-lg la la-edit text-dark icon-2x"></i>
+                                                </button>
+                                              @*   <a title="Thêm chức năng con thuộc chức năng @m5.TenChucNang" class="btn btn-sm btn-clean btn-icon" data-target="#Create_Modal" data-toggle="modal" onclick="SetCreate('@m5.MaChucNang')">
+                                                    <i class="icon-lg la fa-plus text-dark icon-2x"></i>
+                                                </a> *@
+                                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-toggle="modal" data-target="#Delete_Modal" onclick="SetDelete('@m5.Id')">
+                                                    <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             </tbody>

@@ -52,7 +52,7 @@ namespace QLViecLam.Models.Admin.Systems.HeThongChung
         public string? ChucDanhNguoiKyBc { get; set; }
         public string? HoTenNguoiKyBc { get; set; }
         //
-
+        public string? User { get; set; }
         public DateTime Created_at { get; set; }
         public DateTime Updated_at { get; set; }
     }

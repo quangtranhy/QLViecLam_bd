@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.BaoCaoNghiepVu;
 
 namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDLThuThapTT.BangTinThiTruongLD
@@ -24,22 +24,22 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                 {
                     var model = _db.NhanKhau.AsQueryable();
                     //thamgiahdkt
-                    ViewData["thamgiahdkt"] = model.Where(x => x.TinhTrangVL == 3).Count();
-                    ViewData["non_thamgiahdkt"] = model.Where(x => x.TinhTrangVL == 3).Count();
+                    ViewData["thamgiahdkt"] = model.Where(x => x.TinhTrangVL == "3").Count();
+                    ViewData["non_thamgiahdkt"] = model.Where(x => x.TinhTrangVL == "3").Count();
 
                     //TRINH DO CHUYEN MON KY THUAT
                     //nếu để ChuyenMonKyThuat trong nhankhau là mã thì phải join mà đọc ra tên trình độ
                     var DmTrinhDoKyThuat = model.GroupBy(x => x.TrinhDoCMKT)
                         .Select(group => new VM_Count_LucLuongLD
                         {
-                            Mota_int = group.Key,
+                            Mota = group.Key,
                         });
                     List<VM_Count_LucLuongLD> dataDmTrinhDoKyThuat = new List<VM_Count_LucLuongLD>();
                     if (DmTrinhDoKyThuat.Any())
                     {
                         foreach (var item in DmTrinhDoKyThuat)
                         {
-                            int count = model.Where(t => t.TrinhDoCMKT == item.Mota_int).Count();
+                            int count = model.Where(t => t.TrinhDoCMKT == item.Mota).Count();
                             if (count > 0)
                             {
                                 dataDmTrinhDoKyThuat.Add(new VM_Count_LucLuongLD
@@ -79,12 +79,12 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                     ViewData["ChuyenNganh"] = dataChuyenNganh;
 
                     //khu vuc
-                    ViewData["nongthon"] = model.Where(x => x.KhuVuc == 0).Count();
-                    ViewData["thanhthi"] = model.Where(x => x.KhuVuc == 1).Count();
+                    ViewData["nongthon"] = model.Where(x => x.KhuVuc == "0").Count();
+                    ViewData["thanhthi"] = model.Where(x => x.KhuVuc == "1").Count();
 
                     //that nghiep
-                    ViewData["thatnghiep"] = model.Where(x => x.TinhTrangVL == 2).Count();
-                    ViewData["non_thatnghiep"] = model.Where(x => x.TinhTrangVL == 2).Count();
+                    ViewData["thatnghiep"] = model.Where(x => x.TinhTrangVL == "2").Count();
+                    ViewData["non_thatnghiep"] = model.Where(x => x.TinhTrangVL == "2").Count();
 
                     ViewData["Title"] = "Báo cáo";
 
@@ -112,7 +112,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                 bool check_per = true;
                 if (check_per)
                 {
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
                     return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/BangTinThiTruongLD/BangTinThiTruongLD_Print.cshtml");
                 }
                 else

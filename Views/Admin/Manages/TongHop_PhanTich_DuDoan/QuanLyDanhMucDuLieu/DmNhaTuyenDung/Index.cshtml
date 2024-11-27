@@ -3,7 +3,7 @@
     int record_id = 1;
     var time = ViewBag.Time;
 }
-@model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company>
+@model IEnumerable<QLViecLam.Models.Admin.Manages.Company>
 
 @section custom_style{
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -61,7 +61,7 @@
                     {
                         <tr>
                             <td>@(record_id++)</td>
-                            <td>@item.Dkkd</td>
+                            <td>@item.MaSoDn</td>
                             <td>@item.Name</td>
                             <td>@item.Address</td>
                             <td>@item.Phone</td>

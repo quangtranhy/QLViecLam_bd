@@ -56,10 +56,10 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                     var tuyendung = _db.TuyenDung.FirstOrDefault(x => x.Id == Id);
                     foreach (var item in model)
                     {
-                        var nghe = _db.DmNganhNghe.FirstOrDefault(x => x.MaDm == item.MaNghe);
+                        var nghe = _db.NganhNghe.FirstOrDefault(x => x.MaNganhNghe == item.MaNghe);
                         if (nghe != null)
                         {
-                            item.TenNghe = nghe.TenDm;
+                            item.TenNghe = nghe.TenNganhNghe;
                         }
                     }
                     ViewData["Cout"] = model.Count();
@@ -124,7 +124,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 if (check_per)
                 {
                     var vitrituyendung = _db.ViTriTuyenDung.FirstOrDefault(x => x.Id == Id);
-                    var tuyendung = _db.TuyenDung.FirstOrDefault(x => x.Id == vitrituyendung.IdTuyenDung);
+                    var tuyendung = _db.TuyenDung.FirstOrDefault(x => x.Id == vitrituyendung!.IdTuyenDung);
                     var data = new VMTruyVanMau03aPL01()
                     {
                         ViTriTuyenDung = vitrituyendung,

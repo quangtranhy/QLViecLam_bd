@@ -38,15 +38,15 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 {
                     if (tinhtrang == "1")
                     {
-                        model = model.Where(x => x.TinhTrangVL == 1);
+                        model = model.Where(x => x.TinhTrangVL == "1");
                     }
                     if (tinhtrang == "2")
                     {
-                        model = model.Where(x => x.TinhTrangVL == 2);
+                        model = model.Where(x => x.TinhTrangVL == "2");
                     }
                     if (tinhtrang == "3")
                     {
-                        model = model.Where(x => x.TinhTrangVL == 3);
+                        model = model.Where(x => x.TinhTrangVL == "3");
                     }
                 }
                 /*if (loai == null)
@@ -91,7 +91,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 {
                     var model = _db.NhanKhau.FirstOrDefault(x => x.Id == Id);
                     ViewData["Id"] = Id;
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
                     ViewData["MenuLv1"] = "menu_thuthapthongtinthitruong";
                     ViewData["MenuLv2"] = "menu_thuthapthongtinthitruong_truyvantt";

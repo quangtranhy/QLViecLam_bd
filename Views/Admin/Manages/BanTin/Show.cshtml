@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "View Documents";
+}
+
+@model IEnumerable<QLViecLam.Models.Admin.Manages.BanTin>
+
+<h2>View Documents</h2>
+<table>
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TieuDe</td>
+                <td>
+                    <a href="@Url.Action("Show", new { id = item.Id })">View</a>
+                    <a href="@Url.Action("DownloadFile", new { fileName = item.TieuDe })">Download</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

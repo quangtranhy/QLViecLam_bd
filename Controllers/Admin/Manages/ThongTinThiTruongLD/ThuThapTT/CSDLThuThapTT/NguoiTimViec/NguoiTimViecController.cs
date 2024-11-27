@@ -36,15 +36,15 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                     {
                         if (tinhtrang == "1")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 1);
+                            model = model.Where(x => x.TinhTrangVL == "1");
                         }
                         if (tinhtrang == "2")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 2);
+                            model = model.Where(x => x.TinhTrangVL == "2");
                         }
                         if (tinhtrang == "3")
                         {
-                            model = model.Where(x => x.TinhTrangVL == 3);
+                            model = model.Where(x => x.TinhTrangVL == "3");
                         }
                     }
                     /*if (loai == null)
@@ -93,7 +93,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                 bool check_per = true;
                 if (check_per)
                 {
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
                     return View("Views/Admin/Manages/ThongTinThiTruongLD/ThuThapTT/CSDLThuThapTT/NguoiTimViec/NguoiTimViec_Print.cshtml");
                 }
                 else

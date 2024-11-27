@@ -1,5 +1,4 @@
 ﻿@{
-    ViewData["Title"] = "Dân tộc";
     int record_id = 1;
 }
 @model IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DanToc>
@@ -26,7 +25,7 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">
-                Danh sách <small>Dân tộc</small><br />
+                Danh sách Dân tộc 
             </h3>
         </div>
         <div class="card-toolbar">
@@ -50,11 +49,11 @@
                 {
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr style="text-align:center">
                             <td>@(record_id++)</td>
                             <td>@item.MaDanToc</td>
-                            <td>@item.TenDanToc</td>
-                            <td>@(item.TrangThai == "kh" ? "Kích hoạt" : "Không kích hoạt")</td>
+                            <td style="text-align:left">@item.TenDanToc</td>
+                            <td>@(item.TrangThai == "1" ? "Kích hoạt" : "Vô hiệu")</td>
                             <td>
                                 <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" data-target="#Edit_Modal" data-toggle="modal" onclick="SetEdit('@item.Id')">
                                     <i class="icon-lg la la-edit text-primary"></i>

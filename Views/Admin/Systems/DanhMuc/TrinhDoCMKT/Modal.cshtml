@@ -1,6 +1,6 @@
 ﻿@{
     var stt = ViewData["Stt"];
-    stt = stt != null ? (int)stt + 1 : 1;
+    stt = stt != null ? Convert.ToInt16(stt) + 1 : 1;
 }
 <!--Create Modal-->
 <form asp-controller="TrinhDoCMKT" asp-action="Store" method="post" enctype="multipart/form-data" id="TrinhDoCMKT_store">
@@ -33,8 +33,8 @@
                             <div class="form-group fv-plugins-icon-container">
                                 <label><b>Trạng thái</b></label>
                                 <select id="TrangThai_create" name="TrangThai_create" class="form-control">
-                                    <option value="kh" >Kích hoạt</option>
-                                    <option value="kkh">Không kích hoạt</option>
+                                    <option value="1" >Kích hoạt</option>
+                                    <option value="0">Vô hiệu</option>
                                 </select>
                             </div>
                         </div>

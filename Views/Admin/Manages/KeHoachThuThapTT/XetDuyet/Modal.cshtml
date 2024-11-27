@@ -1,0 +1,226 @@
+﻿<!--Ly Do Modal-->
+<div class="modal fade" id="LyDo_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label">
+                    Lý do trả lại kế hoạch thu thập thông tin
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Kỳ điều tra:</label>
+                            <label class="form-control" id="kydieutra_lydo" name="kydieutra_lydo"></label>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Lý do:</label>
+                            <label class="form-control" id="lydo" name="lydo"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tra Lai Modal-->
+<div class="modal fade" id="TraLai_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label">
+                    <span class="d-block text-muted pt-2 font-size-sm">
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Kỳ điều tra:</label>
+                            <label class="form-control" id="kydieutra_tralai" name="kydieutra_tralai"></label>
+                            <input hidden id="id_tralai" name="id_tralai" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Lý do:</label>
+                            <textarea class="form-control" id="lydo_tralai" name="lydo_tralai" required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger font-weight-bold" onclick="TraLai()">Trả lại kế hoạch</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Duyet Modal-->
+<div class="modal fade" id="XetDuyet_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label">
+                    Duyệt kế hoạch thu thập thông tin
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="frm_xetduyet">
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Kỳ điều tra:</label>
+                            <label class="form-control" id="kydieutra_duyet" name="kydieutra_duyet"></label>
+                            <input hidden id="id_duyet" name="id_duyet" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary font-weight-bold" onclick="Duyet()">Duyệt kế hoạch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Hủy Duyet Modal-->
+<div class="modal fade" id="HuyDuyet_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label">
+                    Hủy duyệt kế hoạch thu thập thông tin
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Kỳ điều tra:</label>
+                            <label class="form-control" id="kydieutra_huyduyet" name="kydieutra_huyduyet"></label>
+                            <input hidden id="id_huyduyet" name="id_huyduyet" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger font-weight-bold" onclick="HuyDuyet()">Hủy duyệt kế hoạch</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function GetLyDo(kydieutra, lydo) {
+        document.getElementById("kydieutra_lydo").innerHTML = kydieutra;
+        document.getElementById("lydo").innerHTML = lydo;
+        $('#LyDo_Modal').modal("show");
+    }
+
+    function SetTraLai(id, kydieutra) {
+        document.getElementById("kydieutra_tralai").innerHTML = kydieutra;
+        document.getElementById("id_tralai").value = id;
+        $('#TraLai_Modal').modal("show");
+    }
+
+    function TraLai() {
+        var lydo = $('#lydo_tralai')[0];
+        if (!lydo.checkValidity()) {
+            lydo.reportValidity();
+            return;
+        }
+
+        $.ajax({
+            url: '/XetDuyetKeHoach/TraLai',
+            type: 'POST',
+            data: {
+                Id: $('#id_tralai').val(),
+                LyDoTraLai: $('#lydo_tralai').val(),
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 'success') {
+                    toastr.success(data.message, "Thành công!!!");
+                    location.reload();
+                } else {
+                    toastr.error(data.message, "Lỗi!");
+                }
+            }
+        })
+    }
+ 
+
+    function SetDuyet(id, kydieutra) {
+        document.getElementById("kydieutra_duyet").innerHTML = kydieutra;
+        document.getElementById("id_duyet").value = id;
+        $('#XetDuyet_Modal').modal("show");
+    }
+
+    function Duyet() {
+        $.ajax({
+            url: '/XetDuyetKeHoach/Duyet',
+            type: 'POST',
+            data: {
+                Id: $('#id_duyet').val(),
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 'success') {
+                    toastr.success(data.message, "Thành công!!!");
+                    location.reload();
+                } else {
+                    toastr.error(data.message, "Lỗi!");
+                }
+            }
+        })
+    }
+
+    function SetHuyDuyet(id, kydieutra) {
+        document.getElementById("kydieutra_huyduyet").innerHTML = kydieutra;
+        document.getElementById("id_huyduyet").value = id;
+        $('#HuyDuyet_Modal').modal("show");
+    }
+
+    function HuyDuyet() {
+        $.ajax({
+            url: '/XetDuyetKeHoach/HuyDuyet',
+            type: 'POST',
+            data: {
+                Id: $('#id_huyduyet').val(),
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 'success') {
+                    toastr.success(data.message, "Thành công!!!");
+                    location.reload();
+                } else {
+                    toastr.error(data.message, "Lỗi!");
+                }
+            }
+        })
+    }
+
+</script>

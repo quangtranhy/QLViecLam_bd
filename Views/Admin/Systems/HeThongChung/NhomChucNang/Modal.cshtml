@@ -1,5 +1,5 @@
 ﻿﻿@{
-   
+
 
 }
 <!--Create Modal-->
@@ -9,7 +9,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="card-label text-dark">
-                        Thông tin nhóm chức năng 
+                        Thông tin nhóm chức năng
                     </h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
@@ -85,6 +85,30 @@
     </div>
 </form>
 
+<!--Phân quyền Modal-->
+<form asp-controller="NhomChucNang" asp-action="UpdatePhanQuyen" method="post" enctype="multipart/form-data" id="NhomChucNang_phanquyen">
+    <div class="modal fade" id="PhanQuyen_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                        Thông tin chức năng
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="phanquyen_thongtin">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <script>
 
     function SetEdit(id_edit) {
@@ -106,4 +130,57 @@
     function SetDelete(id) {
         document.getElementById("id_delete").value = id;
     }
+
+    function SetPhanQuyen(id_phanquyen) {
+        $.ajax({
+            url: '/NhomChucNang/EditPhanQuyen',
+            type: 'POST',
+            data: {
+                id: id_phanquyen
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 'success') {
+
+                    $('#phanquyen_thongtin').html(data.message);
+
+                    addCheckboxEventListeners();
+                }
+                else {
+                    toastr.error(data.message, "Lỗi");
+                }
+            }
+        })
+    }
+
+    function addCheckboxEventListeners() {
+        const danhSachCheckbox = document.querySelector('input[name="danhsach"]');
+        const thayDoiCheckbox = document.querySelector('input[name="thaydoi"]');
+        const hoanThanhCheckbox = document.querySelector('input[name="hoanthanh"]');
+
+        // Cập nhật trạng thái của checkbox "Danh sách" dựa trên "Thay đổi" và "Hoàn thành"
+        function updateDanhSachStatus() {
+            if (thayDoiCheckbox.checked || hoanThanhCheckbox.checked) {
+                danhSachCheckbox.checked = true;
+            }
+        }
+
+        // Cập nhật trạng thái của "Thay đổi" và "Hoàn thành" khi "Danh sách" bị bỏ chọn
+        function updateThayDoiHoanThanhStatus() {
+            if (!danhSachCheckbox.checked) {
+                thayDoiCheckbox.checked = false;
+                hoanThanhCheckbox.checked = false;
+            }
+        }
+
+        // Thêm sự kiện 'change' cho các checkbox
+        danhSachCheckbox.addEventListener('change', updateThayDoiHoanThanhStatus);
+        thayDoiCheckbox.addEventListener('change', updateDanhSachStatus);
+        hoanThanhCheckbox.addEventListener('change', updateDanhSachStatus);
+
+        // Gọi hàm này để thiết lập trạng thái ban đầu
+        updateDanhSachStatus();
+        updateThayDoiHoanThanhStatus();
+    }
+
 </script>

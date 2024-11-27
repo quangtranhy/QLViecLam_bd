@@ -1,0 +1,41 @@
+﻿<!--QUẢN LÝ BẢN TIN-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="bantin" title="Quản lý bản tin">
+    <a href="javascript:;" class="menu-link menu-toggle">
+        <span class="menu-text" >QUẢN LÝ BẢN TIN</span>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="bantin_danhsach" title="Quản lý sách sách bản tin">
+                <a class="menu-link menu-toggle" asp-controller="BanTin" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Newspaper.svg" class="max-h-100px"
+                             alt="Quản lý sách sách bản tin" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Dach sách bản tin</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="bantin_mau" title="Quản lý bản tin mẫu">
+                <a class="menu-link menu-toggle" asp-controller="HoGiaDinh" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Paste.svg" class="max-h-100px"
+                             alt="Quản lý bản tin mẫu" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Xây dựng bản tin mẫu</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="bantin_giaodien" title="Thiếp lập giao diện bản tin">
+                <a class="menu-link menu-toggle" asp-controller="BienDongCung" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Gear.svg" class="max-h-100px"
+                             alt="Thiếp lập giao diện bản tin" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Thiếp lập giao diện bản tin</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</li>
+
+

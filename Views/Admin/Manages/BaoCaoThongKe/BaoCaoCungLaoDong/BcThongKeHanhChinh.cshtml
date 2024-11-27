@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+}
+@model IEnumerable<QLViecLam.ViewModels.Admin.Manages.VM_BcThongKeHanhChinh_NhanKhau>
+
+<table id="data_header" width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; font-size: 12px">
+    <tr>
+        <td></td>
+        <td class="text-right" style="font-style:italic"></td>
+    </tr>
+    <tr>
+        <td width="50%" style="vertical-align: top; padding-left: 10% ;text-align: left">
+            @if (ViewData["Tinh"] != null)
+            {
+                <p>@ViewData["Tinh"]</p>
+            }
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+        </td>
+        <td style="vertical-align: top; text-align: center;padding-left: 10% ">
+            <b>
+                CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc
+            </b>
+            <hr style="color: black;width: 15%;vertical-align: top; margin-top: 2px">
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" style=" text-align: left; padding-left: 10% ">
+            <p>Số: ......../BC- </p>
+        </td>
+        <td style="text-align: center"><i style="margin-left: 15%;">Bình Định, ngày .... tháng .... năm ....</i></td>
+    </tr>
+    <tr>
+        <td colspan="2" id="data_body1"
+            style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;">
+            BÁO CÁO <br>THỐNG KÊ THEO ĐƠN VỊ HÀNH CHÍNH@(ViewData["kydieutra"] != null ? "NĂM " + ViewData["kydieutra"] : "")
+        </td>
+    </tr>
+    <tr style="font-style: italic;">
+        <td rowspan="2" style="text-align: right;vertical-align: top;"> Kính gửi: </td>
+        <td>Ủy ban nhân dân:.......................... <br> Sở Lao động - Thương binh và Xã hội </td>
+    </tr>
+</table>
+
+
+<table id="data_body" cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;font-size: 12px" id="data">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Khu Vực</th>
+            <th>Số người</th>
+            @foreach (var tt in TinhTrangVL)
+            {
+                <th width="15%">@tt.TenTinhTrangVL</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>A</th>
+            <th>@ViewData["Tinh"]</th>
+            <th>@Model.Count()</th>
+            @foreach (var tt in TinhTrangVL)
+            {
+                <th>@Model.Where(x => x.TinhTrangVL == tt.MaTinhTrangVL).Count()</th>
+            }
+        </tr>
+
+        @foreach(var huyen in DsHuyen)
+        {
+            var list_xa = DsXa.Where(x=>x.Parent == huyen.MaDb);
+            var ma_xa = DsXa.Where(x => x.Parent == huyen.MaDb).Select(x => x.MaDb);
+            var model_huyen = Model.Where(x => ma_xa.Contains(x.MaDiaBan));
+            var stt = 1;
+            <tr >
+                <th>@(Helpers.ConvertToRoman(record_id++))</th>
+                <th>@huyen.Name</th>
+                <th>@model_huyen.Count()</th>
+                @foreach (var tt in TinhTrangVL)
+                {
+                    <th>@model_huyen.Where(x => x.TinhTrangVL == tt.MaTinhTrangVL).Count()</th>
+                }
+            </tr>
+
+            @foreach (var xa in list_xa)
+            {
+                var model_xa = Model.Where(x => x.MaDiaBan == xa.MaDb);
+                <tr style="text-align: center">
+                    <td>@(stt++)</td>
+                    <td>@xa.Name</td>
+                    <td>@model_xa.Count()</td>
+                    @foreach (var tt in TinhTrangVL)
+                    {
+                        <td>@model_xa.Where(x => x.TinhTrangVL == tt.MaTinhTrangVL).Count()</td>
+                    }
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>
+

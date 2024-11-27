@@ -2,7 +2,7 @@
 {
     public class VM_GioiTinh
     {
-        public int? MaGioiTinh { get; set; }
+        public string? MaGioiTinh { get; set; }
         public string? TenGioiTinh { get; set; }
     }
 }

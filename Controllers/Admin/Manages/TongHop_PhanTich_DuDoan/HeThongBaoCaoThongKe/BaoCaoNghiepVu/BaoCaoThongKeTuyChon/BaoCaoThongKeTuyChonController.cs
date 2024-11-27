@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
 using QLViecLam.Models.Admin.Systems.DanhMuc;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.BaoCaoNghiepVu;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.BaoCaoNghiepVu.BaoCaoThongKeTuyChon
@@ -71,7 +71,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                         var gioitinh = model.GroupBy(x => x.Gioitinh)
                             .Select(group => new VM_Count_LucLuongLD
                             {
-                                Mota_int = group.Key,
+                                Mota = group.Key,
                                 Count = group.Count(),
                             });
                         ViewData["gioitinh"] = gioitinh;
@@ -83,7 +83,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                         var dantoc = model.GroupBy(x => x.DanToc)
                             .Select(group => new VM_Count_LucLuongLD
                             {
-                                Mota_int = group.Key,
+                                Mota = group.Key,
                                 Count = group.Count(),
                             });
                         ViewData["dantoc"] = dantoc;

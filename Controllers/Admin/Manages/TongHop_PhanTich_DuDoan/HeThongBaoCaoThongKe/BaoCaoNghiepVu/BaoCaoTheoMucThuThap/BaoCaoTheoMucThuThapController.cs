@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPhanTichDuDoan;
 
@@ -53,7 +53,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
 
                     var result = from nguoi in _db.NguoiLaoDong
                                  join chinhSach in _db.CheDoChinhSach
-                                 on nguoi.SoBaoHiem equals Convert.ToInt32(chinhSach.MaBhxh)
+                                 on nguoi.SoBaoHiem equals chinhSach.MaBhxh
                                  into left
                                  from subChinhSach in left.DefaultIfEmpty()
                                  select new VM_BaoHiemXaHoi
@@ -141,34 +141,34 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
 
         }
 
-        [Route("BaoCaoTheoMucThuThap/MucThuNhap")]
-        [HttpGet]
-        public IActionResult MucThuNhap()
-        {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
-            {
-                bool check_per = true;
-                if (check_per)
-                {
-                    //co bao hiem tn
-                    var count= _db.NguoiLaoDong.AsEnumerable().Where(nld => nld.Luong! < 9990000).Count();
-                    ViewData["MucLuong1"] = count;
-                    ViewData["MucLuong2"] = _db.NguoiLaoDong.Count() - count;
-                    return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoTheoMucThuThap/MucThuNhap.cshtml");
-                }
-                else
-                {
-                    ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
-                    return View("Views/Admin/Error/Page.cshtml");
-                }
-            }
-            else
-            {
-                return View("Views/Admin/Error/SessionOut.cshtml");
-            }
+        //[Route("BaoCaoTheoMucThuThap/MucThuNhap")]
+        //[HttpGet]
+        //public IActionResult MucThuNhap()
+        //{
+        //    if (!string.IsNullOrEmpty(HttpContext.Session.GetString("SsAdmin")))
+        //    {
+        //        bool check_per = true;
+        //        if (check_per)
+        //        {
+        //            //co bao hiem tn
+        //            var count= _db.NguoiLaoDong.AsEnumerable().Where(nld => nld.Luong! < 9990000).Count();
+        //            ViewData["MucLuong1"] = count;
+        //            ViewData["MucLuong2"] = _db.NguoiLaoDong.Count() - count;
+        //            return View("Views/Admin/Manages/TongHop_PhanTich_DuDoan/HeThongBaoCaoThongKe/BaoCaoNghiepVu/BaoCaoTheoMucThuThap/MucThuNhap.cshtml");
+        //        }
+        //        else
+        //        {
+        //            ViewData["Messages"] = "Bạn không có quyền truy cập vào chức năng này!";
+        //            return View("Views/Admin/Error/Page.cshtml");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View("Views/Admin/Error/SessionOut.cshtml");
+        //    }
 
 
-        }
+        //}
 
         [Route("BaoCaoTheoMucThuThap/DonViSuDungLaoDong")]
         [HttpGet]
@@ -179,17 +179,17 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                 bool check_per = true;
                 if (check_per)
                 {
-                    var NguoiLaoDong = _db.NguoiLaoDong.GroupBy(nld=>nld.Company)
+                    var NguoiLaoDong = _db.NguoiLaoDong.GroupBy(nld=>nld.MaDn)
                         .Select(group => new VM_Count_Chucnang
                         {
-                            Mota = group.Key.ToString(),
+                            Mota = group.Key!.ToString(),
                         });
                     List<VM_Count_Chucnang> dataNguoiLaoDong = new List<VM_Count_Chucnang>();
                     if (NguoiLaoDong.Any())
                     {
                         foreach (var item in NguoiLaoDong)
                         {
-                            int count = _db.NguoiLaoDong.Where(t => t.Company == int.Parse(item.Mota!)).Count();
+                            int count = _db.NguoiLaoDong.Where(t => t.MaDn == item.Mota!).Count();
                             if (count > 0)
                             {
                                 dataNguoiLaoDong.Add(new VM_Count_Chucnang

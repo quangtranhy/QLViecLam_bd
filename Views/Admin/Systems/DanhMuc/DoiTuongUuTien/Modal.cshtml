@@ -1,5 +1,8 @@
-﻿<!--Create Modal-->
-<form asp-controller="DoiTuongUuTien" asp-action="Store" method="post" enctype="multipart/form-data" id="doituonguutien_store">
+﻿@{
+    var stt = ViewData["Stt"];
+}
+<!--Create Modal-->
+<form asp-controller="DoiTuongUuTien" asp-action="Store" method="post" enctype="multipart/form-data" id="DoiTuongUuTien_store">
     <div class="modal fade" id="Create_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -15,8 +18,23 @@
                     <div class="row text-left">
                         <div class="col-xl-12">
                             <div class="form-group fv-plugins-icon-container">
-                                <label><b>Tên đối tượng</b></label>
-                                <input type="text" id="tendoituong_create" name="tendoituong_create" class="form-control" />
+                                <label><b>Mã danh mục</b></label>
+                                <input type="number" id="MaDoiTuongUuTien_create" name="MaDoiTuongUuTien_create" value="@stt" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label><b>Tên danh mục</b></label>
+                                <input type="text" id="TenDoiTuongUuTien_create" name="TenDoiTuongUuTien_create" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label><b>Trạng thái</b></label>
+                                <select id="TrangThai_create" name="TrangThai_create" class="form-control">
+                                    <option value="1">Kích hoạt</option>
+                                    <option value="0">Vô hiệu</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -31,7 +49,7 @@
 </form>
 
 <!--Edit Modal-->
-<form asp-controller="DoiTuongUuTien" asp-action="Update" method="post" enctype="multipart/form-data" id="doituonguutien_edit">
+<form asp-controller="DoiTuongUuTien" asp-action="Update" method="post" enctype="multipart/form-data" id="DoiTuongUuTien_edit">
     <div class="modal fade" id="Edit_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -69,7 +87,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row text-left">
-                        <input hidden id="id_delete" name="id_delete" />
+                        <input hidden id="Id_delete" name="Id_delete" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -83,27 +101,53 @@
 
 <script>
     function CreateValidate() {
-        if ($('#tendoituong_create').val() == '') {
-            toastr.error("Tên đối tượng không được để trống!", "Lỗi!!!")
-        } else {
-            document.getElementById("doituonguutien_store").submit();
+        var madm = $('#TenDoiTuongUuTien_create').val();
+        var tendm = $('#TenDoiTuongUuTien_create').val();
+        if (tendm == '') {
+            toastr.error("Tên danh mục không được để trống!", "Lỗi!!!")
+        }
+        if (madm == '') {
+            toastr.error("Mã danh mục không được để trống!", "Lỗi!!!")
+        }
+        else if (madm < 1 && madm > 99) {
+            toastr.error("Mã danh mục phải là số từ 1 đến 99", "Lỗi!!!")
+        }
+        else {
+            if (tendm == '') {
+                toastr.error("Tên danh mục không được để trống!", "Lỗi!!!")
+            } else {
+                document.getElementById("DoiTuongUuTien_store").submit();
+            }
         }
     }
 
     function EditValidate() {
-        if ($('#tendoituong_edit').val() == '') {
-            toastr.error("Tên đối tượng không được để trống!", "Lỗi!!!")
-        } else {
-            document.getElementById("doituonguutien_edit").submit();
+        var madm = $('#TenDoiTuongUuTien_edit').val();
+        var tendm = $('#TenDoiTuongUuTien_edit').val();
+        if (tendm == '') {
+            toastr.error("Tên danh mục không được để trống!", "Lỗi!!!")
+        }
+        if (madm == '') {
+            toastr.error("Mã danh mục không được để trống!", "Lỗi!!!")
+        }
+        else if (madm < 1 && madm > 99) {
+            toastr.error("Mã danh mục phải là số từ 1 đến 99", "Lỗi!!!")
+        }
+        else {
+            if (tendm == '') {
+                toastr.error("Tên danh mục không được để trống!", "Lỗi!!!")
+            } else {
+                document.getElementById("DoiTuongUuTien_edit").submit();
+            }
         }
     }
 
-    function SetEdit(id_edit) {
+    function SetEdit(Id_edit) {
         $.ajax({
             url: '/DoiTuongUuTien/Edit',
             type: 'POST',
             data: {
-                id: id_edit
+                Id: Id_edit
             },
             dataType: 'JSON',
             success: function (data) {
@@ -114,7 +158,7 @@
         })
     }
 
-    function SetDelete(id) {
-        document.getElementById("id_delete").value = id;
+    function SetDelete(Id) {
+        document.getElementById("Id_delete").value = Id;
     }
 </script>

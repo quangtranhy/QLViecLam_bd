@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using QLViecLam.Data;
 using QLViecLam.Helper;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.Models.Admin.Systems;
 using QLViecLam.Models.Admin.Systems.HeThongChung;
 using QLViecLam.ViewModels.Admin.Systems;
@@ -50,7 +50,7 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
                         string md5_password = "";
                         using (MD5 md5Hash = MD5.Create())
                         {
-                            string change = Funtions_Global.GetMd5Hash(md5Hash, password);
+                            string change = Helpers.GetMd5Hash(md5Hash, password);
                             md5_password = change;
                         }
                         if (md5_password == model.Password)
@@ -155,7 +155,7 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
             return View("Views/Admin/Systems/Auth/DanhSachTaiKhoan.cshtml", model);
         }
 
-        [HttpGet("DangKy")]
+        [HttpGet("DangKyDoanhNghiep")]
         public IActionResult DangKy()
         {
 
@@ -163,14 +163,14 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
         }
 
         [HttpPost("Store")]
-        public IActionResult Store(string name, string email, string password, string confirm_password, string dkkd)
+        public IActionResult Store(string name, string email, string password, string confirm_password, string masodn)
         {
             var model = _db.Users.Where(x => x.PhanLoaiTk == "2").Where(x => x.Email == email);
             if (model.Any())
             {
                 ViewData["name"] = name;
                 ViewData["email"] = email;
-                ViewData["dkkd"] = dkkd;
+                ViewData["masodn"] = masodn;
                 ViewData["password"] = password;
                 ViewData["emaiError"] = "Email đã có người sử dụng, mời nhập Email khác!";
                 ViewData["Title"] = "DangKy";
@@ -181,7 +181,7 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
                 string md5_password = "";
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    string change = Funtions_Global.GetMd5Hash(md5Hash, password);
+                    string change = Helpers.GetMd5Hash(md5Hash, password);
                     md5_password = change;
                 }
                 var data_user = new Users
@@ -191,6 +191,11 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
                     Email = email,
                     Username = email,
                     Password = md5_password,
+                    Theme = "Dark",
+                    Menu = "Fixed",
+                    Content = "Max",
+                    Created_at = DateTime.Now,
+                    Updated_at = DateTime.Now,
                 };
                 _db.Users.Add(data_user);
                 _db.SaveChanges();
@@ -201,13 +206,13 @@ namespace QLViecLam.Controllers.Admin.Systems.Auth
                 {
                     Name = name,
                     Email = email,
-                    Dkkd = dkkd,
-                    MaDv = dkkd,
+                    MaSoDn = masodn,
                     User = user_new,
+                    Created_at = DateTime.Now,
+                    Updated_at = DateTime.Now,
                 };
                 _db.Company.Add(data_company);
                 _db.SaveChanges();
-
 
                 return RedirectToAction("Index", "Home");
             }

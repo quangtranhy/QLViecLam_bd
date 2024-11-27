@@ -1,0 +1,136 @@
+﻿<!--THÔNG TIN DOANH NGHIỆP-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep" title="Thông tin doanh nghiệp">
+    <a  class="menu-link menu-toggle" asp-controller="DoanhNghiep" asp-action="Index">
+        <i class="menu-bullet menu-bullet-line">
+            <img src="~/Admin/assets/media/svg/quanlyvieclam/Address-card.svg" class="max-h-100px"
+                 alt="Thông tin doanh nghiệp" />
+        </i>
+        <span class="menu-text" style="margin-left: 3%">THÔNG TIN DOANH NGHIỆP</span>
+    </a>
+</li>
+
+<!--NGƯỜI LAO ĐỘNG-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="nguoilaodong" title="Danh sách người lao động">
+    <a class="menu-link menu-toggle" asp-controller="DoanhNghiep" asp-action="NguoiLaoDong">
+        <i class="menu-bullet menu-bullet-line">
+            <img src="~/Admin/assets/media/svg/quanlyvieclam/User-clock.svg" class="max-h-100px"
+                 alt="Danh sách người lao động" />
+        </i>
+        <span class="menu-text" style="margin-left: 3%">NGƯỜI LAO ĐỘNG</span>
+    </a>
+</li>
+
+<!--KHAI BÁO-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="khaibao" title="Khai báo thông tin người lao động">
+    <a class="menu-link menu-toggle">
+        <i class="menu-bullet menu-bullet-line">
+            <img src="~/Admin/assets/media/svg/quanlyvieclam/Circle-check.svg" class="max-h-100px"
+                 alt="Khai báo thông tin người lao động" />
+        </i>
+        <span class="menu-text" style="margin-left: 3%">KHAI BÁO</span>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_baotang" title="Báo tăng người lao động">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="BaoTang">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Báo tăng</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_baogiam" title="Báo giảm người lao động">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="BaoGiam">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Báo giảm</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_tamdung" title="Khai báo tạm dừng người lao động">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="TamDung">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Tạm dừng</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_ketthuctamdung" title="Khai báo kết thúc tạm dừng người lao động">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="KetThucTamDung">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Kết thúc tạm dừng</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_khongcobiendong" title="Khai báo không có biến động">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="KhongBienDong">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Không có biến động</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="khaibao_lichsukhaibao" title="Xem lại thông tin đã khai báo">
+                <a class="menu-link menu-toggle" asp-controller="KhaiBao" asp-action="LichSu">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Lịch sử khai báo</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+<!--TUYỂN DỤNG-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="tuyendung" title="Quản lý cung lao động">
+    <a  class="menu-link menu-toggle">
+        <i class="menu-bullet menu-bullet-line">
+            <img src="~/Admin/assets/media/svg/quanlyvieclam/Briefcase.svg" class="max-h-100px"
+                 alt="Đăng thông tin tuyển dụng" />
+        </i>
+        <span class="menu-text" style="margin-left: 3%">TUYỂN DỤNG</span>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="tuyendung_dangtintuyendung" title="Đăng thông tin tuyển dụng">
+                <a class="menu-link menu-toggle" asp-controller="" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Đăng tin tuyển dụng</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="tuyendung_hosoungtuyen" title="Hồ sơ đã ứng tuyển">
+                <a class="menu-link menu-toggle" asp-controller="" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Hồ sơ ứng tuyển</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="tuyendung_dangtintuyendung" title="Thông tin tuyển dụng đã đăng">
+                <a class="menu-link menu-toggle" asp-controller="" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text" >Lịch sử tuyển dụng</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+<!--BÁO CÁO-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="baocao" title="Danh sách mẫu báo cáo">
+    <a class="menu-link menu-toggle" asp-controller="DoanhNghiep" asp-action="BaoCao">
+        <i class="menu-bullet menu-bullet-line">
+            <img src="~/Admin/assets/media/svg/quanlyvieclam/Wave-form.svg" class="max-h-100px"
+                 alt="Danh sách mẫu báo cáo" />
+        </i>
+        <span class="menu-text" style="margin-left: 3%">BÁO CÁO</span>
+    </a>
+</li>

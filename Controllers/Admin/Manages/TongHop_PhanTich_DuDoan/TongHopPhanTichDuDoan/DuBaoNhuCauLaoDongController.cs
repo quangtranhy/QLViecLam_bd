@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
 using QLViecLam.Helper;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPhanTichDuDoan;
 
@@ -36,7 +36,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPha
 
             foreach (var item in NganhHoc)
             {
-                var count = nhankhau.Where(X => X.ViecLamMongMuon.ToString() == item.MaNganhHoc!).Count();
+                var count = nhankhau.Where(X => X.ViecLamMongMuon!.ToString() == item.MaNganhHoc!).Count();
                 if (count > 0)
                 {
                     model.Add(new VM_Count_Chucnang

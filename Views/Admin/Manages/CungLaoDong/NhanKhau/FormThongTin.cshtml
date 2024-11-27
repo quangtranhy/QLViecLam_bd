@@ -1,0 +1,317 @@
+﻿@{
+    var TrinhDoHV = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoHV>)ViewData["TrinhDoHV"]!;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var DanToc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DanToc>)ViewData["DanToc"]!;
+    var NganhNghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhNghe>)ViewData["NganhNghe"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+    var QuocGia = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.QuocGia>)ViewData["QuocGia"]!;
+    var NganhHoc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhHoc>)ViewData["NganhHoc"]!;
+    var QuanHe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.QuanHe>)ViewData["QuanHe"]!;
+    var DoiTuongUuTien = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DoiTuongUuTien>)ViewData["DoiTuongUuTien"]!;
+    var ThoiGianThatNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.ThoiGianThatNghiep>)ViewData["ThoiGianThatNghiep"]!;
+    var LyDoKhongThamGiaHDKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.LyDoKhongThamGiaHDKT>)ViewData["LyDoKhongThamGiaHDKT"]!;
+}
+
+@model QLViecLam.Models.Admin.Manages.NhanKhau
+
+<div class="row">
+    <div class="col-xl-12">
+        <input type ="hidden" asp-for="Id" />
+        <input type="hidden" name="madonvi" value="@ViewData["madonvi"]">
+        <input type="hidden" name="kydieutra" value="@ViewData["kydieutra"]">
+        <input type="hidden" name="huyen" id="huyen" value="@ViewData["huyen"]">
+        <input type="hidden" name="xa" id="xa" value="@ViewData["xa"]">
+        <input type="hidden" name="ThuongTru" value="@ViewData["thuongtru"]">
+        <input type="hidden" name="ho" id="ho" value="">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Số định danh hộ gia đình<span class="text-danger">*</span></label>
+                    <input type="number" asp-for="SoDinhDanhHoGD" class="form-control" >
+                    <span asp-validation-for="SoDinhDanhHoGD" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Quan hệ</label>
+                    <select asp-for="QuanHe" class="form-control">
+                        @foreach (var qh in QuanHe)
+                        {
+                            <option value="@qh.MaQuanHe">@qh.TenQuanHe</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Họ và Tên <span class="text-danger">*</span></label>
+                    <input type="text" asp-for="HoVaTen"  class="form-control" >
+                    <span asp-validation-for="HoVaTen" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label> Số CCCD <span class="text-danger">*</span></label>
+                    <input type="text" asp-for="SoCCCD"  class="form-control" >
+                    <span asp-validation-for="SoCCCD" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label> Giới tính </label>
+                    <select class="form-control" asp-for="Gioitinh">
+                        @foreach (var gt in DanhMucChung.GioiTinh())
+                        {
+                            <option value="@gt.MaGioiTinh">@gt.TenGioiTinh</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label> Ngày tháng năm sinh <span class="text-danger">*</span></label>
+                    <input type="date" asp-for="NgayThangNamSinh"  class="form-control">
+                    <span asp-validation-for="NgayThangNamSinh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="number" asp-for="Sdt" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Khu vực</label>
+                    <select class="form-control" asp-for="KhuVuc">
+                        <option value="1">Thành thị</option>
+                        <option value="2">Nông thôn</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nơi ở hiện nay</label>
+                    <input type="text" asp-for="NoiOHienTai"  class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Thường trú</label>
+                    <input type="text" value="@(ViewData["thuongtru"] != null ? ViewData["thuongtru"] : Model.ThuongTru)" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Đối tượng ưu tiên</label>
+                    <select class="form-control" asp-for="UuTien">
+                        <option value="">---Chọn đối tượng ưu tiên---</option>
+                        @foreach (var ut in DoiTuongUuTien)
+                        {
+                            <option value="@ut.MaDoiTuongUuTien">@ut.TenDoiTuongUuTien</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Dân tộc</label>
+                    <select class="form-control" asp-for="DanToc">
+                        <option value="">---Chọn dân tộc---</option>
+                        @foreach (var dt in DanToc)
+                        {
+                            <option value="@dt.MaDanToc">@dt.TenDanToc</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label> Trình độ học vấn <span class="text-danger">*</span></label>
+                    <select asp-for="TrinhDoHV" class="form-control selec2basic">
+                        <option value="">---Chọn trình độ học vấn---</option>
+                        @foreach (var hv in TrinhDoHV)
+                        {
+                            <option value="@hv.MaTrinhDoHV">@hv.TenTrinhDoHV</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TrinhDoHV" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label> Trình độ CMKT <span class="text-danger">*</span> </label>
+                    <select asp-for="TrinhDoCMKT" class="form-control selec2basic" >
+                        <option value=""> ---Chọn trình độ CMKT---</option>
+                        @foreach (var cmkt in TrinhDoCMKT)
+                        {
+                            <option value="@cmkt.MaTrinhDoCMKT">@cmkt.TenTrinhDoCMKT</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TrinhDoCMKT" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        Việc làm mong muốn
+                    </label>
+                    <select asp-for="ViecLamMongMuon" class="form-control">
+                        <option value="">---Chọn việc làm mong muốn---</option>
+                        <option value="1">Trong tỉnh, trong nước</option>
+                        <option value="2"> Đi làm việc ở nước ngoài</option>
+                        <option value="3">Tất cả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Thị trường </label>
+                    <select asp-for="ThiTruongLamViec" class="form-control selec2basic">
+                        <option value="">---Chọn thị trường muốn làm việc--</option>
+                        @foreach (var qg in QuocGia)
+                        {
+                            <option value="@qg.MaQuocGia">@qg.TenQuocGia</option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        Ngành nghề muốn học
+                    </label>
+                    <select asp-for="NganhNgheMuonHoc" class="form-control selec2basic">
+                        <option value="">---Chọn ngành nghề muốn học---</option>
+                        @foreach (var nh in NganhHoc)
+                        {
+                            <option value="@nh.MaNganhHoc"> @nh.TenNganhHoc </option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        Trình độ chuyên môn muốn học
+                    </label>
+                    <select asp-for="TrinhDoChuyenMonMuonHoc" class="form-control selec2basic">
+                        <option value="">---Chọn trình độ chuyên môn muốn học---</option>
+                        <option value="1">Sơ cấp</option>
+                        <option value="2">Trung cấp</option>
+                        <option value="3">Cao đẳng</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>
+                        Đối tượng tìm kiếm việc làm <span class="text-danger">*</span>
+                    </label>
+                    <select asp-for="DoiTuongTimViecLam" class="form-control selec2basic" >
+                        <option value="">---Chọn đối tượng tìm kiếm việc làm---</option>
+                        <option value="1">Chưa từng làm việc</option>
+                        <option value="2">Đã từng làm việc</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Tình trạng việc làm<span class="text-danger">*</span></label>
+                    <select asp-for="TinhTrangVL" onclick="check()" id="tinhtrangvl" class="form-control selec2basic">
+                        <option value="">---Chọn tình trạng việc làm---</option>
+                        @foreach (var ttvl in TinhTrangVL)
+                        {
+                            <option value="@ttvl.MaTinhTrangVL" > @ttvl.TenTinhTrangVL</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TinhTrangVL" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3" id="tinhtrang_thatnghiep" style='@((string)ViewData["tinhtrang"]! == "2" ? "display:block;" : "display:none;")'>
+                <div class="form-group">
+                    <label>Thời gian thất nghiệp</label>
+                    <select asp-for="ThoiGianThatNghiep" class="form-control selec2basic">
+                        <option value="">---Chọn thời gian thất nghiệp---</option>
+                        @foreach (var khongthamgia in ThoiGianThatNghiep)
+                        {
+                            <option value="@khongthamgia.MaThoiGianThatNghiep"> @khongthamgia.TenThoiGianThatNghiep</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3" id="tinhtrang_Khongthamgia" style='@((string)ViewData["tinhtrang"]! == "3" ? "display:block;" : "display:none;")'>
+                <div class="form-group">
+                    <label>Lý do không tham gia</label>
+                    <select asp-for="LyDoKhongThamGia" class="form-control selec2basic">
+                        <option value="">---Chọn lý do không tham gia---</option>
+                        @foreach (var thoigian in LyDoKhongThamGiaHDKT)
+                        {
+                            <option value="@thoigian.MaLyDoKhongThamGia"> @thoigian.TenLyDoKhongThamGia</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="tinhtrang_covieclam" style='@((string)ViewData["tinhtrang"]! == "1" ? "display:block;" : "display:none;")'>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Công việc cụ thể</label>
+                        <input type="text" asp-for="CongViecCuThe"  class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Tên nơi làm việc</label>
+                        <input type="text" asp-for="NoiLamViec"  class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Địa chỉ nơi làm việc</label>
+                        <input type="text" asp-for="DiaChiNoiLamViec" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function check() {
+        var tinhtrangvl = $('#tinhtrangvl').val();
+        if (tinhtrangvl == 1) {
+            $('#tinhtrang_covieclam').css("display", "block");
+            $('#tinhtrang_thatnghiep').css("display", "none");
+            $('#tinhtrang_Khongthamgia').css("display", "none");
+        }
+        if (tinhtrangvl == 2) {
+            $('#tinhtrang_covieclam').css("display", "none");
+            $('#tinhtrang_thatnghiep').css("display", "block");
+            $('#tinhtrang_Khongthamgia').css("display", "none");
+        }
+        if (tinhtrangvl == 3) {
+            $('#tinhtrang_covieclam').css("display", "none");
+            $('#tinhtrang_thatnghiep').css("display", "none");
+            $('#tinhtrang_Khongthamgia').css("display", "block");
+        }
+        if (tinhtrangvl == '') {
+            $('#tinhtrang_covieclam').css("display", "none");
+            $('#tinhtrang_thatnghiep').css("display", "none");
+            $('#tinhtrang_Khongthamgia').css("display", "none");
+        }
+    }
+</script>

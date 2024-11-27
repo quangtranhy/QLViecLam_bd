@@ -4,11 +4,11 @@
     var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
     var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
     var TrangThai = Convert.ToBoolean(ViewData["TrangThai"]);
-    var dsdoanhnghiep = (IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company>)ViewData["DsDoanhNghiep"]!;
+    var dsdoanhnghiep = (IEnumerable<QLViecLam.Models.Admin.Manages.Company>)ViewData["DsDoanhNghiep"]!;
     var doanhnghiep = ViewData["DoanhNghiep"]!.ToString();
 
 }
-@model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.TuyenDung>
+@model IEnumerable<QLViecLam.Models.Admin.Manages.TuyenDung>
 
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -92,8 +92,8 @@
                             <td>@(record_id++)</td>
                             <td>@item.NoiDung</td>
                             <td>@item.TenCongTy</td>
-                            <td>@Funtions_Global.ConvertDateToStr(item.Created_at)</td>
-                            <td>@Funtions_Global.ConvertDateToStr(item.ThoiHan)</td>
+                            <td>@Helpers.ConvertDateToStr(item.Created_at)</td>
+                            <td>@Helpers.ConvertDateToStr(item.ThoiHan)</td>
                             <td>
                                 @if(item.State==0){
                                     <span>Chưa duyệt</span>

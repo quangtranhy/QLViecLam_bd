@@ -153,7 +153,7 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.TaiKhoan
             string md5_password = "";
             using (MD5 md5Hash = MD5.Create())
             {
-                string change = Helpers.GetMd5Hash(md5Hash, request.Password);
+                string change = Helpers.GetMd5Hash(md5Hash, request.Password!);
                 md5_password = change;
             }
 
@@ -169,11 +169,18 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.TaiKhoan
                 CapDo = request.CapDo,
                 Status = request.Status,
                 MaNhomChucNang = request.MaNhomChucNang,
+                Theme = "Dark",
+                Menu = "Fixed",
+                Content = "Max",
                 Created_at = DateTime.Now,
                 Updated_at = DateTime.Now,
             };
             _db.Users.Add(model);
             _db.SaveChanges();
+
+            //var chucnang = _db.ChucNang.Where(x=>x.TrangThai == "1");
+
+
 
             var madv = request.MaDonVi;
             return RedirectToAction("Detail", "TaiKhoan", new { madv });
@@ -234,7 +241,7 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.TaiKhoan
                 string md5_password = "";
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    string change = Helpers.GetMd5Hash(md5Hash, request.Password);
+                    string change = Helpers.GetMd5Hash(md5Hash, request.Password!);
                     md5_password = change;
                 }
                 model.Name = request.Name;
@@ -244,7 +251,6 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.TaiKhoan
                 model.CapDo = request.CapDo;
                 model.Status = request.Status;
                 model.MaNhomChucNang = request.MaNhomChucNang;
-                model.Created_at = DateTime.Now;
                 model.Updated_at = DateTime.Now;
 
                 _db.Users.Update(model);

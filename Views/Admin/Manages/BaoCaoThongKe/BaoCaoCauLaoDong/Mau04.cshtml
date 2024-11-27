@@ -1,0 +1,505 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var ThoiGianThatNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.ThoiGianThatNghiep>)ViewData["ThoiGianThatNghiep"]!;
+    var ViTriViecLam = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.ViTriViecLam>)ViewData["ViTriViecLam"]!;
+    var Company = (IEnumerable<QLViecLam.Models.Admin.Manages.Company>)ViewData["Company"]!;
+
+    var KyTruoc_NK = (IEnumerable<QLViecLam.Models.Admin.Manages.NhanKhau>)ViewData["KyTruoc_NK"]!;
+    var KyBaoCao_NK = (IEnumerable<QLViecLam.Models.Admin.Manages.NhanKhau>)ViewData["KyBaoCao_NK"]!;
+
+    var KyTruoc_NLD = (IEnumerable<QLViecLam.Models.Admin.Manages.NguoiLaoDong>)ViewData["KyTruoc_NLD"]!;
+    var KyBaoCao_NLD = (IEnumerable<QLViecLam.Models.Admin.Manages.NguoiLaoDong>)ViewData["KyBaoCao_NLD"]!;
+
+
+}
+@* @model IEnumerable<QLViecLam.Models.Admin.Manages.NguoiLaoDong> *@
+
+<table id='data_header' width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td width="40%" style="vertical-align: top;">
+            <p style="text-transform: uppercase">ỦY BAN NHÂN DÂN</p>
+            <span style="text-transform: uppercase;font-weight: bold">SỞ LAO ĐỘNG - THƯƠNG BINH VÀ XÃ HỘI</span>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+
+        </td>
+        <td style="vertical-align: top;">
+            <b>
+                CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br>
+                Độc lập - Tự do - Hạnh phúc
+            </b>
+            <hr style="color: black;;width: 15%;vertical-align: top; margin-top: 2px">
+
+        </td>
+    </tr>
+    <tr>
+        <td>Số: ....../BC-SLĐTBXH</td>
+        <td style="text-align: right"><i style="margin-right: 30%;">Bình Định, ngày .... tháng .... năm ....</i></td>
+    </tr>
+</table>
+<p id='data_body' style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;">BÁO CÁO <br>VỀ THÔNG TIN THỊ TRƯỜNG LAO ĐỘNG  NĂM {{nam}}</p>
+<p id='data_body1' style="text-align: center;font-style: italic;">
+    Kính gửi: - Bộ Lao động - Thương binh và Xã hội<br>
+    - Ủy ban nhân dân tỉnh/thành phố
+</p>
+
+<table id='data_body2' cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
+
+    <tr>
+        <th style="width: 5%;">STT</th>
+        <th style="width: 45%;">Chỉ tiêu</th>
+        <th style="width: 10%;">Đơn vị</th>
+        <th style="width: 20%;">Kỳ trước</th>
+        <th style="width: 20%;">Kỳ báo cáo</th>
+    </tr>
+    <tr style="text-align: center">
+        <td> A </td>
+        <td> B </td>
+        <td> C </td>
+        <td> 1 </td>
+        <td> 2 </td>
+    </tr>
+    @* --- cung -- *@
+    <tr>
+        <td colspan="5" style="font-weight: bold; text-transform: uppercase;text-align: left">I. THÔNG TIN CUNG LAO ĐỘNG</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">1</td>
+        <td style="font-weight: bold;">Số người từ 15 tuổi trở lên</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK.Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK.Count()</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td colspan="4">Chia theo khu vực</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Thành thị</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK.Where(x=>x.KhuVuc == "1").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK.Where(x => x.KhuVuc == "1").Count()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Nông thôn</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK.Where(x => x.KhuVuc == "2").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK.Where(x => x.KhuVuc == "2").Count()</td>
+    </tr>
+    <tr>
+        <td>b</td>
+        <td colspan="4">Chia theo giới tính</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Nam</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK.Where(x => x.Gioitinh == "1").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK.Where(x => x.Gioitinh == "1").Count()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Nữ</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK.Where(x => x.Gioitinh == "2").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK.Where(x => x.Gioitinh == "2").Count()</td>
+    </tr>
+
+    @{
+        var KyTruoc_NK_CoViecLam = KyTruoc_NK.Where(x => x.TinhTrangVL == "1");
+        var KyBaoCao_NK_CoViecLam = KyBaoCao_NK.Where(x => x.TinhTrangVL == "1");
+    }
+
+    <tr>
+        <td style="font-weight: bold;">2</td>
+        <td style="font-weight: bold;">Số người có việc làm</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_CoViecLam.Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK_CoViecLam.Count()</td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td colspan="4">Chia theo Khu vực</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Thành thị</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_CoViecLam.Where(x => x.KhuVuc == "1").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK_CoViecLam.Where(x => x.KhuVuc == "1").Count()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Nông thôn</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_CoViecLam.Where(x => x.KhuVuc == "2").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK_CoViecLam.Where(x => x.KhuVuc == "2").Count()</td>
+    </tr>
+    <tr>
+        <td>b</td>
+        <td colspan="4">Chia theo trình độ chuyên môn kỹ thật</td>
+    </tr>
+    @foreach (var cmkt in TrinhDoCMKT)
+    {
+        <tr>
+            <td></td>
+            <td>@cmkt.TenTrinhDoCMKT</td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;">@KyTruoc_NK_CoViecLam.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count()</td>
+            <td style="text-align: center;">@KyBaoCao_NK_CoViecLam.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count()</td>
+        </tr>
+    }
+
+    <tr>
+        <td>c</td>
+        <td colspan="4">Chia theo vị thế việc làm</td>
+    </tr>
+
+    @*     @foreach ()
+    {
+    <tr>
+    <td></td>
+    <td>{{val}}</td>
+    <td style="text-align: center;">Người</td>
+    <td style="text-align: center;"></td>
+    <td style="text-align: center;"></td>
+    </tr>
+    } *@
+
+
+
+
+    @{
+
+        var KyTruoc_NK_ThatNghiep = KyTruoc_NK.Where(x => x.TinhTrangVL == "2");
+        var KyBaoCao_NK_ThatNghiep = KyBaoCao_NK.Where(x => x.TinhTrangVL == "2");
+    }
+    <tr>
+        <td style="font-weight: bold;">3</td>
+        <td style="font-weight: bold;">Số người thất nghiệp</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td>a</td>
+        <td colspan="4">Chia theo Khu vực</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Thành thị</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_ThatNghiep.Where(x =>x.KhuVuc == "1").Count() </td>
+        <td style="text-align: center;">@KyBaoCao_NK_ThatNghiep.Where(x => x.KhuVuc == "1").Count() </td>
+
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Nông thôn</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_ThatNghiep.Where(x => x.KhuVuc == "2").Count() </td>
+        <td style="text-align: center;">@KyBaoCao_NK_ThatNghiep.Where(x => x.KhuVuc == "2").Count() </td>
+
+    </tr>
+    <tr>
+        <td>b</td>
+        <td colspan="4">Chia theo trình độ chuyên môn kỹ thật</td>
+    </tr>
+    @foreach (var cmkt in TrinhDoCMKT)
+    {
+        <tr>
+            <td></td>
+            <td>@cmkt.TenTrinhDoCMKT</td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;">@KyTruoc_NK_ThatNghiep.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count()</td>
+            <td style="text-align: center;">@KyBaoCao_NK_ThatNghiep.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count()</td>
+        </tr>
+    }
+
+    <tr>
+    <td>c</td>
+    <td colspan="4">Chia theo thời gian thất nghiệp</td>
+    </tr>
+
+    @foreach (var tgtn in ThoiGianThatNghiep)
+    {
+        <tr>
+            <td></td>
+            <td>@tgtn.TenThoiGianThatNghiep</td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;">@KyTruoc_NK_ThatNghiep.Where(x => x.TrinhDoCMKT == tgtn.MaThoiGianThatNghiep).Count()</td>
+            <td style="text-align: center;">@KyBaoCao_NK_ThatNghiep.Where(x => x.TrinhDoCMKT == tgtn.MaThoiGianThatNghiep).Count()</td>
+        </tr>
+    }
+
+    @{
+
+        var KyTruoc_NK_KhongThamGia = KyTruoc_NK.Where(x => x.TinhTrangVL == "3");
+        var KyBaoCao_NK_KhongThamGia = KyBaoCao_NK.Where(x => x.TinhTrangVL == "3");
+    }
+    <tr>
+        <td style="font-weight: bold;">4</td>
+        <td style="font-weight: bold;">Số người không tham gia hoạt động kinh tế</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NK_KhongThamGia.Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NK_KhongThamGia.Count()</td>
+    </tr>
+
+   @*  @(int i = 0); *@
+ @*    @foreach ()
+    {
+        <tr>
+            <td>
+                @if (i == 0)
+            {
+                    <p>a</p>
+                }
+                @if (i == 1)
+            {
+                    <p>b</p>
+                }
+                @if (i == 2)
+            {
+                    <p>c</p>
+                }
+                @if (i == 3)
+            {
+                    <p>c</p>
+                }
+                @if (i == 4)
+            {
+                    <p>d</p>
+                }
+                @if (i == 5)
+            {
+                    <p>g</p>
+                }
+
+            </td>
+            <td> {{item}}</td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;">{{ count(model_khongthamgia->where('khongthamgiahdkt', k)->where('kydieutra',nam-1)) }}</td>
+            <td style="text-align: center;">{{ count(model_khongthamgia->where('khongthamgiahdkt', k)->where('kydieutra',nam)) }}</td>
+        </tr>
+    } *@
+
+    @* ---- cầu ---- *@
+    <tr>
+        <td colspan="5" style="font-weight: bold; text-transform: uppercase;text-align: left">II. THÔNG TIN CẦU LAO ĐỘNG</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">1</td>
+        <td style="font-weight: bold;">Tổng số doanh nghiệp</td>
+        <td style="text-align: center;">DN</td>
+        <td style="text-align: center;">@Company.Count()</td>
+        <td style="text-align: center;">@Company.Count()</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">2</td>
+        <td style="font-weight: bold;">Tổng số lao dộng</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NLD.Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NLD.Count()</td>
+    </tr>
+    <tr>
+        <td> a </td>
+        <td colspan="4"> Chia theo loại lao động </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Lao động nữ</td>
+        <td style="text-align: center">Người</td>
+        <td style="text-align: center;">@KyTruoc_NLD.Where(x=>x.Gioitinh == "2").Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NLD.Where(x => x.Gioitinh == "2").Count()</td>
+    </tr>
+
+    @{
+        int tuoi35 = DateTime.Now.Year - 35;
+    }
+    <tr>
+        <td></td>
+        <td>- Lao động trên 35 tuổi</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NLD.Where(x => x.NgayThangNamSinh.Year <= tuoi35 ).Count()</td>
+        <td style="text-align: center;">@KyBaoCao_NLD.Where(x => x.NgayThangNamSinh.Year <= tuoi35).Count()</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>- Lao động tham gia BHXH bắt buộc</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;">@KyTruoc_NLD.Count(x => x.BdBhxh != null)</td>
+        <td style="text-align: center;">@KyBaoCao_NLD.Count(x => x.BdBhxh != null)</td>
+    </tr>
+    <tr>
+        <td> b </td>
+        <td colspan="4"> Chia theo vị trí việc làm </td>
+    </tr>
+    @foreach (var vitri in ViTriViecLam)
+    {
+        <tr>
+            <td></td>
+            <td>- @vitri.TenViTriViecLam</td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;">@KyTruoc_NLD.Where(x => x.ViTri == vitri.MaViTriViecLam).Count()</td>
+            <td style="text-align: center;">@KyBaoCao_NLD.Where(x => x.ViTri == vitri.MaViTriViecLam).Count()</td>
+        </tr>
+    }
+
+  
+
+ @*    -- nhu cầu tuyển dụng -- *@
+    <tr>
+        <td colspan="5" style="font-weight: bold; text-transform: uppercase;text-align: left">III. THÔNG TIN NHU CẦU TUYỂN DỤNG LAO ĐỘNG</td>
+    </tr>
+
+    <tr>
+        <td style="font-weight: bold;">1</td>
+        <td style="font-weight: bold;">Tổng số lượng tuyển</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">2</td>
+        <td colspan="5" style="font-weight: bold;">Chia theo loại hình</td>
+    </tr>
+ @*    @(var j = 0; ) *@
+
+  @*   @foreach ()
+    { *@
+        <tr>
+    @*  <td>
+                @if (j == 0)
+                {
+                    <p>a</p>
+                }
+                @if (j == 1)
+                {
+                    <p>b</p>
+                }
+                @if (j == 2)
+                {
+                    <p>c</p>
+                }
+                @if (j == 3)
+                {
+                    <p>d</p>
+                }
+                @if (j == 4)
+                {
+                    <p>e</p>
+                }
+                @if (j == 5)
+                {
+                    <p>g</p>
+                }
+                @if (j == 6)
+                {
+                    <p>h</p>
+                }
+                @if (j == 7)
+            {
+                    <p>i</p>
+                }
+                @if (j == 8)
+                {
+                    <p>k</p>
+                }
+                @if (j == 9)
+                {
+                    <p>m</p>
+                }
+                @if (j == 10)
+                {
+                    <p>a</p>
+                }
+                @if (j == 11)
+                {
+                    <p>n</p>
+                }
+
+    </td>*@
+            <td>  </td>
+            <td style="text-align: center;">Người</td>
+            <td style="text-align: center;"></td>
+            <td style="text-align: center;"></td>
+        </tr>
+    @*  } *@
+    <tr>
+        <td style="font-weight: bold;">2</td>
+        <td colspan="5" style="font-weight: bold;">Chia theo mã nghề cấp 2</td>
+
+    </tr>
+
+    @*     @foreach (dmmanghetrinhdo as manghe)*@
+    <tr>
+    <td></td>
+    <td></td>
+    <td style="text-align: center;">Người</td>
+    <td style="text-align: center;"> </td>
+    <td style="text-align: center;"></td>
+    </tr> 
+
+
+    <tr>
+        <td colspan="5" style="font-weight: bold; text-transform: uppercase;text-align: left">III. THÔNG TIN NGƯỜI LAO ĐỘNG NƯỚC NGOÀI LÀM VIỆC TẠI VIỆT NAM</td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">1</td>
+        <td style="font-weight: bold;">Tổng số</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td style="font-weight: bold;">2</td>
+        <td colspan="5" style="font-weight: bold;">Chia theo vị trí công việc</td>
+
+    </tr>
+    <tr>
+        <td>a</td>
+        <td>Nhà quản lý</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td>b</td>
+        <td>Giám đốc điều hành</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td>c</td>
+        <td>Chuyên gia</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr>
+        <td>d</td>
+        <td>Lao động kỹ thuật</td>
+        <td style="text-align: center;">Người</td>
+        <td style="text-align: center;"></td>
+        <td style="text-align: center;"></td>
+    </tr>
+
+</table>
+
+<table id='data_footer' width="96%" cellspacing="0" height cellpadding="0" style="margin: 20px auto;text-align: center; height:200px">
+    <tr>
+        <td width="40%" style="text-align: left; vertical-align: top;">
+        </td>
+        <td style="vertical-align: top;">
+            <b>GIÁM ĐỐC</b><br>
+            <i>(Chữ ký, dấu)</i>
+        </td>
+    </tr>
+</table>
+
+
+

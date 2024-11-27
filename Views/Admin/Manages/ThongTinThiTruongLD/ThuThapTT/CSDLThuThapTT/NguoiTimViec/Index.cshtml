@@ -4,7 +4,7 @@
     var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
 
 }
-@model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.NhanKhau>
+@model IEnumerable<QLViecLam.Models.Admin.Manages.NhanKhau>
 
 @section custom_style{
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -92,9 +92,9 @@
                     <label style="font-weight:bold; color:blue">Tình trạng tham gia HĐKT</label>
                     <select class="form-control" id="tinhtrang" name="tinhtrang">
                         <!option value="">Tất cả</!option>
-                        <!option value="1" @((string)ViewData["tinhtrang"] == "1" ? "selected" : "")>Có việc làm</!option>
-                        <!option value="2"  @((string)ViewData["tinhtrang"] == "2" ? "selected" : "")>Thất nghiệp</!option>
-                        <!option value="3"  @((string)ViewData["tinhtrang"] == "3" ? "selected" : "")>Không tham gia HĐKT</!option>
+                        <!option value="1" @((string)ViewData["tinhtrang"]! == "1" ? "selected" : "")>Có việc làm</!option>
+                        <!option value="2"  @((string)ViewData["tinhtrang"]! == "2" ? "selected" : "")>Thất nghiệp</!option>
+                        <!option value="3"  @((string)ViewData["tinhtrang"]! == "3" ? "selected" : "")>Không tham gia HĐKT</!option>
                     </select>
                 </div>
             </div>

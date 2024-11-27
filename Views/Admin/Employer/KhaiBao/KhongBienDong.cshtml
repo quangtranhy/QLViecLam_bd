@@ -1,0 +1,56 @@
+﻿
+
+
+   @model QLViecLam.Models.Admin.Manages.BienDong
+
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+        });
+
+
+    </script>
+}
+
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                <small> Báo không có biến động</small><br />
+            </h3>
+        </div>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div style="text-align:center">
+            @if(Model == null)
+            {
+                <h3 style="margin-bottom:10%;margin-top:10%">Đồng ý báo không có biến động</h3>
+                <div>
+                    <a class="btn btn-xl btn-info btn-lg pull-right" asp-controller="KhaiBao" asp-action="UpdateKhongBienDong">
+                        Đồng ý
+                    </a>
+                </div>
+            }
+            else
+            {
+                <h3 style="margin-bottom:10%;margin-top:10%">Đã khai báo không biến động trong tháng này, thời điểm @Model.ThoiDiem</h3>
+            }
+    
+        </div>
+    </div>
+</div>
+
+
+

@@ -5,7 +5,7 @@
     <title>@ViewData["Title"] | QLVL</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,500,600,700" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
- @*    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> *@
+    @*    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> *@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -43,6 +43,7 @@
         td, th {
             padding: 5px;
         }
+
 
         p {
             padding: 5px;
@@ -123,6 +124,11 @@
             #myBtn:hover {
                 color: #3699FF;
             }
+
+        th {
+            text-align: center;
+        }
+
     </style>
     <script>
         function ExDoc() {
@@ -274,7 +280,7 @@
         <nav id="fixNav">
             <ul>
                 <li>
-                    <button type="button" class="btn btn-success" border-radius:=border-radius: 30px=30px onclick="window.print()">
+                    <button type="button" class="btn btn-success" border-radius:="border-radius: 30px=30px" onclick="window.print()">
                         <i class="fa fa-print"></i> In dữ liệu
                     </button>
                 </li>
@@ -284,7 +290,7 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" class="btn btn-primary" onclick="exportTableToExcel()">
+                    <button type="button" class="btn btn-info" onclick="exportTableToExcel()">
                         <i class="fa fa-file-excel"></i> Export Excel
                     </button>
                 </li>

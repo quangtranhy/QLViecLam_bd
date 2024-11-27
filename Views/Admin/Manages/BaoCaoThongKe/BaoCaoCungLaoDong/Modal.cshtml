@@ -1,0 +1,479 @@
+﻿@{
+    var DsKyDieuTra = ViewData["DsKyDieuTra"] as List<string>; 
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+
+    var DanToc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DanToc>)ViewData["DanToc"]!;
+    // var DmDoiTuongUuTien = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DmDoiTuongUuTien>)ViewData["DmDoiTuongUuTien"]!;
+    var DoiTuongUuTien = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DoiTuongUuTien>)ViewData["DoiTuongUuTien"]!;
+    var TrinhDoHV = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoHV>)ViewData["TrinhDoHV"]!;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+    var NganhHoc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhHoc>)ViewData["NganhHoc"]!;
+    var user = ViewData["user"];
+}
+
+
+<!--Mẫu 01b Modal-->
+<form asp-controller="BaoCaoCungLaoDong" asp-action="Mau01b" method="get" enctype="multipart/form-data" target="_blank_01b">
+    <div class="modal fade" id="Mau01b_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                        Mẫu số 01b: Báo cáo tổng hợp thông tin cung lao động
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Kỳ điều tra</label>
+                            <select name="kydieutra" id="kydieutra_mau01b" class="form-control select2" style="width:100%">
+                                @foreach (var ky in DsKyDieuTra!)
+                                {
+                                    <!option value="@ky"> @ky </!option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn huyện</label>
+                            <select name="huyen" id="huyen_mau01b" class="form-control select2" style="width:100%" onchange="CheckHuyen_Mau01b()">
+                                <option value="">Tất cả</option>
+                                @foreach (var huyen in DsHuyen)
+                                {
+                                    <option value="@huyen.MaDb">@huyen.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2" id="chonxa_mau01b" style="display:none">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn xã</label>
+                            <select name="xa" id="xa_mau01b" class="form-control select2" style="width:100%">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Mẫu 03 Modal-->
+<form asp-controller="BaoCaoCungLaoDong" asp-action="Mau03" method="get" enctype="multipart/form-data" target="_blank_03">
+    <div class="modal fade" id="Mau03_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                        Mẫu số 03: Báo cáo thông tin cung lao động
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Kỳ điều tra</label>
+                            <select name="kydieutra" id="kydieutra_mau03" class="form-control select2" style="width:100%">
+                                @foreach (var ky in DsKyDieuTra!)
+                                {
+                                    <!option value="@ky"> @ky </!option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn huyện</label>
+                            <select name="huyen" id="huyen_mau03" class="form-control select2" style="width:100%" onchange="CheckHuyen_Mau03()">
+                                <option value="">Tất cả</option>
+                                @foreach (var huyen in DsHuyen)
+                                {
+                                    <option value="@huyen.MaDb">@huyen.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2" id="chonxa_mau03" style="display:none">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn xã</label>
+                            <select name="xa" id="xa_mau03" class="form-control select2" style="width:100%">
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--tùy chọn người dùng modal -->
+<form asp-controller="BaoCaoCungLaoDong" asp-action="BcTuyChon" method="get" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank_tuybien" id="Form_tuybien">
+    <div id="TuyChon_Modal" tabindex="-1" class="modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <h4 id="modal-header-primary-label" class="modal-title">Báo cáo thống kê theo tùy chọn người dùng</h4>
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Kỳ điều tra</label>
+                            <select name="kydieutra" id="kydieutra_tuybien" class="form-control select2" style="width:100%">
+                                @foreach (var ky in DsKyDieuTra!)
+                                {
+                                    <!option value="@ky"> @ky </!option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn huyện</label>
+                            <select name="huyen" id="huyen_tuybien" class="form-control select2" style="width:100%" onchange="CheckHuyen_TuyBien()" required>
+                                <option value="">----Chọn huyện-----</option>
+                                @foreach (var huyen in DsHuyen)
+                                {
+                                    <option value="@huyen.MaDb">@huyen.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2" id="chonxa_tuybien" style="display:none">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Chọn xã</label>
+                            <select name="xa" id="xa_tuybien" class="form-control select2" style="width:100%">
+                            </select>
+                        </div>
+                    </div>
+
+                    @* ---- danh sách tuy biến ------- *@
+                    <div class="col-lg-12">
+                        <label class="control-label mt-3" style="font-weight: bold">Chọn tùy biến</label>
+                    </div>
+                    <div class="row mt-1 ml-5" id="1stld">
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="gioitinh_tuybien" id="gioitinh_tuybien" value="1">
+                            <label class="form-check-label" for="gioitinh_tuybien">Giới tính</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="dantoc_tuybien" id="dantoc_tuybien" value="1">
+                            <label class="form-check-label" for="dantoc_tuybien">Dân tộc</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="uutien_tuybien" id="uutien_tuybien" value="1">
+                            <label class="form-check-label" for="uutien_tuybien">Đối tượng ưu tiên</label>
+                        </div>
+
+                    </div>
+                    <div class="row mt-1 ml-5" id="1stld">
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="tinhtrangvl_tuybien" id="tinhtrangvl_tuybien" value="1">
+                            <label class="form-check-label" for="tinhtrangvl_tuybien">Tình trạng việc làm</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="trinhdohv_tuybien" id="trinhdohv_tuybien" value="1">
+                            <label class="form-check-label" for="trinhdohv_tuybien">Trình độ học vấn</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="trinhdocmkt_tuybien" id="trinhdocmkt_tuybien" value="1">
+                            <label class="form-check-label" for="trinhdocmkt_tuybien">Trình độ CMKT</label>
+                        </div>
+                    </div>
+                    <div class="row mt-1 ml-5" id="1stld">
+                        <div class=" col-md-4">
+                            <input class="form-check-input" type="checkbox" name="doituongtkvl_tuybien" id="doituongtkvl_tuybien" value="1">
+                            <label class="form-check-label" for="doituongtkvl_tuybien">Đối tượng tìm kiếm việc làm</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="vlmongmuon_tuybien" id="vlmongmuon_tuybien" value="1">
+                            <label class="form-check-label" for="vlmongmuon_tuybien">Việc làm mong muốn</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-check-input" type="checkbox" name="nghemuonhoc_tuybien" id="nghemuonhoc_tuybien" value="1">
+                            <label class="form-check-label" for="nghemuonhoc_tuybien">Ngành nghề muốn học</label>
+                        </div>
+                    </div>
+                    @*---------- Chọn tùy biến-------------- *@
+
+                    <div class="col-lg-12">
+                        <div class="col-lg-12 d-none mt-2" id='gioitinh_tb'>
+                            <label class="control-label" style="font-weight: bold">Giới tính</label>
+                            <select name="gioitinh" id="" class="form-control select2" style="width:100%">
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='dantoc_tb'>
+                            <label class="control-label" style="font-weight: bold">Dân tộc</label>
+                            <select name="dantoc" id="" class="form-control select2" style="width:100%">
+                                @foreach (var dt in DanToc)
+                                {
+                                    <option value="@dt.MaDanToc">@dt.TenDanToc</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='uutien_tb'>
+                            <label class="control-label" style="font-weight: bold">Đối tượng ưu tiên</label>
+                            <select name="uutien" id="" class="form-control select2" style="width:100%">
+                                @foreach (var ut in DoiTuongUuTien)
+                                {
+                                    <option value="@ut.MaDoiTuongUuTien">@ut.TenDoiTuongUuTien</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='tinhtrangvl_tb'>
+                            <label class="control-label" style="font-weight: bold">Tình trạng việc làm</label>
+                            <select name="tinhtrangvl" id="" class="form-control select2" style="width:100%">
+                                @foreach (var ut in TinhTrangVL)
+                                {
+                                    <option value="@ut.MaTinhTrangVL">@ut.TenTinhTrangVL</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='trinhdohv_tb'>
+                            <label class="control-label" style="font-weight: bold">Trình độ học vấn</label>
+                            <select name="trinhdohv" id="" class="form-control select2" style="width:100%">
+                                @foreach (var ut in TrinhDoHV)
+                                {
+                                    <option value="@ut.MaTrinhDoHV">@ut.TenTrinhDoHV</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='trinhdocmkt_tb'>
+                            <label class="control-label" style="font-weight: bold">Trình độ CMKT</label>
+                            <select name="trinhdocmkt" id="" class="form-control select2" style="width:100%">
+                                @foreach (var ut in TrinhDoCMKT)
+                                {
+                                    <option value="@ut.MaTrinhDoCMKT">@ut.TenTrinhDoCMKT</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='doituongtimkiemvieclam_tb'>
+                            <label class="control-label" style="font-weight: bold">Dối tượng tìm kiếm việc làm</label>
+                            <select name="doituongtimkiemvieclam" id="" class="form-control select2" style="width:100%">
+                                <option value="1">Chưa từng làm việc</option>
+                                <option value="2">Đã từng làm việc</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='vieclammongmuon_tb'>
+                            <label class="control-label" style="font-weight: bold">Việc làm mong muốn</label>
+                            <select name="vieclammongmuon" id="" class="form-control select2" style="width:100%">
+                                <option value="1">Trong tỉnh, trong nước</option>
+                                <option value="2"> Đi làm việc ở nước ngoài</option>
+                                <option value="3">Tất cả</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12 d-none mt-2" id='nganhnghemuonhoc_tb'>
+                            <label class="control-label" style="font-weight: bold"> Ngành nghề muốn học </label>
+                            <select name="nganhnghemuonhoc" id="" class="form-control select2" style="width:100%">
+                                @foreach (var nh in NganhHoc)
+                                {
+                                    <option value="@nh.MaNganhHoc"> @nh.TenNganhHoc </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!--thống kê theo hành chính Modal-->
+<form asp-controller="BaoCaoCungLaoDong" asp-action="BcThongKeHanhChinh" method="get" enctype="multipart/form-data" target="_blank_01b">
+    <div class="modal fade" id="BcThongKeHanhChinh_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                      Báo cáo thống kê theo đơn vị hành chính
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Kỳ điều tra</label>
+                            <select name="kydieutra" id="kydieutra_thongke_hanhchinh" class="form-control select2" style="width:100%">
+                                @foreach (var ky in DsKyDieuTra!)
+                                {
+                                    <!option value="@ky"> @ky </!option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    function CheckHuyen_Mau01b() {
+    @*  ----Mẫu 01b ---- *@
+            var selectElement = document.getElementById("huyen_mau01b");
+        var chonxa = document.getElementById("chonxa_mau01b");
+        var xaList = document.getElementById("xa_mau01b");
+
+        if (selectElement.value === "") {
+            chonxa.style.display = "none";
+        } else {
+            chonxa.style.display = "block";
+            $.ajax({
+                url: '/BaoCaoCungLaoDong/GetDsXa',
+                type: 'GET',
+                data: {
+                    huyen: selectElement.value,
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        xaList.innerHTML = data.result;
+                    } else {
+                        toastr.error(data.message, "Lỗi!");
+                    }
+                }
+            })
+        }
+    }
+
+    function CheckHuyen_Mau03() {
+    @* ----Mẫu 03 ---- *@
+             var selectElement = document.getElementById("huyen_mau03");
+        var chonxa = document.getElementById("chonxa_mau03");
+        var xaList = document.getElementById("xa_mau03");
+
+        if (selectElement.value === "") {
+            chonxa.style.display = "none";
+        } else {
+            chonxa.style.display = "block";
+            $.ajax({
+                url: '/BaoCaoCungLaoDong/GetDsXa',
+                type: 'GET',
+                data: {
+                    huyen: selectElement.value,
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        xaList.innerHTML = data.result;
+                    } else {
+                        toastr.error(data.message, "Lỗi!");
+                    }
+                }
+            })
+        }
+    }
+
+    function CheckHuyen_TuyBien() {
+    @* ----tùy chọn người dùng---- *@
+           var selectElement = document.getElementById("huyen_tuybien");
+        var chonxa = document.getElementById("chonxa_tuybien");
+        var xaList = document.getElementById("xa_tuybien");
+
+        if (selectElement.value === "") {
+            chonxa.style.display = "none";
+        } else {
+            chonxa.style.display = "block";
+            $.ajax({
+                url: '/BaoCaoCungLaoDong/GetDsXa',
+                type: 'GET',
+                data: {
+                    huyen: selectElement.value,
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        xaList.innerHTML = data.result;
+                    } else {
+                        toastr.error(data.message, "Lỗi!");
+                    }
+                }
+            })
+        }
+    }
+
+    @*     function Check_submit() {
+        var selectElement = document.getElementById("huyen_tuybien").value;
+        if (selectElement != '') {
+        document.getElementById("Form_tuybien").submit();
+        } else {
+        toastr.Warning("Bạn chưa chọn huyện", "Lỗi!");
+        }
+        } *@
+
+
+        document.getElementById('gioitinh_tuybien').addEventListener('change', function () {
+            var gioitinh = document.getElementById('gioitinh_tb');
+            gioitinh.classList.toggle('d-none', !this.checked);
+        });
+    document.getElementById('dantoc_tuybien').addEventListener('change', function () {
+        var dantoc = document.getElementById('dantoc_tb');
+        dantoc.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('uutien_tuybien').addEventListener('change', function () {
+        var uutien = document.getElementById('uutien_tb');
+        uutien.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('tinhtrangvl_tuybien').addEventListener('change', function () {
+        var tinhtrangvl = document.getElementById('tinhtrangvl_tb');
+        tinhtrangvl.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('trinhdohv_tuybien').addEventListener('change', function () {
+        var trinhdohv = document.getElementById('trinhdohv_tb');
+        trinhdohv.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('trinhdocmkt_tuybien').addEventListener('change', function () {
+        var trinhdocmkt = document.getElementById('trinhdocmkt_tb');
+        trinhdocmkt.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('doituongtkvl_tuybien').addEventListener('change', function () {
+        var doituongtimkiemvieclam = document.getElementById('doituongtimkiemvieclam_tb');
+        doituongtimkiemvieclam.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('vlmongmuon_tuybien').addEventListener('change', function () {
+        var vieclammongmuon = document.getElementById('vieclammongmuon_tb');
+        vieclammongmuon.classList.toggle('d-none', !this.checked);
+    });
+    document.getElementById('nghemuonhoc_tuybien').addEventListener('change', function () {
+        var nganhnghemuonhoc = document.getElementById('nganhnghemuonhoc_tb');
+        nganhnghemuonhoc.classList.toggle('d-none', !this.checked);
+    });
+
+
+
+
+
+</script>
+

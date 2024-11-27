@@ -1,10 +1,11 @@
 ﻿@{
     var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
     var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
-    var DmLoaiHinhHdkt = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiHinhHdkt>)ViewData["DmLoaiHinhHdkt"]!;
-    var DmNganhNghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DmNganhNghe>)ViewData["DmNganhNghe"]!;
+    var HinhThucDoanhNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.HinhThucDoanhNghiep>)ViewData["HinhThucDoanhNghiep"]!;
+    var NganhNghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhNghe>)ViewData["NganhNghe"]!;
+    var KhuCongNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.KhuCongNghiep>)ViewData["KhuCongNghiep"]!;
 }
-@model QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company
+@model QLViecLam.Models.Admin.Manages.Company
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
@@ -45,14 +46,8 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="form-group">
-                        <label>Mã số doanh nghiệp</label>
-                        <input type="text" class="form-control" asp-for="MaSoDn" />
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="form-group">
                         <label>Số đăng kí kinh doanh</label>
-                        <input type="text" class="form-control" asp-for="Dkkd" />
+                        <input type="text" class="form-control" asp-for="MaSoDn" />
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -124,9 +119,9 @@
                         <label>Khu công nghiệp</label>
                         @* <select class="form-control" asp-for="Xa" asp-items="@Xa"></select> *@
                         <select class="form-control" asp-for="KhuCn">
-                            @foreach(var item in Helpers.KhuCN())
+                            @foreach (var item in KhuCongNghiep)
                             {
-                                <option value="@item.MaKhuCN">@item.TenKhuCN</option>
+                                <option value="@item.MaKhuCongNghiep">@item.TenKhuCongNghiep</option>
                             }
                         </select>
                     </div>
@@ -136,9 +131,9 @@
                         <label>Loại hình</label>
                         @* <select class="form-control" asp-for="Xa" asp-items="@Xa"></select> *@
                         <select class="form-control" asp-for="LoaiHinh">
-                            @foreach (var item in DmLoaiHinhHdkt)
+                            @foreach (var item in HinhThucDoanhNghiep)
                             {
-                                <option value="@item.MaDmLhkt">@item.TenLhkt</option>
+                                <option value="@item.MaHinhThucDoanhNghiep">@item.TenHinhThucDoanhNghiep</option>
                             }
                         </select>
                     </div>
@@ -153,9 +148,9 @@
                     <div class="form-group">
                         <label>Hình ảnh</label>
                         <select class="form-control" asp-for="NganhNghe">
-                            @foreach (var item in DmNganhNghe)
+                            @foreach (var item in NganhNghe)
                             {
-                                <option value="@item.MaDm">@item.TenDm</option>
+                                <option value="@item.MaNganhNghe">@item.TenNganhNghe</option>
                             }
                         </select>
                     </div>

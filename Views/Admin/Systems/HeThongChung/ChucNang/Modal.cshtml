@@ -36,7 +36,7 @@
                                     <option value="" data-capdo="0">---Không chọn(chức năng gốc)---</option>
                                     @foreach (var cn in ChucNang)
                                     {
-                                        <!option value="@cn.MaChucNang"  data-capdo="@cn.CapDo">@cn.TenChucNang (Cấp @cn.CapDo)</!option>
+                                        <!option value="@cn.MaChucNang" id="@cn.MaChucNang@cn.Id" data-capdo="@cn.CapDo">@cn.TenChucNang (Cấp @cn.CapDo)</!option>
                                     }
                                 </select>
                             </div>
@@ -164,7 +164,38 @@
         });
     }
 
+
+    function SetCreate(maChucNang, id, capdo) {
+        var optionElementId = maChucNang + id; // Nối maChucNang và id để tạo ra ID mới
+        var optionElement = document.getElementById(optionElementId);
+        var capdo_disElement = document.getElementById('capdo_dis');
+        var capdoElement = document.getElementById('capdo');
+
+        if (optionElement) {
+            optionElement.selected = true;
+            var cap = parseInt(capdo) + 1;
+            capdo_disElement.value = cap;
+            capdoElement.value = cap;
+        } else {
+            toastr.error("Không tìm thấy mã chức năng: " + optionElementId, "Lỗi");
+        }
+    }
+
+
+
     function SetDelete(id) {
         document.getElementById("id_delete").value = id;
     }
+
+  
+    function resetFormChucNang() {
+        // Đặt lại các giá trị của form về mặc định
+        document.getElementById('machucnang').value = '';
+        document.getElementById('tenchucnang').value = '';
+        document.getElementById('parent').selectedIndex = 0; // Chọn lại giá trị đầu tiên trong dropdown
+        document.getElementById('capdo_dis').value = '1'; // Đặt lại giá trị mặc định cho cấp độ
+        document.getElementById('capdo').value = '1';
+        document.getElementById('trangthai').selectedIndex = 0; // Chọn lại giá trị đầu tiên trong dropdown
+    }
+
 </script>

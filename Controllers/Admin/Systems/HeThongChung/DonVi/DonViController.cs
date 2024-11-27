@@ -3,7 +3,7 @@ using QLViecLam.Data;
 using QLViecLam.Models.Admin.Systems.HeThongChung;
 using QLViecLam.ViewModels.Admin.Systems;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.Helper;
 
 namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.DonVi

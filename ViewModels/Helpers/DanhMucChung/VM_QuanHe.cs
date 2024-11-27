@@ -2,7 +2,7 @@
 {
     public class VM_QuanHe
     {
-        public int? MaQuanHe { get; set; }
+        public string? MaQuanHe { get; set; }
         public string? TenQuanHe { get; set; }
     }
 }

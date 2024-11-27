@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanhMucDuLieu.DmNguoiTimViec
 {
@@ -211,7 +211,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 if (check_per)
                 {
                     var model = _db.NhanKhau.FirstOrDefault(t => t.Id == request.Id);
-                    model.Gioitinh = request.Gioitinh;
+                    model!.Gioitinh = request.Gioitinh;
                     model.HoVaTen = request.HoVaTen;
                     model.NgayThangNamSinh = request.NgayThangNamSinh;
                     model.SoCCCD = request.SoCCCD;
@@ -281,7 +281,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 if (check_per)
                 {
                     var model = _db.NhanKhau.FirstOrDefault(t => t.Id == id_delete);
-                    _db.NhanKhau.Remove(model);
+                    _db.NhanKhau.Remove(model!);
                     _db.SaveChanges();
 
                     ViewData["MenuLv1"] = "menu_quanlydanhmucdulieu";

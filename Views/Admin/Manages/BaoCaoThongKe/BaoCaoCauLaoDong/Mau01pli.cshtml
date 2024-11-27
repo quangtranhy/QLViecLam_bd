@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+    var TinhTrangVL = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL>)ViewData["TinhTrangVL"]!;
+    var LoaiHopDongLaoDong = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.LoaiHopDongLaoDong>)ViewData["LoaiHopDongLaoDong"]!;
+    // var ViTriViecLam = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.ViTriViecLam>)ViewData["ViTriViecLam"]!;
+    var HinhThucDoanhNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.HinhThucDoanhNghiep>)ViewData["HinhThucDoanhNghiep"]!;
+    var ViTriViecLam = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.ViTriViecLam>)ViewData["ViTriViecLam"]!;
+}
+@model IEnumerable<QLViecLam.ViewModels.Admin.Manages.VM_NguoiLaoDong>
+
+<table id="data_header" width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td colspan=5 align="center" valign="top" height="70">
+            ỦY BAN NHÂN DÂN TỈNH QUẢNG BÌNH  <br>
+            SỞ LAO ĐỘNG - THƯƠNG BINH VÀ XÃ HỘI<br>
+            --------<br>
+            Số:...
+
+        </td>
+        <td colspan=9 align="center" valign="top">
+            <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>
+            <b>	Độc lập - Tự do - Hạnh phúc</b> <br>
+            ---------------
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan=14 height="30" style="text-align:right">
+            <b> Quảng Bình, ngày ... tháng ... năm ... </b><br>
+            <b style=" margin-right:3%"> Mẫu số 02/PLI</b>
+        </td>
+    </tr>
+    <tr>
+        <td colspan=14 align="center">
+            <b>BÁO CÁO </b>
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan=14 align="center">
+
+            <b>TÌNH HÌNH SỬ DỤNG LAO ĐỘNG</b>
+        </td>
+    </tr>
+    <tr>
+        <td colspan=14 align="center">
+
+            Kính gửi (1): Bộ Lao động – Thương binh và Xã hội
+
+        </td>
+    </tr>
+</table>

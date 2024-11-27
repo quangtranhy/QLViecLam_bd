@@ -1,7 +1,8 @@
 ﻿@{
     Layout = null;
     var session = HttpContextAccessor?.HttpContext?.Session ?? null;
-    var phanloaitk = Funtions_Global.GetSsAdmin(session!, "PhanLoaiTk");
+    var phanloaitk = Helpers.GetSsAdminKey(session!, "PhanLoaiTk");
+    var CapDo = Helpers.GetSsAdminKey(session!, "CapDo");
 }
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -11,10 +12,23 @@
 }
 
 
-@if(phanloaitk == "1")
+@if (phanloaitk == "1")
 {
+    @await Html.PartialAsync("~/Views/Menu/Manages/KeHoachThuThap.cshtml")
+    @await Html.PartialAsync("~/Views/Menu/Manages/CungLaoDong.cshtml")
+    @if (CapDo == "T")
+    {
+        @await Html.PartialAsync("~/Views/Menu/Manages/DoanhNghiep.cshtml")
+    }
+    @await Html.PartialAsync("~/Views/Menu/Manages/BaoCaoThongKe.cshtml")
+    @await Html.PartialAsync("~/Views/Menu/Manages/BanTin.cshtml")
     @await Html.PartialAsync("~/Views/Menu/Manages/HeThong.cshtml")
+
+
 }
+@if (phanloaitk == "2")
+{
+    @await Html.PartialAsync("~/Views/Menu/Employer/Employer.cshtml")
 
-
+}
 @await Html.PartialAsync("~/Views/Menu/Manages/Manages.cshtml")

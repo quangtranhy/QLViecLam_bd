@@ -1,0 +1,176 @@
+﻿@{
+    int record_id = 1;
+    var DsKyDieuTra = ViewData["DsKyDieuTra"] as List<string>;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    bool checkThemMoi = Convert.ToBoolean(ViewData["CheckThemMoi"]);
+
+}
+@model IEnumerable<QLViecLam.Models.Admin.Manages.KeHoachThuThapThongTin>
+@section custom_style {
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.css" />
+}
+@section custom_script {
+    <script type="text/javascript" src="~/Admin/assets/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Admin/assets/datatables/scripts/table-managed.js"></script>
+    <script src="~/Admin/assets/js/pages/crud/forms/widgets/select2.js"></script>
+    <script>
+        $(document).ready(function () {
+            TableManaged.init();
+            $('.select2').select2();
+        });
+        $(function () {
+            $('#huyen,#xa,#kydieutra').change(function () {
+                var current_path_url = '/KeHoachThuThap?';
+                var kydieutra = '&kydieutra=' + $('#kydieutra').val();
+                // var huyen = '&huyen=' + $('#huyen').val();
+                var xa = '&xa=' + $('#xa').val();
+                var url = current_path_url + xa + kydieutra;
+                window.location.href = url;
+            })
+        });
+    </script>
+}
+<div class="card card-custom wave wave-animate-slow wave-primary">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                @ViewData["Title"]
+                <span class="d-block text-muted pt-2 font-size-sm">Danh sách thông tin chính sách</span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <!--Check Permission-->
+            @if (checkThemMoi)
+            {
+                <a class="btn btn-primary font-weight-bolder" title="Create" onclick="Create()">
+                    <i class="la la-plus "></i>Tạo mới
+                </a>
+            }
+            <!--End Check Permission-->
+        </div>
+    </div>
+    <hr />
+    <div class="card-body">
+        <!--begin::Search Form-->
+        <div class="row">
+            <div class="col-xl-3">
+                <div class="form-group fv-plugins-icon-container">
+                    <label style="font-weight:bold; color:blue">Kỳ điều tra</label>
+                    <select class="form-control select2" id="kydieutra" name="kydieutra">
+                        @foreach (var ky in DsKyDieuTra!)
+                        {
+                            <!option value="@ky" @(ky.ToString() == (string)ViewData["kydieutra"]! ? "selected" : "") >@ky</!option>
+                        }
+                    </select>
+                </div>
+            </div>
+            @*             <div class="col-xl-3">
+            <div class="form-group fv-plugins-icon-container">
+            <label style="font-weight:bold; color:blue">Huyện</label>
+            <select class="form-control" id="huyen" name="huyen">
+            <option value="">---Chọn huyện---</option>
+            @foreach (var h in DsHuyen)
+            {
+            <!option value="@h.MaDb" @((string)ViewData["huyen"]! == h.MaDb ? "selected" : "")>@h.Name</!option>
+            }
+            </select>
+            </div>
+            </div> *@
+            <div class="col-xl-3">
+                <div class="form-group fv-plugins-icon-container">
+                    <label style="font-weight:bold; color:blue">Địa bàn</label>
+                    <select class="form-control select2" id="xa" name="xa">
+                        <option value="">---Chọn xã---</option>
+                        @foreach (var x in DsXa)
+                        {
+                            <!option value="@x.MaDb" @((string)ViewData["xa"]! == x.MaDb ? "selected" : "")>@x.Name</!option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <!--end::Search Form-->
+        <!--begin: Datatable-->
+        <table class="table table-striped table-bordered table-hover" id="sample_3">
+            <thead>
+                <tr style="text-align:center">
+                    <th width="5%" style="font-weight:bold">#</th>
+                    <th style="font-weight:bold">Kỳ điều tra</th>
+                    <th style="font-weight:bold">Ngày lập</th>
+                    <th style="font-weight:bold">Khu vực</th>
+                    <th style="font-weight:bold">Trạng thái</th>
+                    <th width="15%" style="font-weight:bold">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="text-align:center">
+                        <td width="5%">@(record_id++)</td>
+                        <td style="font-weight:bold;">@item.KeHoach</td>
+                        <td>@Helpers.ConvertDateToStr(item.NgayLapKeHoach)</td>
+                        <td>@item.TenDiaBan</td>
+                        <td>
+                            @if (item.Status == "ChoChuyen")
+                            {
+                                <span class="label label-lg font-weight-bold label-light-dark label-inline">Chờ chuyển</span>
+                            }
+                            else if (item.Status == "ChoDuyet")
+                            {
+                                <span class="label label-lg font-weight-bold label-light-warning label-inline">Chờ duyệt</span>
+                            }
+                            else if (item.Status == "BiTraLai")
+                            {
+                                <span class="label label-lg font-weight-bold label-light-danger label-inline">Bị trả lại</span>
+                            }
+                            else if (item.Status == "DaDuyet")
+                            {
+                                <span class="label label-lg font-weight-bold label-light-primary label-inline">Đã duyệt</span>
+                                <br />
+                                @Helpers.ConvertDateToStr(item.NgayKyKeHoach)
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-clean btn-icon" title="Xem chi tiết" asp-controller="KeHoachThuThap" asp-action="Show" asp-route-Id="@item.Id" target="_blank">
+                                <i class="icon-lg la la-eye text-success  icon-2x"></i>
+                            </a>
+                            <!--Check Permission-->
+                            @if (item.Status == "BiTraLai" || item.Status == "ChoChuyen")
+                            {
+                                <a class="btn btn-sm btn-clean btn-icon" title="Chỉnh sửa" asp-controller="KeHoachThuThap" asp-action="Edit" asp-route-Id="@item.Id">
+                                    <i class="icon-lg la la-edit text-primary icon-2x"></i>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Chuyển" data-target="#Chuyen_Modal" data-toggle="modal"
+                                        onclick="SetChuyen(@item.Id, @item.KeHoach)">
+                                    <i class="icon-lg la la-redo text-primary icon-2x"></i>
+                                </button>
+                                if (item.Status == "BiTraLai")
+                                {
+                                    <button type="button" class="btn btn-sm btn-clean btn-icon" title="Lý do trả lại" onclick="GetLyDo('@item.KeHoach', '@item.LyDoTraLai')">
+                                        <i class="icon-lg la la-search text-warning icon-2x"></i>
+                                    </button>
+                                }
+                            }
+                            <!--End Check Permission-->
+                            <!--Check Permission-->
+                            @if (item.Status == "ChoChuyen")
+                            {
+                                <button type="button" class="btn btn-sm btn-clean btn-icon" title="Xóa" data-target="#Delete_Modal" data-toggle="modal"
+                                        onclick="Delete('@item.Id', '@item.KeHoach')">
+                                    <i class="icon-lg la la-trash text-danger icon-2x"></i>
+                                </button>
+                            }
+                            <!--End Check Permission-->
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--end: Datatable-->
+    </div>
+</div>
+@await Html.PartialAsync("~/Views/Admin/Manages/KeHoachThuThapTT/DanhSach/Modal.cshtml")

@@ -33,11 +33,15 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.ChucNang
 
             var ChucNang = _db.ChucNang;
             var model = ChucNang;
-            ViewData["ChucNang"] = ChucNang.Where(x => x.TrangThai == "1");
-
+            ViewData["model_c1"] = ChucNang.Where(x => x.CapDo == 1);
+            ViewData["model_c2"] = ChucNang.Where(x => x.CapDo == 2);
+            ViewData["model_c3"] = ChucNang.Where(x => x.CapDo == 3);
+            ViewData["model_c4"] = ChucNang.Where(x => x.CapDo == 4);
+            ViewData["model_c5"] = ChucNang.Where(x => x.CapDo == 5);
+            ViewData["ChucNang"] = ChucNang.Where(x => x.TrangThai == "1" && x.CapDo < 5);
             ViewData["MenuLv1"] = "hethong";
             ViewData["MenuLv2"] = "hethong_chucnang";
-            return View("Views/Admin/Systems/HeThongChung/ChucNang/Index.cshtml", model);
+            return View("Views/Admin/Systems/HeThongChung/ChucNang/Index.cshtml",model);
         }
 
 
@@ -81,7 +85,7 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.ChucNang
         public JsonResult Edit(int id)
         {
 
-            var ChucNang = _db.ChucNang.Where(x=>x.TrangThai == "1" && x.Id != id);
+            var ChucNang = _db.ChucNang.Where(x => x.TrangThai == "1" && x.Id != id && x.CapDo < 5);
             var model = _db.ChucNang.FirstOrDefault(p => p.Id == id);
             if (model != null)
             {
@@ -117,7 +121,6 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.ChucNang
                 result += "</select>";
                 result += "</div>";
                 result += "</div>";
-
                 result += "<div class='col-xl-3'>";
                 result += "<div class='form-group fv-plugins-icon-container'>";
                 result += "<label><b>Cấp độ chức năng</b></label>";
@@ -125,13 +128,12 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.ChucNang
                 result += "<input type='hidden' id='capdo_edit' name='capdo' value='" + model.CapDo + "' />";
                 result += "</div>";
                 result += "</div>";
-
                 result += "<div class='col-xl-3'>";
                 result += "<div class='form-group fv-plugins-icon-container'>";
                 result += "<label><b>Trạng thái</b></label>";
                 result += "<select type='text' id='trangthai' name='trangthai' class='form-control'>";
-                result += "<option value='1'"+ ( model.TrangThai == "1" ? "selected":"" ) +">Kích hoạt</option>";
-                result += "<option value='0'"+ ( model.TrangThai == "0" ? "selected":"" ) +">Vô hiệu</option>";
+                result += "<option value='1'" + (model.TrangThai == "1" ? "selected" : "") + ">Kích hoạt</option>";
+                result += "<option value='0'" + (model.TrangThai == "0" ? "selected" : "") + ">Vô hiệu</option>";
                 result += "</select>";
                 result += "</div>";
                 result += "</div>";

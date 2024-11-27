@@ -4,9 +4,9 @@
     var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
     var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
     var tinhtrang = Convert.ToBoolean(ViewData["TinhTrangXacThuc"]);
-    var nganhnghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DmNganhNghe>)ViewData["DmNganhNghe"]!;
+    var NganhNghe = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.NganhNghe>)ViewData["NganhNghe"]!;
 }
-@model IEnumerable<QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company>
+@model IEnumerable<QLViecLam.Models.Admin.Manages.Company>
 
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -75,10 +75,10 @@
                 <div class="form-group fv-plugins-icon-container">
                     <label style="font-weight:bold; color:blue">Ngành nghề</label>
                     <select class="form-control" id="NganhNghe" name="NganhNghe">
-                        @foreach (var item in nganhnghe)
+                        @foreach (var item in NganhNghe)
                         {
                             @* <!option value="@xa.id" @((string)ViewData["tenxa"]! == xa.id!.ToString() ? "selected" : "")>@xa.Name</!option> *@
-                            <!option value="@item.MaDm" @((string)ViewData["NganhNghe"]! == item.MaDm ? "selected" : "")>@item.TenDm</!option>
+                            <!option value="@item.MaNganhNghe" @((string)ViewData["NganhNghe"]! == item.MaNganhNghe ? "selected" : "")>@item.TenNganhNghe</!option>
                         }
                     </select>
                 </div>
@@ -112,7 +112,7 @@
                     {
                         <tr>
                             <td>@(record_id++)</td>
-                            <td>@item.Dkkd</td>
+                            <td>@item.MaSoDn</td>
                             <td>@item.Name</td>
                             <td>@item.Address</td>
                             <td>@item.Phone</td>

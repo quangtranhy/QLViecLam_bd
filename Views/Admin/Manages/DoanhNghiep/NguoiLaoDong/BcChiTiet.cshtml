@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+}
+@model IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.VM_NhanKhau>
+
+<br />
+<br />
+
+<table id="data_header" width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td></td>
+        <td class="text-right" style="font-style:italic">  </td>
+    </tr>
+    <tr>
+        <td width="40%" style="vertical-align: top;">
+            <h3>@ViewData["TenDoanhNghiep"]</h3>
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+        </td>
+    </tr>
+
+</table>
+<p id='data_body'
+   style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;margin-bottom:10px;">
+    DANH SÁCH CHI TIẾT NHÂN KHẨU NĂM @ViewData["Nam"]<br>
+</p>
+
+<table id="data_body1" border="1" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <th rowspan="2">TT</th>
+            <th rowspan="2">Họ và tên </th>
+            <th colspan="2">Ngày tháng năm sinh<br></th>
+            <th rowspan="2">Số CCCD/CMND </th>
+            <th rowspan="2">Mã số BHXH</th>
+            <th rowspan="2" style="width:10%">Nơi đăng ký thường trú </th>
+            <th rowspan="2">Nơi ở hiện nay</th>
+            <th rowspan="2">Đối tượng <br> ưu tiên </th>
+            <th rowspan="2">Dân tộc</th>
+            <th rowspan="2">Trình độ học vấn </th>
+            <th rowspan="2">Trình độ CMKT  </th>
+        </tr>
+        <tr>
+            <th rowspan="2">Nam</th>
+            <th rowspan="2">Nữ</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(record_id++)</td>
+                    <td>@item.HoVaTen</td>
+                    @if (item.Gioitinh == "1")
+                    {
+                        <td>@Helpers.ConvertDateToStr(item.NgayThangNamSinh)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (item.Gioitinh == "2")
+                    {
+                        <td>@Helpers.ConvertDateToStr(item.NgayThangNamSinh)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td>@item.SoCCCD</td>
+                    <td>@item.MaBHXH</td>
+                    @if (@item.KhuVuc == "1")
+                    {
+                        <td>Thành thị</td>
+                    }
+                    else
+                    {
+                        <td>Nông thôn</td>
+                    }
+                    <td>@item.ThuongTru</td>
+                    <td>@item.NoiOHienTai</td>
+                    <td>@item.TenUuTien</td>
+                    <td>@item.TenDanToc</td>
+                    <td>@item.TenTrinhDoHV</td>
+                    <td>@item.TenTrinhDoCMKT</td>
+
+                    <td>@item.CongViecCuThe</td>
+                    <td>@item.NoiLamViec</td>
+                    <td>@item.DiaChiNoiLamViec</td>
+                    <td>@item.TenThoiGianThatNghiep</td>
+                    <td>@item.TenLyDoKhongThamGia</td>
+
+                    <td>@item.ViecLamMongMuon</td>
+                    <td>@item.ThiTruongLamViec</td>
+                    <td>@item.TenNganhHoc</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+
+</table>
+

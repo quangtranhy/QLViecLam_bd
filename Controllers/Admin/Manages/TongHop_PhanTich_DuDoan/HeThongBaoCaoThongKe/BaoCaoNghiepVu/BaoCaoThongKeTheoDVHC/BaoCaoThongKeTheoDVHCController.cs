@@ -57,7 +57,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBao
                         var tinhtrang = model.GroupBy(x => x.TinhTrangVL)
                             .Select(group => new VM_Count_LucLuongLD
                             {
-                                Mota_int = group.Key,
+                                Mota = group.Key,
                                 Count = group.Count(),
                             });
                         ViewData["tinhtrang"] = tinhtrang;

@@ -94,7 +94,7 @@ namespace QLViecLam.Controllers.Admin.Systems.HeThongChung.DiaBan
         public JsonResult Edit(int id)
         {
 
-            var phanLoaiDb = Helpers.phanLoaiDb();
+            var phanLoaiDb = DanhMucChung.phanLoaiDb();
             var DmHanhChinh = _db.DmHanhChinh;
             var model = DmHanhChinh.FirstOrDefault(p => p.Id == id);
             if (model != null)

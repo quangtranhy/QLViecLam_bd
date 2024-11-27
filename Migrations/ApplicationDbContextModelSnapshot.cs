@@ -22,7 +22,41 @@ namespace QLViecLam.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.BienDong", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.BanTin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MoTa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoiDung")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ThoiDiem")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TieuDe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BanTin");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.BienDong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,7 +90,77 @@ namespace QLViecLam.Migrations
                     b.ToTable("BienDong");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.CheDoChinhSach", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double?>("Bhtn")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Bhxh")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Bhyt")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("HuuTri_Nld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("HuuTri_Nsdld")
+                        .HasColumnType("float");
+
+                    b.Property<string>("MaBhxh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("OmDau_Nld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("OmDau_Nsdld")
+                        .HasColumnType("float");
+
+                    b.Property<string>("SoTienDaDong")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SoTienDaHuong")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("ThaiSan_Nld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("ThaiSan_Nsdld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Tnld_Nld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Tnld_Nsdld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TuTuat_Nld")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TuTuat_Nsdld")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheDoChinhSach");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.Company", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,9 +173,6 @@ namespace QLViecLam.Migrations
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Dkkd")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -144,7 +245,38 @@ namespace QLViecLam.Migrations
                     b.ToTable("Company");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.DsThatNghiep", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.DieuKienLamViec", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CapDo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaDieuKien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDieuKien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DieuKienLamViec");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.DsThatNghiep", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -202,7 +334,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("DsThatNghiep");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.KeHoachThuThapThongTin", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.KeHoachThuThapThongTin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,6 +367,12 @@ namespace QLViecLam.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LyDoTraLai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaDiaBan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaDonVi")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaKeHoach")
@@ -270,6 +408,9 @@ namespace QLViecLam.Migrations
                     b.Property<string>("ToChucThucHien")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("YeuCau")
                         .HasColumnType("nvarchar(max)");
 
@@ -278,7 +419,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("KeHoachThuThapThongTin");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.KyBaoCao", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.KyBaoCao", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -342,7 +483,35 @@ namespace QLViecLam.Migrations
                     b.ToTable("KyBaoCao");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.NguoiLaoDong", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.KyDieuTra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MaKyDieuTra")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoiDung")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("KyDieuTra");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.NguoiLaoDong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -365,14 +534,11 @@ namespace QLViecLam.Migrations
                     b.Property<string>("ChucVu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Company")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DanToc")
-                        .HasColumnType("int");
+                    b.Property<string>("DanToc")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DiaChiCuThe")
                         .HasColumnType("nvarchar(max)");
@@ -383,8 +549,8 @@ namespace QLViecLam.Migrations
                     b.Property<string>("GhiChu")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Gioitinh")
-                        .HasColumnType("int");
+                    b.Property<string>("Gioitinh")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HoVaTen")
                         .HasColumnType("nvarchar(max)");
@@ -407,10 +573,13 @@ namespace QLViecLam.Migrations
                     b.Property<string>("LoaiHdld")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Luong")
-                        .HasColumnType("int");
+                    b.Property<string>("Luong")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LuongBhxh")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaDn")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nation")
@@ -425,23 +594,23 @@ namespace QLViecLam.Migrations
                     b.Property<string>("PcBoSung")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PcChucVu")
-                        .HasColumnType("int");
+                    b.Property<string>("PcChucVu")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PcLuong")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PcThamNien")
-                        .HasColumnType("int");
+                    b.Property<string>("PcThamNien")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PcThamNienNghe")
-                        .HasColumnType("int");
+                    b.Property<string>("PcThamNienNghe")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SoBaoHiem")
-                        .HasColumnType("int");
+                    b.Property<string>("SoBaoHiem")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SoCCCD")
-                        .HasColumnType("int");
+                    b.Property<string>("SoCCCD")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<short>("State")
                         .HasColumnType("smallint");
@@ -449,11 +618,11 @@ namespace QLViecLam.Migrations
                     b.Property<string>("Tinh")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrinhDoCMKT")
-                        .HasColumnType("int");
+                    b.Property<string>("TrinhDoCMKT")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrinhDoHV")
-                        .HasColumnType("int");
+                    b.Property<string>("TrinhDoHV")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
                         .HasColumnType("datetime2");
@@ -469,7 +638,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("NguoiLaoDong");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.NhanKhau", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.NhanKhau", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -486,8 +655,8 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DanToc")
-                        .HasColumnType("int");
+                    b.Property<string>("DanToc")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("DanhSach_id")
                         .HasColumnType("int");
@@ -495,17 +664,17 @@ namespace QLViecLam.Migrations
                     b.Property<string>("DiaChiNoiLamViec")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DoiTuongTimViecLam")
-                        .HasColumnType("int");
+                    b.Property<string>("DoiTuongTimViecLam")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Gioitinh")
-                        .HasColumnType("int");
+                    b.Property<string>("Gioitinh")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HoVaTen")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("KhuVuc")
-                        .HasColumnType("int");
+                    b.Property<string>("KhuVuc")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KyDieuTra")
                         .HasColumnType("nvarchar(max)");
@@ -516,11 +685,14 @@ namespace QLViecLam.Migrations
                     b.Property<string>("LyDo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LyDoKhongThamGia")
-                        .HasColumnType("int");
+                    b.Property<string>("LyDoKhongThamGia")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MaBHXH")
-                        .HasColumnType("int");
+                    b.Property<string>("MaBHXH")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaDiaBan")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaDonVi")
                         .HasColumnType("nvarchar(max)");
@@ -546,8 +718,8 @@ namespace QLViecLam.Migrations
                     b.Property<string>("NoiOHienTai")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("QuanHe")
-                        .HasColumnType("int");
+                    b.Property<string>("QuanHe")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RuongBienDong")
                         .HasColumnType("nvarchar(max)");
@@ -555,57 +727,156 @@ namespace QLViecLam.Migrations
                     b.Property<string>("Sdt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SoCCCD")
-                        .HasColumnType("int");
+                    b.Property<string>("SoCCCD")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SoDinhDanhHoGD")
-                        .HasColumnType("int");
+                    b.Property<string>("SoDinhDanhHoGD")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SoLuongTrung")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ThamGiaBHXH")
-                        .HasColumnType("int");
+                    b.Property<string>("ThamGiaBHXH")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThiTruongLamViec")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ThoiGianThatNghiep")
-                        .HasColumnType("int");
+                    b.Property<string>("ThoiGianThatNghiep")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ThuongTru")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TinhTrangVL")
-                        .HasColumnType("int");
+                    b.Property<string>("TinhTrangVL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TinhTrangXacThuc")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TrinhDoCMKT")
-                        .HasColumnType("int");
+                    b.Property<string>("TrinhDoCMKT")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TrinhDoChuyenMonMuonHoc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TrinhDoHV")
-                        .HasColumnType("int");
+                    b.Property<string>("TrinhDoHV")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UuTien")
+                    b.Property<int?>("User")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ViecLamMongMuon")
-                        .HasColumnType("int");
+                    b.Property<string>("UuTien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ViecLamMongMuon")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("NhanKhau");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.TongHopCungLaoDong", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.PhuongTienLamViec", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CapDo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaPhuongTien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenPhuongTien")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhuongTienLamViec");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.RuiRoLamViec", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CapDo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GhiChu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaGoc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaRuiro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenRuiro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RuiRoLamViec");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TaiNanLaoDong", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Ccnd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IdNguoiLaoDong")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaRuiro")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mota")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaiNanLaoDong");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHopCungLaoDong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -672,7 +943,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("TongHopCungLaoDong");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.TuyenDung", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TuyenDung", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -730,7 +1001,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("TuyenDung");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.ViTriTuyenDung", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.ViTriTuyenDung", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -869,237 +1140,6 @@ namespace QLViecLam.Migrations
                     b.ToTable("ViTriTuyenDung");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.BanTin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NoiDung")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ThoiDiem")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TieuDe")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TrangThai")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BanTin");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.CheDoChinhSach", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("Bhtn")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Bhxh")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Bhyt")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("HuuTri_Nld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("HuuTri_Nsdld")
-                        .HasColumnType("float");
-
-                    b.Property<string>("MaBhxh")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("OmDau_Nld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("OmDau_Nsdld")
-                        .HasColumnType("float");
-
-                    b.Property<string>("SoTienDaDong")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SoTienDaHuong")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("ThaiSan_Nld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("ThaiSan_Nsdld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Tnld_Nld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Tnld_Nsdld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("TuTuat_Nld")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("TuTuat_Nsdld")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CheDoChinhSach");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.DieuKienLamViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CapDo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaDieuKien")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDieuKien")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DieuKienLamViec");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.PhuongTienLamViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CapDo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaPhuongTien")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenPhuongTien")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PhuongTienLamViec");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.RuiRoLamViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CapDo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GhiChu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaGoc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaRuiro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenRuiro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RuiRoLamViec");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan.TaiNanLaoDong", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Ccnd")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("IdNguoiLaoDong")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaRuiro")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mota")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TaiNanLaoDong");
-                });
-
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DanToc", b =>
                 {
                     b.Property<int>("Id")
@@ -1111,8 +1151,8 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MaDanToc")
-                        .HasColumnType("int");
+                    b.Property<string>("MaDanToc")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenDanToc")
                         .HasColumnType("nvarchar(max)");
@@ -1126,35 +1166,6 @@ namespace QLViecLam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DanToc");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmChucVu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenCv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmChucVu");
                 });
 
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmDoiTuongChinhSach", b =>
@@ -1185,7 +1196,7 @@ namespace QLViecLam.Migrations
                     b.ToTable("DmDoiTuongChinhSach");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmDoiTuongUuTien", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DoiTuongUuTien", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1196,17 +1207,13 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MaDmDt")
+                    b.Property<string>("MaDoiTuongUuTien")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenDoiTuong")
-                        .IsRequired()
+                    b.Property<string>("TenDoiTuongUuTien")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Trangthai")
+                    b.Property<string>("TrangThai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
@@ -1214,38 +1221,10 @@ namespace QLViecLam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DmDoiTuongUuTien");
+                    b.ToTable("DoiTuongUuTien");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmHinhThucDaoTao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaHinhThucDaoTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenHinhThucDaoTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmHinhThucDaoTao");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmHinhThucDoanhNghiep", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.HinhThucDoanhNghiep", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1259,35 +1238,10 @@ namespace QLViecLam.Migrations
                     b.Property<string>("MaHinhThucDoanhNghiep")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TenHinhThucDoanhNghiep")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmHinhThucDoanhNghiep");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmHinhThucLamViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Stt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDm")
+                    b.Property<string>("TrangThai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
@@ -1295,38 +1249,10 @@ namespace QLViecLam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DmHinhThucLamViec");
+                    b.ToTable("HinhThucDoanhNghiep");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmHinhThucThamGia", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaHinhThucThamGia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenHinhThucThamGia")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmHinhThucThamGia");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmKhuCongNghiep", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.KhuCongNghiep", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1340,21 +1266,21 @@ namespace QLViecLam.Migrations
                     b.Property<string>("MaKhuCongNghiep")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TenKhuCongNghiep")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Updated_at")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DmKhuCongNghiep");
+                    b.ToTable("KhuCongNghiep");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiHieuLucHdld", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.LoaiHopDongLaoDong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1365,20 +1291,13 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MaDmLhl")
+                    b.Property<string>("MaLoaiHopDongLaoDong")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Mota")
+                    b.Property<string>("TenLoaiHopDongLaoDong")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenLhl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Trangthai")
+                    b.Property<string>("TrangThai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
@@ -1386,10 +1305,10 @@ namespace QLViecLam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DmLoaiHieuLucHdld");
+                    b.ToTable("LoaiHopDongLaoDong");
                 });
 
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiHinhDaoTao", b =>
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.LyDoKhongThamGiaHDKT", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1400,80 +1319,13 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MaLoaiHinhDaoTao")
+                    b.Property<string>("MaLyDoKhongThamGia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MoTa")
+                    b.Property<string>("TenLyDoKhongThamGia")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TenLoaiHinhDaoTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmLoaiHinhDaoTao");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiHinhHdkt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("MaDmLhkt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenLhkt")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Trangthai")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmLoaiHinhHdkt");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiLaoDong", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaDmLld")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenLld")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Trangthai")
+                    b.Property<string>("TrangThai")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Updated_at")
@@ -1481,450 +1333,7 @@ namespace QLViecLam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DmLoaiLaoDong");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmLoaiViecLam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaLoaiViecLam")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenLoaiViecLam")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmLoaiViecLam");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmMangHeTrinhDo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaDmmNtd")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaNghe")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenDmmNtd")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Trangthai")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmMangHeTrinhDo");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNganhNghe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaDm")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenDm")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNganhNghe");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNganhSxkd", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaDmSxkd")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Stt")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TenSxkd")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Trangthai")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNganhSxkd");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNgheCongViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Stt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenDm")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNgheCongViec");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNgheDaoTao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaNgheDaoTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNgheDaoTao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNgheDaoTao");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNguonViecLam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaNguonViecLam")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNguonViecLam")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNguonViecLam");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmNguyenNhanThatNghiep", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Stt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenNn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmNguyenNhanThatNghiep");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmThoiGianLamViec", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaThoiGianLamViec")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenThoiGianLamViec")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmThoiGianLamViec");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmTinhTrangTanTat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaTinhTrangTanTat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenTinhTrangTanTat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmTinhTrangTanTat");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmTonGiao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaTonGiao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenTonGiao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmTonGiao");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmTrangThaiViecLam", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaTrangThaiViecLam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenTrangThaiViecLam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmTrangThaiViecLam");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmTrinhDoNgoaiNgu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaTrinhDoNgoaiNgu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenTrinhDoNgoaiNgu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmTrinhDoNgoaiNgu");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmTrinhDoTinHoc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaTrinhDoTinHoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenTrinhDoTinHoc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmTrinhDoTinHoc");
-                });
-
-            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.DmXuatKhauLaoDong", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Created_at")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MaXuatKhauLaoDong")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MoTa")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenXuatKhauLaoDong")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Updated_at")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DmXuatKhauLaoDong");
+                    b.ToTable("LyDoKhongThamGiaHDKT");
                 });
 
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.NganhHoc", b =>
@@ -1955,6 +1364,62 @@ namespace QLViecLam.Migrations
                     b.ToTable("NganhHoc");
                 });
 
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.NganhNghe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MaNganhNghe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenNganhNghe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NganhNghe");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.QuanHe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MaQuanHe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenQuanHe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuanHe");
+                });
+
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.QuocGia", b =>
                 {
                     b.Property<int>("Id")
@@ -1983,6 +1448,34 @@ namespace QLViecLam.Migrations
                     b.ToTable("QuocGia");
                 });
 
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.ThoiGianThatNghiep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MaThoiGianThatNghiep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenThoiGianThatNghiep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ThoiGianThatNghiep");
+                });
+
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.TinhTrangVL", b =>
                 {
                     b.Property<int>("Id")
@@ -1994,8 +1487,8 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MaTinhTrangVL")
-                        .HasColumnType("int");
+                    b.Property<string>("MaTinhTrangVL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTinhTrangVL")
                         .HasColumnType("nvarchar(max)");
@@ -2022,8 +1515,8 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MaTrinhDoCMKT")
-                        .HasColumnType("int");
+                    b.Property<string>("MaTrinhDoCMKT")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTrinhDoCMKT")
                         .HasColumnType("nvarchar(max)");
@@ -2050,8 +1543,8 @@ namespace QLViecLam.Migrations
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MaTrinhDoHV")
-                        .HasColumnType("int");
+                    b.Property<string>("MaTrinhDoHV")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTrinhDoHV")
                         .HasColumnType("nvarchar(max)");
@@ -2065,6 +1558,34 @@ namespace QLViecLam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TrinhDoHV");
+                });
+
+            modelBuilder.Entity("QLViecLam.Models.Admin.Systems.DanhMuc.ViTriViecLam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MaViTriViecLam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenViTriViecLam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrangThai")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ViTriViecLam");
                 });
 
             modelBuilder.Entity("QLViecLam.Models.Admin.Systems.HeThongChung.ChucNang", b =>
@@ -2457,6 +1978,9 @@ namespace QLViecLam.Migrations
 
                     b.Property<DateTime>("Updated_at")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()

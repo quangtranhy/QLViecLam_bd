@@ -1,0 +1,95 @@
+﻿@{
+    var Tinh = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Tinh"]!;
+    var Huyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Huyen"]!;
+    var Xa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["Xa"]!;
+    var HinhThucDoanhNghiep = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.HinhThucDoanhNghiep>)ViewData["HinhThucDoanhNghiep"]!;
+}
+
+
+<!--print Modal-->
+<div class="modal fade" id="Print_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label text-dark">
+                    Danh sách
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-left">
+                    <a id="mau01" class="btn font-weight-bold" asp-controller="NhuCauTuyenDung" asp-action="BcMau01" target="_blank1">Mẫu số 01 - TT 11/2022/TT-BLĐTBXH</a>
+                </div>
+                <div class="row text-left">
+                    <a id="mau02" class="btn  font-weight-bold" asp-controller="NhuCauTuyenDung" asp-action="BcMau02" target="_blank2">Mẫu số 02 - Phiếu thông tin người sử dụng lao động</a>
+                </div>
+                <div class="row text-left">
+                    <a id="mau03pli" class="btn  font-weight-bold" asp-controller="NhuCauTuyenDung" asp-action="BcMau03" target="_blank3">Mẫu số 03/PLI - Phiếu đăng ký</a>
+                </div>
+                <div class="row text-left">
+                    <a id="mau03apli" class="btn  font-weight-bold" asp-controller="NhuCauTuyenDung" asp-action="BcMau03a" target="_blank4">Mẫu số 03a/PLI - Phiếu đăng ký giới thiệu/cung ứng lao động</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary font-weight-bold" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    #mau01:hover, #mau02:hover, #mau03pli:hover, #mau03apli:hover {
+        color: #0056b3; 
+        text-decoration: underline;
+        cursor: pointer; 
+    }
+</style>
+
+<script>
+
+    function SetPrint(Id) {
+
+        var element_mau01 = document.getElementById("mau01");
+        var Href_mau01 = element_mau01.getAttribute("href");
+        element_mau01.setAttribute("href", Href_mau01 + "?id=" + Id);
+
+
+        var element_mau02 = document.getElementById("mau02");
+        var Href_mau02 = element_mau02.getAttribute("href");
+        element_mau02.setAttribute("href", Href_mau02 + "?id=" + Id);
+
+        var element_mau03pli = document.getElementById("mau03pli");
+        var Href_mau03pli = element_mau03pli.getAttribute("href");
+        element_mau03pli.setAttribute("href", Href_mau03pli + "?id=" + Id);
+
+
+        var element_mau03apli = document.getElementById("mau03apli");
+        var Href_mau03apli = element_mau03apli.getAttribute("href");
+        element_mau03apli.setAttribute("href", Href_mau03apli + "?id=" + Id);
+    }
+
+    // function getListXa() {
+    //     var mahuyen = document.getElementById("huyen_create").value;
+    //     var maxa = document.getElementById("xa_create");
+
+    //     maxa.innerHTML = "";
+    //     fetch(`/DanhsachDN/GetXa?mahuyen=${mahuyen}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             data.forEach(function (item) {
+    //                 var option = document.createElement("option");
+    //                 option.value = item.maquocgia;
+    //                 option.text = item.name;
+    //                 maxa.add(option);
+    //             });
+    //         })
+    //         .catch(error => console.error('Error:', error));
+
+    // }
+
+
+
+</script>

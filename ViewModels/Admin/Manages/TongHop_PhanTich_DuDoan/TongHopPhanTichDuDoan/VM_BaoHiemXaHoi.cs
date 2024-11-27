@@ -7,6 +7,6 @@ namespace QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.TongHopPhan
     {
         //1:tu nguyen   2:bat buoc  3:k0 tham gia
         public string? ThamGiaBaoHiem { get; set; }
-        public int? MaBhxh { get; set; }
+        public string? MaBhxh { get; set; }
     }
 }

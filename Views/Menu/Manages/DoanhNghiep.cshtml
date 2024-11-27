@@ -1,0 +1,59 @@
+﻿<!--QUẢN LÝ DOANH NGHIỆP-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep" title="Quản lý doanh nghiệp">
+    <a href="javascript:;" class="menu-link menu-toggle">
+        <span class="menu-text" >QUẢN LÝ DOANH NGHIỆP</span>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep_danhsachdoanhnghiep" title="Quản lý thông tin doanh nghiệp">
+                <a class="menu-link menu-toggle" asp-controller="DanhSachDoanhNghiep" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/City.svg" class="max-h-100px"
+                             alt="Quản lý thông tin doanh nghiệp" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 4%;">Danh sách doanh nghiệp</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep_nhucautuyendung" title="Thông tin tuyển dụng của doanh nghiệp">
+                <a class="menu-link menu-toggle" asp-controller="NhuCauTuyenDung" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Briefcase.svg" class="max-h-100px"
+                             alt="Thông tin tuyển dụng của doanh nghiệp" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 4%;">Nhu cầu tuyển dụng</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep_nguoilaodong" title="Quản lý thông tin người lao động trong nước">
+                <a class="menu-link menu-toggle" asp-controller="NguoiLaoDong" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/User-clock.svg" class="max-h-100px"
+                             alt="Quản lý thông tin người lao động trong nước" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Người lao động</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep_nguoilaodongnuocngoai" title="Quản lý thông tin người lao động nước ngoài">
+                <a class="menu-link menu-toggle" asp-controller="NguoiLaoDongNuocNgoai" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/User-clock.svg" class="max-h-100px"
+                             alt="Quản lý thông tin người lao động nước ngoài" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Người lao động nước ngoài</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="doanhnghiep_biendongvieclam" title="Thông tin biến động việc làm của người lao động">
+                <a class="menu-link menu-toggle" asp-controller="BienDongVieclam" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Waves.svg" class="max-h-100px"
+                             alt="Thông tin biến động việc làm của người lao động" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Biến động việc làm</span>
+                </a>
+            </li>
+
+
+
+        </ul>
+    </div>
+</li>

@@ -1,0 +1,80 @@
+﻿@{
+    var DsKyDieuTra = ViewData["DsKyDieuTra"] as List<string>;
+    var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+
+    var DanToc = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DanToc>)ViewData["DanToc"]!;
+
+}
+
+
+<!--Mẫu 02pli Modal-->
+<form asp-controller="BaoCaoCauLaoDong" asp-action="Mau02pli" method="get" enctype="multipart/form-data" target="_blank_02pli">
+    <div class="modal fade" id="Mau02pli_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                        Mẫu số 02pli: Tình hình sử dụng lao động
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 mb-2" >
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Từ ngày</label>
+                            <input type="date" name="tungay" value="@ViewData["tungay"]" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mb-2">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Đến ngày</label>
+                            <input type="date" name="tungay" value="@ViewData["denngay"]" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Mẫu 04 Modal-->
+<form asp-controller="BaoCaoCauLaoDong" asp-action="Mau04" method="get" enctype="multipart/form-data" target="_blank_02pli">
+    <div class="modal fade" id="Mau04_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label text-dark">
+                        Mẫu số 04: Thông tin thị trường lao động
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label class="control-label">Kỳ điều tra</label>
+                            <select name="kydieutra" id="kydieutra_mau01b" class="form-control select2" style="width:100%">
+                                @foreach (var ky in DsKyDieuTra!)
+                                {
+                                    <!option value="@ky"> @ky </!option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default font-weight-bold" data-dismiss="modal">Hủy thao tác</button>
+                    <button type="submit" class="btn btn-primary font-weight-bold">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

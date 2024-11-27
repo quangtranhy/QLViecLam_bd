@@ -40,7 +40,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     ViewData["Huyen"] = _db.DmHanhChinh.Where(t => t.CapDo == "H");
                     ViewData["Xa"] = _db.DmHanhChinh.Where(t => t.CapDo == "X" && t.Parent == parent);
                     ViewData["Tinh"] = _db.DmHanhChinh.Where(t => string.IsNullOrEmpty(t.Parent) || t.Parent == "0");
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
                     ViewData["MenuLv1"] = "menu_capnhatcungcau";
                     ViewData["MenuLv2"] = "menu_capnhatcungcau_PhieuDKCungUngLD";
@@ -121,16 +121,16 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCu
                     ViewData["phone"] = doanhnghiep.Phone;
                     ViewData["fax"] = doanhnghiep.Fax;
                     ViewData["email"] = doanhnghiep.Email;
-                    ViewData["dkkd"] = doanhnghiep.Dkkd;
-                    ViewData["dmloaihinhhdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["masodn"] = doanhnghiep.MaSoDn;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
-                    var nn = Helpers.NganhNgheKinhDoanh();
+                    var nn = _db.NganhNghe;
                     var tennn = "";
                     foreach (var n in nn)
                     {
-                        if (n.MaNghanhNghe == doanhnghiep.NganhNghe)
+                        if (n.MaNganhNghe == doanhnghiep.NganhNghe)
                         {
-                            tennn = n.TenNghanhNghe;
+                            tennn = n.TenNganhNghe;
                             break;
                         }
                     }

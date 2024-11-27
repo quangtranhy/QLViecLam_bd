@@ -1,0 +1,153 @@
+﻿<!--Delete Modal-->
+<form asp-controller="KeHoachThuThap" asp-action="Delete" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="Delete_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label">
+                        Xóa thông tin lập kế hoạch thu thập thông tin
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label>Kỳ điều tra:</label>
+                                <label class="form-control" id="kydieutra_delete" name="kydieutra_delete"></label>
+                                <input hidden id="id_delete" name="id_delete" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-danger font-weight-bold" onclick="Remove()">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Chuyen Modal-->
+<form asp-controller="KeHoachThuThap" asp-action="Chuyen" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="Chuyen_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="card-label">
+                        Chuyển kế hoạch thu thập thông tin lên trung tâm
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="form-group fv-plugins-icon-container">
+                                <label>Kỳ điều tra:</label>
+                                <p class="form-control" id="kehoach_chuyen" name="kehoach_chuyen"></p>
+                                <input hidden id="id_chuyen" name="id_chuyen" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-dark font-weight-bold" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary font-weight-bold" onclick="Chuyen()">Chuyển xét duyệt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--Ly Do Modal-->
+<div class="modal fade" id="LyDo_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="card-label">
+                    Lý do trả lại hoạch thu thập thông tin
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Kỳ điều tra:</label>
+                            <p class="form-control" id="kydieutra_lydo" name="kydieutra_lydo"></p>
+                         
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="form-group fv-plugins-icon-container">
+                            <label>Lý do:</label>
+                            <textarea class="form-control" id="lydo" name="lydo" readonly ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-danger font-weight-bold" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Create() {
+        var huyen = $('#huyen').val();
+        var xa = $('#xa').val();
+        if (xa == '') {
+            toastr.warning('Bạn chưa chọn xã', 'Lỗi');
+        }
+        else {
+            window.location.href = 'KeHoachThuThap/Create?&huyen=' + huyen + '&xa=' + xa;
+        }
+    }
+
+    function Delete(id, kydieutra) {
+        document.getElementById("kydieutra_delete").innerHTML = kydieutra;
+        document.getElementById("id_delete").value = id;
+    }
+
+
+    function SetChuyen(id, kehoach) {
+        document.getElementById("kehoach_chuyen").innerHTML = kehoach;
+        document.getElementById("id_chuyen").value = id;
+        $('#Chuyen_Modal').modal("show");
+    }
+
+    function Chuyen() {
+        $.ajax({
+            url: '/KeHoachThuThap/Chuyen',
+            type: 'POST',
+            data: {
+                Id: $('#id_chuyen').val(),
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 'success') {
+                    toastr.success("Cập nhật thông tin thành công!", "Thành công!!!");
+                    location.reload();
+                } else {
+                    toastr.error(data.message, "Lỗi!");
+                }
+            }
+        })
+    }
+
+    function GetLyDo(kehoach, lydo) {
+        document.getElementById("kydieutra_lydo").innerHTML = kehoach;
+        document.getElementById("lydo").innerHTML = lydo;
+        $('#LyDo_Modal').modal("show");
+    }
+
+
+</script>

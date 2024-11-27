@@ -1,0 +1,19 @@
+﻿<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+@* <script src="~/admin/assets/ckeditor5-41.0.0/build/ckeditor.js"></script> *@
+
+@* <form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button type="submit">Upload</button>
+</form>
+ *@
+
+<form asp-action="Store" method="post" enctype="multipart/form-data">
+    <textarea name="editorContent" style="width: 100%; height: 600px;">@Html.Raw(ViewBag.HtmlContent)</textarea>
+    <button type="submit">Save</button>
+</form>
+
+
+<script>
+    CKEDITOR.replace('editorContent');
+</script>
+

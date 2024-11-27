@@ -32,7 +32,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 var model = _db.Company.Where(x => x.Xa == xa && x.TinhTrangXacThuc==TinhTrangXacThuc && x.NganhNghe==NganhNghe);
                 ViewData["TinhTrangXacThuc"] = TinhTrangXacThuc;
                 ViewData["NganhNghe"] = NganhNghe;
-                ViewData["DmNganhNghe"] = _db.DmNganhNghe;
+         
                 ViewData["tenhuyen"] = huyen;
                 ViewData["tenxa"] = xa;
                 ViewData["cout"] = model.Count();
@@ -40,7 +40,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 ViewData["Huyen"] = _db.DmHanhChinh.Where(t => t.CapDo == "H");
                 ViewData["Xa"] = _db.DmHanhChinh.Where(t => t.CapDo == "X" && t.Parent == parent);
                 ViewData["Tinh"] = _db.DmHanhChinh.Where(t => string.IsNullOrEmpty(t.Parent) || t.Parent == "0");
-                ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
                 ViewData["MenuLv1"] = "menu_thuthapthongtinthitruong";
                 ViewData["MenuLv2"] = "menu_thuthapthongtinthitruong_truyvantt";
@@ -58,12 +58,12 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
         public IActionResult Detail(int id)
         {
             var model = _db.Company.Where(x => x.Id == id).FirstOrDefault()!;
-            var nguoilaodong = _db.NguoiLaoDong.Where(x => x.Company == model.Id);
+            var nguoilaodong = _db.NguoiLaoDong.Where(x => x.MaDn == model.MaSoDn);
             var thongtinkhac = new List<VM_Thongtin_DoanhNghiep>();
             thongtinkhac.Add(new VM_Thongtin_DoanhNghiep
             {
                 Mota = "Tổng số lao động(tổng/nữ)",
-                Soluong = nguoilaodong.Count().ToString() + '/' + nguoilaodong.Where(x => x.Gioitinh == 2).Count().ToString(),
+                Soluong = nguoilaodong.Count().ToString() + '/' + nguoilaodong.Where(x => x.Gioitinh == "2").Count().ToString(),
             });
 
             ViewData["name"] = model!.Name;
@@ -85,17 +85,17 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
             thongtinkhac.Add(new VM_Thongtin_DoanhNghiep
             {
                 Mota = "Số lao động đã ký HĐLĐ (tổng/nữ)",
-                Soluong = loaihdld.Count().ToString() + '/' + loaihdld.Where(x => x.Gioitinh == 2).Count().ToString(),
+                Soluong = loaihdld.Count().ToString() + '/' + loaihdld.Where(x => x.Gioitinh == "2").Count().ToString(),
             });
             //nước ngoài
             var nation = nguoilaodong.Where(x => x.Nation != "VN");
             thongtinkhac.Add(new VM_Thongtin_DoanhNghiep
             {
                 Mota = "Số lao động nước ngoài (tổng/nữ)",
-                Soluong = nation.Count().ToString() + '/' + nation.Where(x => x.Gioitinh == 2).Count().ToString(),
+                Soluong = nation.Count().ToString() + '/' + nation.Where(x => x.Gioitinh == "2").Count().ToString(),
             });
             //tốt nghiệp phổ thông
-            var trinhdogiaoduc = nguoilaodong.Where(x => x.TrinhDoHV == 5);
+            var trinhdogiaoduc = nguoilaodong.Where(x => x.TrinhDoHV == "5");
             thongtinkhac.Add(new VM_Thongtin_DoanhNghiep
             {
                 Mota = "Số lao động đã tốt nghiệp phổ thông",
@@ -126,7 +126,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.TruyVanThongTi
                 .GroupBy(x => x.TrinhDoCMKT)
                 .Select(group => new VM_Count_Chucnang
                 {
-                    Mota_int = group.Key,
+                    Mota = group.Key,
                     Count = group.Count()
                 });
             ViewData["trinhdocmkt"] = trinhdocmkt;

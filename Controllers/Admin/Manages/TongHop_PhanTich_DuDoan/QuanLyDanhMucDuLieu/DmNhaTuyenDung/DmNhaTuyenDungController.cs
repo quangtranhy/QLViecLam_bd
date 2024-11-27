@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using QLViecLam.Data;
 using QLViecLam.Models.Admin.Systems.DanhMuc;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
 using System.Net;
 using System.Runtime.CompilerServices;
+using QLViecLam.Models.Admin.Manages;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanhMucDuLieu.DmNhaTuyenDung
 {
@@ -63,8 +63,8 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                     ViewData["Tinh"] = _db.DmHanhChinh.Where(x => x.CapDo == "T");
                     ViewData["Huyen"] = _db.DmHanhChinh.Where(x => x.CapDo == "H");
                     ViewData["Xa"] = _db.DmHanhChinh.Where(x => x.CapDo == "X");
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
-                    ViewData["DmNganhNghe"] = _db.DmNganhNghe;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
+                    ViewData["NganhNghe"] = _db.NganhNghe;
 
                     ViewData["MenuLv1"] = "menu_quanlydanhmucdulieu";
                     ViewData["MenuLv2"] = "menu_quanlydanhmuc_DmNhaTuyenDung";
@@ -95,7 +95,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                     {
                         Name = request.Name,
                         MaSoDn = request.MaSoDn,
-                        Dkkd = request.Dkkd,
+                        //Dkkd = request.Dkkd,
                         Phone = request.Phone,
                         Fax = request.Fax,
                         Website = request.Website,
@@ -174,7 +174,6 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
 
                     model.Name = request.Name;
                     model.MaSoDn = request.MaSoDn;
-                    model.Dkkd = request.Dkkd;
                     model.Phone = request.Phone;
                     model.Fax = request.Fax;
                     model.Website = request.Website;
@@ -223,7 +222,7 @@ namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.QuanLyDanh
                 if (check_per)
                 {
                     var model = _db.Company.FirstOrDefault(t => t.Id == id_delete);
-                    _db.Company.Remove(model);
+                    _db.Company.Remove(model!);
                     _db.SaveChanges();
 
                     ViewData["MenuLv1"] = "menu_quanlydanhmucdulieu";

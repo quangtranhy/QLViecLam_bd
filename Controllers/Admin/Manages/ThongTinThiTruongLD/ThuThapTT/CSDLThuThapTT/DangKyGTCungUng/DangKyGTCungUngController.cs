@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
 using QLViecLam.Helper;
-using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+using QLViecLam.Models.Admin.Manages;
 using QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDLThuThapTT;
 
 namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDLThuThapTT.DangKyGTCungUng
@@ -49,7 +49,7 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                     ViewData["Huyen"] = _db.DmHanhChinh.Where(t => t.CapDo == "H");
                     ViewData["Xa"] = _db.DmHanhChinh.Where(t => t.CapDo == "X" && t.Parent == parent);
                     ViewData["Tinh"] = _db.DmHanhChinh.Where(t => string.IsNullOrEmpty(t.Parent) || t.Parent == "0");
-                    ViewData["DmLoaiHinhHdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
                     ViewData["MenuLv1"] = "menu_thuthapthongtinthitruong";
                     ViewData["MenuLv2"] = "menu_thuthapthongtinthitruong_csdl";
@@ -134,20 +134,20 @@ namespace QLViecLam.Controllers.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.CSDL
                     ViewData["phone"] = doanhnghiep.Phone;
                     ViewData["fax"] = doanhnghiep.Fax;
                     ViewData["email"] = doanhnghiep.Email;
-                    ViewData["dkkd"] = doanhnghiep.Dkkd;
-                    ViewData["dmloaihinhhdkt"] = _db.DmLoaiHinhHdkt;
+                    ViewData["masodn"] = doanhnghiep.MaSoDn;
+                    ViewData["HinhThucDoanhNghiep"] = _db.HinhThucDoanhNghiep;
 
-                    var nn = Helpers.NganhNgheKinhDoanh();
-                    var tennn = "";
-                    foreach (var n in nn)
-                    {
-                        if (n.MaNghanhNghe == doanhnghiep.NganhNghe)
-                        {
-                            tennn = n.TenNghanhNghe;
-                            break;
-                        }
-                    }
-                    ViewData["tennn"] = tennn;
+                    //var nn = DanhMucChung.NganhNgheKinhDoanh();
+                    //var tennn = "";
+                    //foreach (var n in nn)
+                    //{
+                    //    if (n.MaNghanhNghe == doanhnghiep.NganhNghe)
+                    //    {
+                    //        tennn = n.TenNghanhNghe;
+                    //        break;
+                    //    }
+                    //}
+                    //ViewData["tennn"] = tennn;
 
                     ViewData["MenuLv1"] = "menu_thuthapthongtinthitruong";
                     ViewData["MenuLv2"] = "menu_thuthapthongtinthitruong_csdl";

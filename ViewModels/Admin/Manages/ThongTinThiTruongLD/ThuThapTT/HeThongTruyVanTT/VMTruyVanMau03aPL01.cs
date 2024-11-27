@@ -1,4 +1,4 @@
-﻿using QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD;
+﻿using QLViecLam.Models.Admin.Manages;
 
 namespace QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT
 {

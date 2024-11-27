@@ -26,7 +26,7 @@
     <!--begin::Layout Themes(used by all pages)-->
     @if (session != null)
     {
-        if (Funtions_Global.GetSsAdmin(session, "Theme") == "Light")
+        if (Helpers.GetSsAdminKey(session, "Theme") == "Light")
         {
             <link href="~/Admin/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
             <link href="~/Admin/assets/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
@@ -49,7 +49,7 @@
 <!--end::Head-->
 <!--begin::Body-->
 <body onload="display_ct6()" id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed
-      @(session !=null && Funtions_Global.GetSsAdmin(session,"Menu") == "Minimize" ? " aside-minimize aside-minimize-hoverable" : " aside-minimize-hoverable" ) page-loading">
+      @(session !=null && Helpers.GetSsAdminKey(session,"Menu") == "Minimize" ? " aside-minimize aside-minimize-hoverable" : " aside-minimize-hoverable" ) page-loading">
     <!--begin::Main-->
     <!--begin::Header Mobile-->
 
@@ -107,7 +107,7 @@
                     <!--end::Logo-->
                     <!--begin::Toggle-->
                     <button class="brand-toggle btn btn-sm px-0
-                            @(session != null && Funtions_Global.GetSsAdmin(session,"Menu") == "Minimize" ? " active" : "")" id="kt_aside_toggle">
+                            @(session != null && Helpers.GetSsAdminKey(session,"Menu") == "Minimize" ? " active" : "")" id="kt_aside_toggle">
                         <span class="svg-icon svg-icon svg-icon-xl">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -133,21 +133,17 @@
                                 <a asp-controller="Home" asp-action="Index" class="menu-link">
                                     <span class="svg-icon menu-icon">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <polygon points="0 0 24 0 24 24 0 24" />
-                                                <path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" fill="#000000" fill-rule="nonzero" />
-                                                <path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" fill="#000000" opacity="0.3" />
-                                            </g>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24px" height="24px">
+                                            <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                                         </svg>
                                         <!--end::Svg Icon-->
                                     </span>
                                     <span class="menu-text">Trang chủ</span>
                                 </a>
                             </li>
-                    @*         @await Html.PartialAsync("~/Views/Menu/Manages/Manages.cshtml") *@
-                          @*   @await Html.PartialAsync("~/Views/Menu/Manages/Index.cshtml") *@
-                              @await Html.PartialAsync("~/Views/Menu/Index.cshtml")
+                            @*         @await Html.PartialAsync("~/Views/Menu/Manages/Manages.cshtml") *@
+                            @*   @await Html.PartialAsync("~/Views/Menu/Manages/Index.cshtml") *@
+                            @await Html.PartialAsync("~/Views/Menu/Index.cshtml")
                         </ul>
                         <!--end::Menu Nav-->
                     </div>
@@ -174,19 +170,31 @@
                         <!--begin::Topbar-->
                         <div class="topbar">
                             <!--begin::Toggle-->
-                            <div class="topbar-item">
-                                <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
-                                    <img class="h-30px w-40px rounded-sm" src="@Url.Content("~/Admin/assets/media/svg/flags/220-vietnam.svg")" alt="">
-                                    <span class="pulse-ring"></span>
-                                </div>
+                            <div class="topbar-item" title="Hỗ trợ">
+                                <a asp-controller="Error" asp-action="SupPort">
+                                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="text-denger" width="40px" height="40px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M13.0799676,14.7839934 L15.2839934,12.5799676 C15.8927139,11.9712471 16.0436229,11.0413042 15.6586342,10.2713269 L15.5337539,10.0215663 C15.1487653,9.25158901 15.2996742,8.3216461 15.9083948,7.71292558 L18.6411989,4.98012149 C18.836461,4.78485934 19.1530435,4.78485934 19.3483056,4.98012149 C19.3863063,5.01812215 19.4179321,5.06200062 19.4419658,5.11006808 L20.5459415,7.31801948 C21.3904962,9.0071287 21.0594452,11.0471565 19.7240871,12.3825146 L13.7252616,18.3813401 C12.2717221,19.8348796 10.1217008,20.3424308 8.17157288,19.6923882 L5.75709327,18.8875616 C5.49512161,18.8002377 5.35354162,18.5170777 5.4408655,18.2551061 C5.46541191,18.1814669 5.50676633,18.114554 5.56165376,18.0596666 L8.21292558,15.4083948 C8.8216461,14.7996742 9.75158901,14.6487653 10.5215663,15.0337539 L10.7713269,15.1586342 C11.5413042,15.5436229 12.4712471,15.3927139 13.0799676,14.7839934 Z" fill="#3699FF"></path>
+                                                <path d="M14.1480759,6.00715131 L13.9566988,7.99797396 C12.4781389,7.8558405 11.0097207,8.36895892 9.93933983,9.43933983 C8.8724631,10.5062166 8.35911588,11.9685602 8.49664195,13.4426352 L6.50528978,13.6284215 C6.31304559,11.5678496 7.03283934,9.51741319 8.52512627,8.02512627 C10.0223249,6.52792766 12.0812426,5.80846733 14.1480759,6.00715131 Z M14.4980938,2.02230302 L14.313049,4.01372424 C11.6618299,3.76737046 9.03000738,4.69181803 7.1109127,6.6109127 C5.19447112,8.52735429 4.26985715,11.1545872 4.51274152,13.802405 L2.52110319,13.985098 C2.22450978,10.7517681 3.35562581,7.53777247 5.69669914,5.19669914 C8.04101739,2.85238089 11.2606138,1.72147333 14.4980938,2.02230302 Z" fill="#3699FF" fill-rule="nonzero" opacity="0.3"></path>
+                                            </g>
+                                        </svg>
+                                        @*   <img class="h-30px w-40px rounded-sm" src="@Url.Content("~/Admin/assets/media/svg/flags/220-vietnam.svg")" alt=""> *@
+
+                                        <span class="pulse-ring">  <span class="pulse-ring"></span></span>
+
+                                    </div>
+                                </a>
                             </div>
+
                             <!--end::Toggle-->
                             <!--begin::User-->
                             <div class="topbar-item">
                                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Xin chào,</span>
                                     <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">
-                                        @Funtions_Global.GetSsAdmin(session!, "Name")
+                                        @Helpers.GetSsAdminKey(session!, "Name")
 
                                     </span>
                                     <span class="symbol symbol-lg-30 symbol-25 symbol-light-success">
@@ -204,29 +212,30 @@
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content"
-                     style="background-image: url('../../../Admin/assets/media/bg/bg-3.jpg')">
+                @* style="background-image: url('../../../Admin/assets/media/bg/bg-3.jpg')" *@>
                     <!--begin::Subheader-->
                     <div class="subheader py-2 py-lg-4 subheader-solid
-                        @(session != null && Funtions_Global.GetSsAdmin(session, "Theme") == "Light" ? "" : " bg-light-primary")" id="kt_subheader">
+                        @(session != null && Helpers.GetSsAdminKey(session, "Theme") == "Light" ? "" : " bg-light-primary")" id="kt_subheader">
                         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
                             <div class="d-flex align-items-center flex-wrap mr-1">
                                 <!--begin::Page Heading-->
                                 <div class="d-flex align-items-baseline flex-wrap mr-5">
-                                    <!--begin::Page Title-->
+                                    @*      <!--begin::Page Title-->
                                     <h5 class="text-dark font-weight-bold my-1 mr-5">@ViewData["Title"]</h5>
-                                    <!--end::Page Title-->
+                                    <!--end::Page Title--> *@
                                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
                                     <!--begin::Breadcrumb-->
                                     <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                         <li class="breadcrumb-item text-muted">
-                                            <a asp-controller="Home" asp-action="Index" class="text-muted">Trang chủ</a>
+                                            <a asp-controller="Home" asp-action="Index" class="text-muted">Trang chủ @ViewData["a"]</a>
                                         </li>
                                         @if (ViewData.ContainsKey("Title") && ViewData["Title"]!.ToString() != "Trang chủ")
                                         {
                                             <li class="breadcrumb-item text-muted">
-                                                <a href="" class="text-muted">@ViewData["Title"]</a>
+                                                <a class="text-muted">@ViewData["Title"]</a>
                                             </li>
+
                                         }
                                     </ul>
                                     <!--end::Breadcrumb-->
@@ -246,7 +255,7 @@
                     <!--begin::Entry-->
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
-                        <div class="@(session != null && Funtions_Global.GetSsAdmin(session,"Content") == "Max" ? "container-fluid" : "container")">
+                        <div class="@(session != null && Helpers.GetSsAdminKey(session,"Content") == "Max" ? "container-fluid" : "container")">
                             <!--begin::Row-->
                             @RenderBody()
                             <!--end::Row-->
@@ -261,13 +270,13 @@
                     <!--begin::Container-->
                     <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
                         <!--begin::Copyright-->
-                        <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted font-weight-bold mr-2">Bản quyền được cấp cho @Funtions_Global.GetSsAdmin(session, "Name")</span>
-                            <br />
-                            <span class="text-muted font-weight-bold mr-2">Copyright © 2012-@DateTime.Now.Year.ToString()</span>
-                            <a href="https://phanmemcuocsong.com/" target="_blank" class="text-dark-75 text-hover-primary">LifeSoft</a>
-                            <span class="text-muted font-weight-bold mr-2"> Tiện ích hơn - Hiệu quả hơn</span>
-                        </div>
+                        @*                   <div class="text-dark order-2 order-md-1">
+                        <span class="text-muted font-weight-bold mr-2">Bản quyền được cấp cho @Funtions_Global.GetSsAdmin(session, "Name")</span>
+                        <br />
+                        <span class="text-muted font-weight-bold mr-2">Copyright © 2012-@DateTime.Now.Year.ToString()</span>
+                        <a href="https://phanmemcuocsong.com/" target="_blank" class="text-dark-75 text-hover-primary">LifeSoft</a>
+                        <span class="text-muted font-weight-bold mr-2"> Tiện ích hơn - Hiệu quả hơn</span>
+                        </div> *@
                         <!--end::Copyright-->
                         <!--begin::Nav-->
                         <div class="nav nav-dark">
@@ -314,10 +323,10 @@
                 </div>
                 <div class="d-flex flex-column">
                     <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-                        @Funtions_Global.GetSsAdmin(session, "Name")
+                        @Helpers.GetSsAdminKey(session, "Name")
                     </a>
                     <div class="text-muted mt-1">
-                        @Funtions_Global.GetSsAdmin(session, "Username")
+                        @Helpers.GetSsAdminKey(session, "Username")
                     </div>
                     <div class="navi mt-2">
                         <a href="#" class="navi-item">
@@ -336,7 +345,7 @@
                                     </span>
                                 </span>
                                 <span class="navi-text text-muted text-hover-primary">
-                                    @Funtions_Global.GetSsAdmin(session, "Email")
+                                    @Helpers.GetSsAdminKey(session, "Email")
                                 </span>
                             </span>
                         </a>
@@ -464,6 +473,7 @@
         </div>
         <!--end::Scrolltop-->
         <!--end::Demo Panel-->
+
         <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
         <!--begin::Global Config(global config for global JS scripts)-->
         <script>
@@ -493,6 +503,9 @@
         <!--begin::Page Scripts(used by this page)-->
         <script src="~/Admin/assets/js/pages/widgets.js"></script>
         <!--end::Page Scripts-->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
         <script>
             $(document).ready(function () {
                 var menu1 = document.getElementById("MenuLv1").value;
@@ -546,6 +559,23 @@
             }
             display_c6()
         </script>
+
+        @if (TempData["MessageType"] != null)
+        {
+            @if ((string)TempData["MessageType"]! == "success")
+            {
+                <script>
+                    toastr.success('@TempData["Message"]', "Hoàn thành!");
+                </script>
+            }
+            @if ((string)TempData["MessageType"]! == "error")
+            {
+                <script>
+                    toastr.error('@TempData["Message"]', "Lỗi!");
+                </script>
+            }
+        }
+
         @RenderSection("custom_script", required: false)
         @await RenderSectionAsync("Scripts", required: false)
     </div>

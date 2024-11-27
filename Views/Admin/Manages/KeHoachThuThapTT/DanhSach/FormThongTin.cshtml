@@ -1,0 +1,95 @@
+﻿
+@model QLViecLam.Models.Admin.Manages.KeHoachThuThapThongTin
+
+<div class="row">
+    <input hidden asp-for="User" />
+    <input hidden asp-for="MaDonVi" />
+    <input hidden asp-for="MaDiaBan" />
+    <input hidden asp-for="KeHoach" />
+    <input hidden asp-for="MaKeHoach" />
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="Status" />
+    <input hidden asp-for="LyDoTraLai" />
+    <input hidden asp-for="NgayKyKeHoach" />
+    <input hidden asp-for="ChucDanhKy" />
+    <input hidden asp-for="HoVaTenNguoiKy" />
+
+    <div class="col-xl-3">
+        <div class="form-group">
+            <label>Kỳ điều tra:</label>
+            <input type="text" class="form-control" style="font-weight:bold" asp-for="KeHoach" disabled />
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <div class="form-group">
+            <label>Ngày lập kế hoạch:</label>
+            <input type="date" class="form-control" asp-for="NgayLapKeHoach" />
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="form-group">
+            <label>Khu vực thu thập:</label>
+            <input type="text" class="form-control" value="@ViewData["dbxa"]" disabled />
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Căn cứ:</label>
+            <textarea class="form-control" asp-for="CanCu"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Mục đích:</label>
+            <textarea class="form-control" asp-for="MucDich"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Yêu cầu:</label>
+            <textarea class="form-control" asp-for="YeuCau"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Nguyên tắc thu thập:</label>
+            <textarea class="form-control" asp-for="NguyenTacThuThap"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Khối lượng thông tin thu thập:</label>
+            <textarea class="form-control" asp-for="KhoiLuongThongTinThuThap"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Nội dung thu thập:</label>
+            <textarea class="form-control" asp-for="NoiDungThuThap"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Sản phẩm thu thập:</label>
+            <textarea class="form-control" asp-for="SanPhamThuThap"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Kế hoạch thực hiện:</label>
+            <textarea class="form-control" asp-for="KeHoachThucHien"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Kinh phí thực hiện:</label>
+            <textarea class="form-control" asp-for="KinhPhiThucHien"> </textarea>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-group">
+            <label>Tổ chức thực hiện:</label>
+            <textarea class="form-control" asp-for="ToChucThucHien"> </textarea>
+        </div>
+    </div>
+</div>

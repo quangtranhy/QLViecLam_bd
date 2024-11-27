@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QLViecLam.Data;
-using QLViecLam.Models.Admin.Manages.TongHop_PhanTich_DuDoan;
+using QLViecLam.Models.Admin.Manages;
 
 namespace QLViecLam.Controllers.Admin.Manages.TongHop_PhanTich_DuDoan.ThongTinCung_Cau.TTRuiRo_DieuKien_PhuongTien
 {

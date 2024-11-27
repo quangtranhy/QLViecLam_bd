@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+    int record_roman = 1;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+}
+@model IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.VM_NhanKhau>
+
+<table id="data_header" width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px; text-align: center;">
+    <tr>
+        <td></td>
+        <td class="text-right" style="font-style:italic"></td>
+    </tr>
+    <tr>
+        <td width="40%" style="vertical-align: top;">
+            @if (ViewData["Tinh"] != null)
+            {
+                <p>@ViewData["Tinh"]</p>
+            }
+            @if (ViewData["Huyen"] != null)
+            {
+                <p>@ViewData["Huyen"]</p>
+            }
+            @if (ViewData["Xa"] != null)
+            {
+                <p>@ViewData["Xa"]</p>
+            }
+            <hr style="width: 10%;vertical-align: top;  margin-top: 2px">
+        </td>
+    </tr>
+
+</table>
+<p id="data_body" style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase">
+    DANH SÁCH <br>
+</p>
+
+<table id="data_body2" border="1" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr>
+            <th rowspan="3">TT</th>
+            <th rowspan="3">Họ và tên </th>
+            <th colspan="2" style="width:10%">Ngày tháng năm sinh<br></th>
+            <th rowspan="3">Số CCCD/CMND </th>
+            <th rowspan="3">Điện thoại </th>
+            <th rowspan="3">Địa chỉ</th>
+            <th rowspan="3"> Khu vực </th>
+            <th rowspan="3" style="width:3%">Đối tượng ưu tiên</th>
+            <th rowspan="3">Tên dân tộc thiểu số</th>
+            <th rowspan="3" style="width:3%">Trình độ học vấn</th>
+            <th rowspan="3" style="width:3%">Trình độ CMKT cao nhất</th>
+            <th rowspan="3">Chuyên ngành<br />đào tạo</th>
+            <th colspan="4"> Nhu cầu tìm kiếm việc làm</th>
+            <th colspan="2"> Nhu cầu học nghề </th>
+            <th rowspan="3"> Ghi chú </th>
+        </tr>
+        <tr>
+            <th rowspan="2">Nam</th>
+            <th rowspan="2">Nữ</th>
+            <th rowspan="2"> Đối tượng </th>
+            <th colspan="3"> Việc làm mong muốn </th>
+            <th rowspan="2"> Ngành nghề muốn học </th>
+            <th rowspan="2"> Trình độ CM muốn học </th>
+        </tr>
+        <tr>
+            <th> Khu vực</th>
+            <th>Ngành nghề</th>
+            <th>Thị trường</th>
+        </tr>
+        <tr>
+            @for (var i = 1; i < 21; i++)
+            {
+                <td style="font-weight:bold; text-decoration: underline;font-style: italic;text-align: center">@i </td>
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var xa in DsXa)
+        {
+            var model = Model.Where(x => x.MaDiaBan == xa.MaDb);
+            @if (model.Count() > 0)
+            {
+                <tr>
+                    <th>@Helpers.ConvertToRoman(record_roman++)</th>
+                    <th colspan="19" style="text-align: left ;">@xa.Name</th>
+                </tr>
+
+                @foreach (var item in model)
+                {
+                    <tr style="text-align: center ; vertical-align: middle">
+                        <td> @(record_id++)</td>
+                        <td>@item.HoVaTen</td>
+                        <td>
+                            @if (item.Gioitinh == "1")
+                            {
+                                @Helpers.ConvertDateToStr(item.NgayThangNamSinh);
+                            }
+                        </td>
+                        <td>
+                            @if (item.Gioitinh == "2")
+                            {
+                                @Helpers.ConvertDateToStr(item.NgayThangNamSinh);
+                            }
+                        </td>
+                        <td>@item.SoCCCD</td>
+                        <td>@item.Sdt</td>
+                        <td>@item.ThuongTru</td>
+                        <td>@(item.KhuVuc == "1" ? "Thành thị" : "Nông thôn")</td>
+                        <td>@item.TenUuTien</td>
+                        <td>@item.TenDanToc</td>
+                        <td>@item.TenTrinhDoHV</td>
+                        <td>@item.TenTrinhDoCMKT</td>
+                        <td>@item.TenChuyenNganh</td>
+                        <td>@(item.DoiTuongTimViecLam == "1" ? "Chưa từng làm việc" : "Đã từng làm việc")</td>
+                        <td>@(item.ViecLamMongMuon == "1" ? "Đi nước ngoài" : "Đã từng làm việc")</td>
+                        <td>@item.TenNganhNgheMongMuon</td>
+                        <td>@item.ThiTruongLamViec</td>
+                        <td>@item.TenNganhNgheMuonHoc</td>
+                        <td>@item.TrinhDoChuyenMonMuonHoc</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
+

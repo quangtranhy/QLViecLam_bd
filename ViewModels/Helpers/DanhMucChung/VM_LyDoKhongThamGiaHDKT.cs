@@ -2,7 +2,7 @@
 {
     public class VM_LyDoKhongThamGiaHDKT
     {
-        public int? MaLyDoKhongThamGiaHDKT { get; set; }
+        public string? MaLyDoKhongThamGiaHDKT { get; set; }
         public string? TenLyDoKhongThamGiaHDKT { get; set; }
     }
 }

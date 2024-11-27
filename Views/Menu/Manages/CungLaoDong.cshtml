@@ -1,0 +1,43 @@
+﻿
+
+<!--QUẢN LÝ CUNG LAO ĐỘNG-->
+<li class="menu-item" aria-haspopup="true" data-menu-toggle="hover" id="cunglaodong" title="Quản lý cung lao động">
+    <a href="javascript:;" class="menu-link menu-toggle">
+        <span class="menu-text" >QUẢN LÝ CUNG LAO ĐỘNG</span>
+    </a>
+    <div class="menu-submenu">
+        <i class="menu-arrow"></i>
+        <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="cunglaodong_nhankhau" title="Quản lý thông tin nhân khẩu">
+                <a class="menu-link menu-toggle" asp-controller="NhanKhau" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/User.svg" class="max-h-100px"
+                             alt="Quản lý thông tin nhân khẩu" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Nhân khẩu</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="cunglaodong_hogiadinh" title="Quản lý thông tin hộ gia đình">
+                <a class="menu-link menu-toggle" asp-controller="HoGiaDinh" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Users.svg" class="max-h-100px"
+                             alt="Quản lý thông tin hộ gia đình" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Hộ gia đình</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover" id="cunglaodong_biendongcung" title="Thông tin biến động cung lao động">
+                <a class="menu-link menu-toggle" asp-controller="BienDongCung" asp-action="Index">
+                    <i class="menu-bullet menu-bullet-line">
+                        <img src="~/Admin/assets/media/svg/quanlyvieclam/Waves.svg" class="max-h-100px"
+                             alt="thông tin biến động cung lao động" />
+                    </i>
+                    <span class="menu-text" style="margin-left: 3%;">Biến động cung</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</li>
+
+

@@ -8,7 +8,9 @@
     var trinhdocmkt = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Count_Chucnang>)ViewData["trinhdocmkt"]!;
     var linhvucdaotao = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Count_Chucnang>)ViewData["linhvucdaotao"]!;
     var luong = (IEnumerable<QLViecLam.ViewModels.Admin.Manages.ThongTinThiTruongLD.ThuThapTT.HeThongTruyVanTT.VM_Luong_NguoiLaoDong>)ViewData["luong"]!;
-    int record_id = 1;
+
+
+    // int record_id = 1;
 }
 @section custom_style {
     <link rel="stylesheet" type="text/css" href="~/Admin/assets/datatables/bootstrap/dataTables.bootstrap.css" />
@@ -27,7 +29,7 @@
 
     </script>
 }
-@model QLViecLam.Models.Admin.Manages.ThongTinThiTruongLD.Company
+@model QLViecLam.Models.Admin.Manages.Company
 <div class="card card-custom">
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
@@ -44,14 +46,8 @@
         <div class="row">
             <div class="col-xl-6">
                 <div class="form-group">
-                    <label>Mã số doanh nghiệp</label>
+                    <label>Mã số đăng ký kinh doanh</label>
                     <input type="text" class="form-control" asp-for="MaSoDn" />
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="form-group">
-                    <label>Mã số DKKD</label>
-                    <input type="text" class="form-control" asp-for="Dkkd" />
                 </div>
             </div>
             <div class="col-xl-6">
@@ -139,10 +135,10 @@
                 <div class="form-group">
                     <label>Khu công nghiệp</label>
                     <select type="text" class="form-control" asp-for="KhuCn">
-                        @foreach (var item in @Helpers.KhuCN())
+                   @*      @foreach (var item in DanhMucChung.KhuCN())
                         {
                             <option value="@item.MaKhuCN">@item.TenKhuCN</option>
-                        }
+                        } *@
                     </select>
                 </div>
             </div>
@@ -150,10 +146,10 @@
                 <div class="form-group">
                     <label>Ngành nghề</label>
                     <select type="text" class="form-control" asp-for="NganhNghe">
-                        @foreach (var item in Helpers.NganhNgheKinhDoanh())
+                   @*      @foreach (var item in DanhMucChung.NganhNgheKinhDoanh())
                         {
                             <option value="@item.MaNghanhNghe">@item.TenNghanhNghe</option>
-                        }
+                        } *@
                     </select>
                 </div>
             </div>

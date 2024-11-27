@@ -13,6 +13,9 @@ using System.Xml.Linq;
 using QLViecLam.ViewModels.Admin.Manages.TongHop_PhanTich_DuDoan.HeThongBaoCaoThongKe.QuanLyDanhMucDuLieu;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using System.Dynamic;
+using QLViecLam.Models.Admin.Manages;
+using System.Linq;
 //using QLViecLam.ViewModels.Systems;
 
 namespace QLViecLam.Helper
@@ -89,7 +92,7 @@ namespace QLViecLam.Helper
 
         //public static IActionResult GoToSessionOut()
         //{
-          
+
         //    return new RedirectToActionResult("SessionOut", "Index", null);
         //}
         //public static IActionResult GoToPage()
@@ -110,7 +113,7 @@ namespace QLViecLam.Helper
             }
         }
 
-        public static string GetSsAdmin(ISession session, string key)
+        public static string GetSsAdminKey(ISession session, string key)
         {
             if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
             {
@@ -121,29 +124,29 @@ namespace QLViecLam.Helper
             }
             else
             {
-                return "";
+                return null!;
             }
         }
 
-        public static string GetThongTinDonVi(ISession session, string key)
+        public static dynamic GetSsAdmin(ISession session)
         {
-            if (!string.IsNullOrEmpty(session.GetString("ThongTinDonVi")))
+            if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
             {
-                string thongtindonvi = session.GetString("ThongTinDonVi");
-                dynamic thongtindonviInfo = JsonConvert.DeserializeObject(thongtindonvi);
-                string value = thongtindonviInfo[key];
-                return value;
+                string ssadmin = session.GetString("SsAdmin")!;
+                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
+                return sessionInfo;
             }
             else
             {
-                return "";
+                return null!;
             }
         }
 
+
         public static string GetThongTinUsers(ISession session)
         {
-            string ssadmin = session.GetString("SsAdmin");
-            dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin);
+            string ssadmin = session.GetString("SsAdmin")!;
+            dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
             string value = sessionInfo["Name"] + " (" + sessionInfo["Username"] + ")";
             return value;
         }
@@ -152,8 +155,8 @@ namespace QLViecLam.Helper
         {
             if (!string.IsNullOrEmpty(session.GetString("SsAdmin")))
             {
-                string ssadmin = session.GetString("SsAdmin");
-                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin);
+                string ssadmin = session.GetString("SsAdmin")!;
+                dynamic sessionInfo = JsonConvert.DeserializeObject(ssadmin)!;
                 bool ssa = sessionInfo["Sadmin"];
                 if (ssa)
                 {
@@ -161,10 +164,10 @@ namespace QLViecLam.Helper
                 }
                 else
                 {
-                    string per = session.GetString("Permission");
+                    string per = session.GetString("Permission")!;
                     if (!string.IsNullOrEmpty(per))
                     {
-                        dynamic info = JsonConvert.DeserializeObject(per);
+                        dynamic info = JsonConvert.DeserializeObject(per)!;
 
                         foreach (var item in info)
                         {
@@ -557,6 +560,43 @@ namespace QLViecLam.Helper
             return new_str;
         }
 
+        public static string ConvertToRoman(int num)
+        {
+            int n = num;
+            string result = string.Empty;
+
+            // Dictionary of Roman numerals
+            Dictionary<string, int> romanNumerals = new Dictionary<string, int>
+            {
+            { "M", 1000 },
+            { "CM", 900 },
+            { "D", 500 },
+            { "CD", 400 },
+            { "C", 100 },
+            { "XC", 90 },
+            { "L", 50 },
+            { "XL", 40 },
+            { "X", 10 },
+            { "IX", 9 },
+            { "V", 5 },
+            { "IV", 4 },
+            { "I", 1 }
+            };
+
+            foreach (var item in romanNumerals)
+            {
+                while (n >= item.Value)
+                {
+                    result += item.Key;
+                    n -= item.Value;
+                }
+            }
+
+            return result;
+        }
+
+
+
         public static string ConvertIntToRoman(int roman)
         {
             string str = "";
@@ -704,122 +744,52 @@ namespace QLViecLam.Helper
             return dt;
         }
 
-        public static string ConvertMonthYearToString(string Thang, string Nam)
-        {
-            string str = "";
-            if (!string.IsNullOrEmpty(Thang))
-            {
-                str += Thang + " tháng ";
-            }
-            if (!string.IsNullOrEmpty(Nam))
-            {
-                str += Nam + " năm";
-            }
 
-            return str;
-        }
+        //public static string ConvertMonthYearToString(string Thang, string Nam)
+        //{
+        //    string str = "";
+        //    if (!string.IsNullOrEmpty(Thang))
+        //    {
+        //        str += Thang + " tháng ";
+        //    }
+        //    if (!string.IsNullOrEmpty(Nam))
+        //    {
+        //        str += Nam + " năm";
+        //    }
+        //    return str;
+        //}
 
-        public static string StringtoMD5(string chuoi)
-        {
-            MD5 mD5 = MD5.Create();
-            byte[] mahoa = mD5.ComputeHash(Encoding.UTF8.GetBytes(chuoi));
-            StringBuilder kq = new StringBuilder();
-            for (int i = 0; i < mahoa.Length; i++)
-            {
-                kq.Append(mahoa[i].ToString("x2"));
-            }
-            return kq.ToString();
-        }
-
-
-        static public bool ChkPhanQuyen(ISession session, string maChucNang, string phanQuyen)
-        {
-            //Kiểm tra chức năng
-            if (!ChkChucNang(session, maChucNang)) { return false; }
-            bool bKQ = false;
-
-            return bKQ;
-        }
-
-        static public bool ChkChucNang(ISession session, string maChucNang)
-        {
-            bool bKQ = false;
-
-            return bKQ;
-        }
-
-        //Mặc định SSA có tất cả quyền
-
-        public static string[] phanLoaiDb()
-        {
-            string[] db = new string[]
-           {
-                "Tỉnh",
-                "Huyện",
-                "Thành phố",
-                "Thị xã",
-                "Phường",
-                "Xã",
-                "Thị trấn",
-                //"Thôn/Xóm"
-           };
-            return db;
-        }
+        //public static string StringtoMD5(string chuoi)
+        //{
+        //    MD5 mD5 = MD5.Create();
+        //    byte[] mahoa = mD5.ComputeHash(Encoding.UTF8.GetBytes(chuoi));
+        //    StringBuilder kq = new StringBuilder();
+        //    for (int i = 0; i < mahoa.Length; i++)
+        //    {
+        //        kq.Append(mahoa[i].ToString("x2"));
+        //    }
+        //    return kq.ToString();
+        //}
 
 
-        public static string[] NhomChiSoGia()
-        {
-            string[] csg = new string[]
-            {
-                "1","2","3","4"
-            };
-            return csg;
-        }
 
-        public static List<VM_NganhNgheKinhDoanh> NganhNgheKinhDoanh()
-        {
-            List<VM_NganhNgheKinhDoanh> list = new List<VM_NganhNgheKinhDoanh> { };
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "A", TenNghanhNghe = "NÔNG NGHIỆP, LÂM NGHIỆP VÀ THỦY SẢN" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "B", TenNghanhNghe = "KHAI KHOÁNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "C", TenNghanhNghe = "CÔNG NGHIỆP CHẾ BIẾN, CHẾ TẠO" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "D", TenNghanhNghe = "SẢN XUẤT VÀ PHÂN PHỐI ĐIỆN, KHÍ ĐỐT, NƯỚC NÓNG, HƠI NƯỚC VÀ ĐIỀU HOÀ KHÔNG KHÍ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "E", TenNghanhNghe = "CUNG CẤP NƯỚC; HOẠT ĐỘNG QUẢN LÝ VÀ XỬ LÝ RÁC THẢI, NƯỚC THẢI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "F", TenNghanhNghe = "XÂY DỰNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "G", TenNghanhNghe = "BÁN BUÔN VÀ BÁN LẺ; SỬA CHỮA Ô TÔ, MÔ TÔ, XE MÁY VÀ XE CÓ ĐỘNG CƠ KHÁC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "H", TenNghanhNghe = "VẬN TẢI KHO BÃI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "I", TenNghanhNghe = "DỊCH VỤ LƯU TRÚ VÀ ĂN UỐNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "J", TenNghanhNghe = "THÔNG TIN VÀ TRUYỀN THÔNG" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "K", TenNghanhNghe = "HOẠT ĐỘNG TÀI CHÍNH, NGÂN HÀNG VÀ BẢO HIỂM" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "L", TenNghanhNghe = "HOẠT ĐỘNG KINH DOANH BẤT ĐỘNG SẢN" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "M", TenNghanhNghe = "HOẠT ĐỘNG CHUYÊN MÔN, KHOA HỌC VÀ CÔNG NGHỆ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "N", TenNghanhNghe = "HOẠT ĐỘNG HÀNH CHÍNH VÀ DỊCH VỤ HỖ TRỢ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "O", TenNghanhNghe = "HOẠT ĐỘNG CỦA ĐẢNG CỘNG SẢN, TỔ CHỨC CHÍNH TRỊ - XÃ HỘI, QUẢN LÝ NHÀ NƯỚC, AN NINH QUỐC PHÒNG; BẢO ĐẢM XÃ HỘI BẮT BUỘC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "P", TenNghanhNghe = "GIÁO DỤC VÀ ĐÀO TẠO" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "Q", TenNghanhNghe = "Y TẾ VÀ HOẠT ĐỘNG TRỢ GIÚP XÃ HỘI" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "R", TenNghanhNghe = "NGHỆ THUẬT, VUI CHƠI VÀ GIẢI TRÍ" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "S", TenNghanhNghe = "HOẠT ĐỘNG DỊCH VỤ KHÁC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "T", TenNghanhNghe = "HOẠT ĐỘNG LÀM THUÊ CÁC CÔNG VIỆC TRONG CÁC HỘ GIA ĐÌNH, SẢN XUẤT SẢN PHẨM VẬT CHẤT VÀ DỊCH VỤ TỰ TIÊU DÙNG CỦA HỘ GIA ĐÌNHC" });
-            list.Add(new VM_NganhNgheKinhDoanh { MaNghanhNghe = "U", TenNghanhNghe = "HOẠT ĐỘNG CỦA CÁC TỔ CHỨC VÀ CƠ QUAN QUỐC TẾ" });
-            return list;
-        }
 
-        public static List<VM_KhuCN> KhuCN()
-        {
-            List<VM_KhuCN> list = new List<VM_KhuCN> { };
-            list.Add(new VM_KhuCN { MaKhuCN = "1", TenKhuCN = "KHU CÔNG NGHIỆP TÂY BẮC ĐỒNG HỚI" });
-            list.Add(new VM_KhuCN { MaKhuCN = "2", TenKhuCN = "KHU CÔNG NGHIỆP  CẢNG BIỂN HÒN LA" });
-            list.Add(new VM_KhuCN { MaKhuCN = "3", TenKhuCN = "KHU CÔNG NGHIỆP BẮC ĐỒNG HỚI" });
-            list.Add(new VM_KhuCN { MaKhuCN = "4", TenKhuCN = "KHU CÔNG NGHIỆP  HÒN LA 2" });
-            list.Add(new VM_KhuCN { MaKhuCN = "5", TenKhuCN = "KHU CÔNG NGHIỆP  CAM LIÊN" });
-            list.Add(new VM_KhuCN { MaKhuCN = "6", TenKhuCN = "KHU CÔNG NGHIỆP TÂY BẮC QUÁN HÀU" });
-            list.Add(new VM_KhuCN { MaKhuCN = "7", TenKhuCN = "KHU  CÔNG NGHIỆP  LÝ TRẠCH" });
-            return list;
-        }
+        //public static string[] NhomChiSoGia()
+        //{
+        //    string[] csg = new string[]
+        //    {
+        //        "1","2","3","4"
+        //    };
+        //    return csg;
+        //}
 
-        public static double Percent(int number, int total)
-        {
+        //public static double Percent(int number, int total)
+        //{
 
-            return (double)number / total * 100;
-        }
+        //    return (double)number / total * 100;
+        //}
+
+
+
     }
 }

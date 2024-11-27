@@ -1,0 +1,170 @@
+﻿@{
+    Layout = "_LayoutPrint";
+    var record_id = 1;
+    // var DsHuyen = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsHuyen"]!;
+    var DsXa = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsXa"]!;
+    var DoiTuongUuTien = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.DoiTuongUuTien>)ViewData["DoiTuongUuTien"]!;
+    var TrinhDoHV = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoHV>)ViewData["TrinhDoHV"]!;
+    var TrinhDoCMKT = (IEnumerable<QLViecLam.Models.Admin.Systems.DanhMuc.TrinhDoCMKT>)ViewData["TrinhDoCMKT"]!;
+    var DsDiaBan = (IEnumerable<QLViecLam.Models.Admin.Systems.HeThongChung.DmHanhChinh>)ViewData["DsDiaBan"]!;
+}
+@model IEnumerable<QLViecLam.Models.Admin.Manages.NhanKhau>
+
+<table id="data_header" width="96%" cellspacing="0" cellpadding="8" style="margin:0 auto 20px;">
+    <tr>
+        <td width="40%" style="vertical-align: top; text-align: left">
+            @if(ViewData["Tinh"] != null)
+            {
+                <p>@ViewData["Tinh"]</p>
+            }
+            @if (ViewData["Huyen"] != null)
+            {
+                <p>@ViewData["Huyen"]</p>
+            }
+            @if (ViewData["Xa"] != null)
+            {
+                <p>@ViewData["Xa"]</p>
+            }
+        </td>
+        <td style="vertical-align: top;text-align: right">
+            <b>Mẫu số 01b</b>
+        </td>
+    </tr>
+</table>
+
+<p id="data_body" style="text-align: center;font-weight: bold;font-size: 20px; text-transform: uppercase;">
+    TỔNG HỢP NGƯỜI LAO ĐỘNG  @(ViewData["kydieutra"] != null ? "NĂM " + ViewData["kydieutra"] :"")
+</p>
+
+<table id="data_body1" cellspacing="0" cellpadding="0" border="1"
+       style="margin: 20px auto; border-collapse: collapse;" id="data">
+    <thead>
+        <tr>
+            <th rowspan="3">STT</th>
+            <th rowspan="3">Địa bàn</th>
+            <th colspan="2">Giới tính</th>
+            <th colspan="2"> Khu vực </th>
+            <th colspan="@DoiTuongUuTien.Count()"> ĐốI tượng ưu tiên</th>
+            <th colspan="@TrinhDoHV.Count()"> Trình độ GDPT cao nhất đạt được</th>
+            <th colspan="@TrinhDoCMKT.Count()"> Trình độ CMKT cao nhất đạt được </th>
+            <th colspan="4"> Nhu cầu tìm kiếm việc làm </th>
+            <th colspan="2"> Nhu cầu học nghề </th>
+            <th rowspan="3"> Ghi chú </th>
+        </tr>
+        <tr>
+            <th rowspan="2">Nam</th>
+            <th rowspan="2">Nữ </th>
+            <th rowspan="2"> Thành thị </th>
+            <th rowspan="2"> Nông thôn </th>
+
+            @foreach (var uutien in DoiTuongUuTien)
+            {
+                <th rowspan="2">@uutien.TenDoiTuongUuTien</th>
+            }
+            <th rowspan="2"></th>
+
+
+            @foreach (var tdhv in TrinhDoHV)
+            {
+                <th rowspan="2">@tdhv.TenTrinhDoHV</th>
+            }
+            @foreach (var cmkt in TrinhDoCMKT)
+            {
+                <th rowspan="2">@cmkt.TenTrinhDoCMKT </th>
+            }
+
+            <th colspan="2"> Đối tượng </th>
+            <th colspan="2"> Việc làm mong muốn </th>
+            <th rowspan="2"> Ngành nghề muốn học </th>
+            <th rowspan="2"> Trình độ CM muốn học </th>
+        </tr>
+        <tr>
+            <th>Chưa từng làm việc</th>
+            <th>Đã từng làm việc </th>
+            <th>Trong tỉnh, trong nước </th>
+            <th>Đi làm việc ở nước ngoài </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="text-align: center">
+            <th colspan="2">TỔNG</th>
+            <th>@Model.Where(x => x.Gioitinh == "1").Count()</th>
+            <th>@Model.Where(x => x.Gioitinh == "2").Count()</th>
+            <th>@Model.Where(x => x.KhuVuc == "1").Count()</th>
+            <th>@Model.Where(x => x.KhuVuc == "2").Count()</th>
+            <th></th>
+            @foreach (var uutien in DoiTuongUuTien)
+            {
+                <th>@Model.Where(x => x.UuTien == uutien.MaDoiTuongUuTien).Count()</th>
+            }
+            @foreach (var tdhv in TrinhDoHV)
+            {
+                <th>@Model.Where(x => x.TrinhDoHV == tdhv.MaTrinhDoHV).Count()</th>
+            }
+            @foreach (var cmkt in TrinhDoCMKT)
+            {
+                <th>@Model.Where(x => x.TrinhDoCMKT == cmkt.MaTrinhDoCMKT).Count()</th>
+            }
+
+            <th>@Model.Where(x => x.DoiTuongTimViecLam == "1").Count()</th>
+            <th>@Model.Where(x => x.DoiTuongTimViecLam == "2").Count()</th>
+            <th>@Model.Where(x => x.ViecLamMongMuon == "1").Count()</th>
+            <th>@Model.Where(x => x.ViecLamMongMuon == "2").Count()</th>
+            <th>@Model.Where(x => x.NganhNgheMuonHoc != null).Count()</th>
+            <th>@Model.Where(x => x.TrinhDoChuyenMonMuonHoc != null).Count()</th>
+        </tr>
+        @if (DsDiaBan.Count() > 1)
+        {
+            @foreach (var item in DsDiaBan)
+            {
+                var Dsdb = DsXa.Where(x => x.Parent == item.MaDb);
+                var name_db = Dsdb.Select(x => x.Name).FirstOrDefault();
+                var list_db = Dsdb.Select(x => x.MaDb).ToList();
+                var newModel = Model.Where(x => list_db.Contains(x.MaDiaBan));
+
+                <tr style="text-align: center">
+                    <td>@(record_id++)</td>
+                    <td>@name_db</td>
+                    <td>@newModel.Where(x => x.Gioitinh == "1").Count()</td>
+                    <td>@newModel.Where(x => x.Gioitinh == "2").Count()</td>
+                    <td>@newModel.Where(x => x.KhuVuc == "1").Count()</td>
+                    <td>@newModel.Where(x => x.KhuVuc == "2").Count()</td>
+                    <td></td>
+                    @foreach (var ut in DoiTuongUuTien)
+                    {
+                        <td>@newModel.Where(x => x.UuTien == ut.MaDoiTuongUuTien).Count()</td>
+                    }
+                    @foreach (var hv in TrinhDoHV)
+                    {
+                        <td>@newModel.Where(x => x.TrinhDoHV == hv.MaTrinhDoHV).Count()</td>
+                    }
+                    @foreach (var cm in TrinhDoCMKT)
+                    {
+                        <td>@newModel.Where(x => x.TrinhDoCMKT == cm.MaTrinhDoCMKT).Count()</td>
+                    }
+                    <td>@newModel.Where(x => x.DoiTuongTimViecLam == "1").Count()</td>
+                    <td>@newModel.Where(x => x.DoiTuongTimViecLam == "2").Count()</td>
+                    <td>@newModel.Where(x => x.ViecLamMongMuon == "1").Count()</td>
+                    <td>@newModel.Where(x => x.ViecLamMongMuon == "2").Count()</td>
+                    <td>@newModel.Where(x => x.NganhNgheMuonHoc != null).Count()</td>
+                    <td>@newModel.Where(x => x.TrinhDoChuyenMonMuonHoc != null).Count()</td>
+                    <td></td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+<table id="data_footer" width="96%" cellspacing="0" cellpadding="0"
+       style="margin: 20px auto;text-align: center; height:200px">
+    <tr>
+        <td width="40%" style="text-align: left; vertical-align: top;">
+        </td>
+        <td style="vertical-align: top;">
+            <b>ỦY BAN NHÂN DÂN </b><br>
+            <i>(Chữ ký, dấu)</i>
+        </td>
+    </tr>
+</table>
+
